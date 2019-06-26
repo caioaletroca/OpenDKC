@@ -16,8 +16,8 @@ public class CinemachineManager : MonoBehaviour
 
     private void Awake()
     {
-        if (CinemachineVirtualCamera == null)
-            CinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        if (Instance == null)
+            Instance = GetComponent<CinemachineVirtualCamera>();
     }
 
     #endregion
