@@ -8,15 +8,16 @@ public class CinemachineManager : MonoBehaviour
     /// <summary>
     /// A singleton access for cinemachine camera
     /// </summary>
+    [HideInInspector]
     public static CinemachineVirtualCamera Instance = null;
 
     #endregion
 
     #region Unity Methods
 
-    private void Awake()
+    public void Awake()
     {
-        if (Instance == null)
+        //if (Instance == null)
             Instance = GetComponent<CinemachineVirtualCamera>();
     }
 

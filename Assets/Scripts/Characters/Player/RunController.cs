@@ -6,15 +6,24 @@ using UnityEngine.Events;
 /// A standard character controller for 2D movement
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerController))]
-public class RunController : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(KongController))]
+public class RunController : BaseController
 {
     #region Public Properties
+
+    [Header("Run Subcontrollers")]
+
+    [SerializeField]
+    private AttackController attackController;
+
+    [Space(15)]
 
     /// <summary>
     /// The force applied to the jump
     /// </summary>
     [SerializeField]
+    [TooltipAttribute("The force applied to the jump")]
     private float JumpForce = 400f;
 
     /// <summary>
@@ -84,7 +93,7 @@ public class RunController : MonoBehaviour
     #region Public Events
 
     [Header("Events")]
-    [Space]
+    [Space(10)]
 
     /// <summary>
     /// Fires whenever to update the current ground distance
@@ -122,6 +131,11 @@ public class RunController : MonoBehaviour
     private Rigidbody2D mRigidbody2D;
 
     /// <summary>
+    /// Instance of <see cref="Animator"/>
+    /// </summary>
+    private Animator animator;
+
+    /// <summary>
     /// The radius for the overlap calculations on the grounded check
     /// </summary>
     const float mGroundedRadius = 0.2f;
@@ -134,7 +148,10 @@ public class RunController : MonoBehaviour
     /// <summary>
     /// A flag that represents if the player is on the ground
     /// </summary>
-    private bool mGrounded;
+    private bool Airborning = false;
+
+    [HideInInspector]
+    public bool Attacking = false;
 
     /// <summary>
     /// A flag that represents if the player is crouched
@@ -163,6 +180,7 @@ public class RunController : MonoBehaviour
     private void Awake()
     {
         mRigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         if (OnGroundDistanceEvent == null)
             OnGroundDistanceEvent = new FloatEvent();
@@ -179,8 +197,8 @@ public class RunController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool wasGrounded = mGrounded;
-        mGrounded = false;
+        var wasAirborning = Airborning;
+        Airborning = true;
 
         // Check if the player touches the ground again
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundPoint.position, mGroundedRadius, GroundLayer);
@@ -188,10 +206,11 @@ public class RunController : MonoBehaviour
         {
             if (collider.gameObject != gameObject)
             {
-                mGrounded = true;
+                Airborning = false;
+                animator.SetBool("Jumping", false);
 
                 // Fire event when the player grounds
-                if (!wasGrounded)
+                if (!wasAirborning)
                     OnLandEvent.Invoke();
             }
         }
@@ -201,32 +220,76 @@ public class RunController : MonoBehaviour
 
     #region Public Methods
 
+    public override void JumpButton()
+    {
+        // Check if not already in the air
+        if (!Airborning)
+        {
+            Airborning = true;
+
+            // Add vertical force to the player
+            mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
+
+            animator.SetBool("Jumping", true);
+        }
+    }
+
     /// <summary>
     /// Moves the character by walking or jumping
     /// </summary>
     /// <param name="move"></param>
     /// <param name="crouch"></param>
     /// <param name="jump"></param>
-    public void Move(Vector2 move, bool Run, bool crouch, bool jump)
+    public override void HorinzontalAxis(Vector2 move, bool Run = false, bool crouch = false)
     {
         TargetVelocity = Vector2.zero;
 
-        // Calculate the speed
-        move.x *= (Run ? RunSpeed : WalkSpeed);
+        if(crouch && CrouchControl)
+        {
+            if (!mCrouched)
+            {
+                mCrouched = true;
+                animator.SetBool("Crouching", true);
+            }
+            else
+            {
+                mCrouched = false;
+                animator.SetBool("Crouching", false);
+            }
+
+            move.x *= CrouchSpeed;
+            
+            // Movement while crouching
+            TargetVelocity = new Vector2(move.x * 10f, mRigidbody2D.velocity.y);
+        }
+        
+        if(!crouch)
+        {
+            // Calculate the speed
+            move.x *= (Run ? RunSpeed : WalkSpeed);
+            
+            // Normal movement
+            TargetVelocity = new Vector2(move.x * 10f, mRigidbody2D.velocity.y);
+        }
 
         // If player is crouching, check if the character could stand up
-        if (!crouch)
-            // If character has a ceiling preventing them from standing up, keep crouched
-            if (Physics2D.OverlapCircle(CeilingPoint.position, mCeilingRadius, GroundLayer))
-                crouch = true;
+        //if (!crouch)
+        //    // If character has a ceiling preventing them from standing up, keep crouched
+        //    if (Physics2D.OverlapCircle(CeilingPoint.position, mCeilingRadius, GroundLayer))
+        //        crouch = true;
 
-        // Let controllers do the work
-        JumpController(move, crouch, jump);
-        CrouchController(move, crouch, jump);
+        // Face the player to the right side depending on his movement
+        if (move.x > 0 && !mFacingRight)
+            Flip();
+        else if (move.x < 0 && mFacingRight)
+            Flip();
+
+        // Set speed animation parameter
+        animator.SetFloat("Speed", Mathf.Abs(TargetVelocity.x));
 
         // Apply smoothing to the movement
         mRigidbody2D.velocity = Vector3.SmoothDamp(mRigidbody2D.velocity, TargetVelocity, ref mVelocity, MovementSmoothing);
-
+        
         // Calculate distance to the ground
         RaycastHit2D hit = Physics2D.Raycast(GroundPoint.transform.position, Vector2.down, Mathf.Infinity, GroundLayer);
         if (hit != null)
@@ -235,51 +298,26 @@ public class RunController : MonoBehaviour
         }
     }
 
+    public override void AttackButton() => attackController.Attack();
+
     public void JumpEnemy()
     {
         mRigidbody2D.velocity = Vector2.zero;
         
         // Add vertical force to the player
-        mGrounded = false;
+        Airborning = true;
         mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
-    }
-
-    public void Attack()
-    {
-        
     }
 
     #endregion
 
+    public void OnAttackEvent(bool attacking) => Attacking = attacking;
+
     #region Private Methods
-
-    private void JumpController(Vector2 move, bool crouch, bool jump)
-    {
-        // If the character should jump
-        if (mGrounded && jump)
-        {
-            // Add vertical force to the player
-            mGrounded = false;
-            mRigidbody2D.AddForce(new Vector2(0f, JumpForce));
-        }
-
-        // If is in the air and has control
-        if (AirControl && !mGrounded)
-        {
-            // Move the character by finding the target velocity
-            TargetVelocity = new Vector2(move.x * 10f, mRigidbody2D.velocity.y);
-
-            // Face the player to the right side depending on his movement
-            if (move.x > 0 && !mFacingRight)
-                Flip();
-            else if (move.x < 0 && mFacingRight)
-                Flip();
-        }
-    }
 
     private void CrouchController(Vector2 move, bool crouch, bool jump)
     {
-        if (mGrounded)
+        if (!Airborning)
         {
             // If the player is currently crouching
             if (crouch)

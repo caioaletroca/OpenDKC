@@ -73,9 +73,10 @@ GameObject:
   - component: {fileID: 6944360725309435751}
   - component: {fileID: 6944360725309435750}
   - component: {fileID: 6944360725309435748}
-  - component: {fileID: 6944360725309435746}
-  - component: {fileID: 6944360725309435744}
-  - component: {fileID: 6944360725309435747}
+  - component: {fileID: 2256076101454402901}
+  - component: {fileID: 5993394080426852892}
+  - component: {fileID: -4134707158039321085}
+  - component: {fileID: -5515460545376665005}
   m_Layer: 9
   m_Name: Diddy
   m_TagString: Player
@@ -206,7 +207,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6944360725309435746
+--- !u!114 &2256076101454402901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c1cb00285595c41a4508795aaa3ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HorizontalValue: 0
+  VerticalValue: 0
+  Pause: 0
+  Jump: 0
+  Attack: 0
+--- !u!114 &5993394080426852892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,14 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb1297c51e862b449bbaae0ca5afbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runController: {fileID: 6944360725309435744}
-  hookController: {fileID: 6944360725309435747}
-  animator: {fileID: 6944360725309435748}
-  Jump: 0
-  Crouch: 0
-  Run: 0
-  Attack: 0
---- !u!114 &6944360725309435744
+  Attacked: 0
+  MovementSettings: {fileID: -4134707158039321085}
+  DamagerSettings: {fileID: -5515460545376665005}
+--- !u!114 &-4134707158039321085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,87 +248,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6944360725309435770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80b3d99bf8749384f807d58f7066ea82, type: 3}
+  m_Script: {fileID: 11500000, guid: c2b3317ff1c111d4cad345ad717b4970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 200
-  CrouchSpeed: 1
   WalkSpeed: 100
   RunSpeed: 200
-  MovementSmoothing: 0.5
-  AirControl: 1
-  CrouchControl: 0
+  AirSpeed: 100
+  CrouchSpeed: 0
+  MovementSmoothing: 0.3
+  JumpForce: 200
+  MaximumVelocityY: 100
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
   GroundPoint: {fileID: 6944360724159364921}
-  CeilingPoint: {fileID: 6944360725566058430}
-  CrouchDisableCollider: {fileID: 0}
-  OnGroundDistanceEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6944360725309435746}
-        m_MethodName: OnGroundDistanceEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: RunController+FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6944360725309435746}
-        m_MethodName: OnLandEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6944360725309435746}
-        m_MethodName: OnCrouching
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: RunController+BoolEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnTurnEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6944360725309435746}
-        m_MethodName: OnTurn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: RunController+BoolEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &6944360725309435747
+--- !u!114 &-5515460545376665005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,28 +271,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6944360725309435770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6db048a42a67df246b84da9fea9953dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 97450828864a78b41b80c070d87f4af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6944360725309435748}
-  JumpForce: 200
-  SnapOffset: {x: 0, y: -0.4, z: 0}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6944360725309435746}
-        m_MethodName: OnLandEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  AttackDuration: 0.667
 --- !u!1 &6944360725566058431
 GameObject:
   m_ObjectHideFlags: 0

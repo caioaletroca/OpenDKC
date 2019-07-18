@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour
     public void Initialize()
     {
         var player = Instantiate(PlayerObject, RespawnPoint.transform.position, RespawnPoint.transform.rotation);
-
+        Debug.Log(CinemachineManager.Instance);
         // Set new camera target
-        CinemachineManager.Instance.m_Follow = player.transform;
+        //CinemachineManager.Instance.m_Follow = player.transform;
     }
 
     public void Restart()
     {
+        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         GameEnded = false;

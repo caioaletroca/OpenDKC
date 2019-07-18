@@ -8,12 +8,12 @@ public class DeathCollision : MonoBehaviour
     {
         if (!enemy.Dead && collision.gameObject.tag == "Player")
         {
-            var player = collision.gameObject.GetComponent<PlayerController>();
+            var player = collision.gameObject.GetComponent<KongController>();
 
-            if (player.Attack)
-                enemy.TakeDamage();
-            else
-                player.TakeDamage();
+            //if (player.Attack)
+            //    enemy.TakeDamage();
+            //else
+            //    player.TakeDamage();
         }
             
     }
