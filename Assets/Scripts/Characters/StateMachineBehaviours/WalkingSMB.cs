@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// The walking state for the player controller
+/// </summary>
 public class WalkingSMB : SceneSMB<KongController>
 {
     #region State Methods

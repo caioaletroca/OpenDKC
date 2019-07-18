@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public partial class KongController
 {
     #region State Variables
 
+    /// <summary>
+    /// The horizontal input axis in absolute value
+    /// </summary>
     public float HorizontalValue
     {
         get
@@ -21,6 +19,9 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// The vertical input axis value
+    /// </summary>
     public float VerticalValue
     {
         get
@@ -33,6 +34,9 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// The current ground distance evaluated right below the character
+    /// </summary>
     public float GroundDistance
     {
         get
@@ -45,6 +49,9 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// A flag that represents if the player is sitting on a ground surface
+    /// </summary>
     public bool Grounded
     {
         get
@@ -57,6 +64,9 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// A flag that represents if the player is jumping
+    /// </summary>
     public bool Jump
     {
         get
@@ -69,6 +79,9 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// A flag that represents if the player is attacking
+    /// </summary>
     public bool Attack
     {
         get
@@ -81,6 +94,9 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// A flag that represents if the player is running
+    /// </summary>
     public bool Run
     {
         get
@@ -127,6 +143,9 @@ public partial class KongController
         PlayerInput.Instance.KongMap.Attack.canceled += e => Run = false;
     }
 
+    /// <summary>
+    /// Updates all the variables in the Update method
+    /// </summary>
     public void UpdateStateVariables()
     {
         UpdateGroundDistance();

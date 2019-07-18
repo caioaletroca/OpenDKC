@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using static GameControls;
-using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInput : MonoBehaviour
 {

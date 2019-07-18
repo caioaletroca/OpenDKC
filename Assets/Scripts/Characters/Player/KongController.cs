@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
+/// <summary>
+/// The player controller, handling all physics movements and animations for the Kong
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 public partial class KongController : Player
