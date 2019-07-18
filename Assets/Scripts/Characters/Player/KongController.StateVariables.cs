@@ -109,6 +109,21 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// A flag that represents if the player is hanging on a hook
+    /// </summary>
+    public bool Hook
+    {
+        get
+        {
+            return animator.GetBool(AnimationParameters.Hook);
+        }
+        set
+        {
+            animator.SetBool(AnimationParameters.Hook, value);
+        }
+    }
+
     #endregion
 
     #region State Methods

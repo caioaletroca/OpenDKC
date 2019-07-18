@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 5993394080426852892}
   - component: {fileID: -4134707158039321085}
   - component: {fileID: -5515460545376665005}
+  - component: {fileID: 3604560453348423945}
   m_Layer: 9
   m_Name: Diddy
   m_TagString: Player
@@ -239,6 +240,7 @@ MonoBehaviour:
   Attacked: 0
   MovementSettings: {fileID: -4134707158039321085}
   DamagerSettings: {fileID: -5515460545376665005}
+  HookSettings: {fileID: 3604560453348423945}
 --- !u!114 &-4134707158039321085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +277,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackDuration: 0.667
+--- !u!114 &3604560453348423945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06a06319cd536b4888fb22532a2b775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SnapOffset: {x: 0, y: -0.4, z: 0}
 --- !u!1 &6944360725566058431
 GameObject:
   m_ObjectHideFlags: 0

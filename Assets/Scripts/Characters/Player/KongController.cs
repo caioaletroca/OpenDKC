@@ -51,6 +51,11 @@ public partial class KongController : Player
     /// </summary>
     public DamagerSettings DamagerSettings;
 
+    /// <summary>
+    /// Instance for the Hook Settings
+    /// </summary>
+    public HookSettings HookSettings;
+
     #endregion
 
     #region Unity Methods
@@ -70,7 +75,6 @@ public partial class KongController : Player
 
         // Start the state machine
         SceneSMB<KongController>.Initialise(animator, this);
-
 
         RegisterStateVariables();
     }
@@ -127,6 +131,22 @@ public partial class KongController : Player
         // of this script happen BEFORE the input is updated, leading to setting the game in pause once again
         yield return new WaitForFixedUpdate();
         yield return new WaitForEndOfFrame();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Hook")
+        {
+            Hook = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Hook")
+        {
+            Hook = false;
+        }
     }
 
     #endregion

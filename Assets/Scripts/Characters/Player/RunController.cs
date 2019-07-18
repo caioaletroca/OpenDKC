@@ -12,13 +12,6 @@ public class RunController : BaseController
 {
     #region Public Properties
 
-    [Header("Run Subcontrollers")]
-
-    [SerializeField]
-    private AttackController attackController;
-
-    [Space(15)]
-
     /// <summary>
     /// The force applied to the jump
     /// </summary>
@@ -297,8 +290,6 @@ public class RunController : BaseController
             OnGroundDistanceEvent.Invoke(hit.distance);
         }
     }
-
-    public override void AttackButton() => attackController.Attack();
 
     public void JumpEnemy()
     {

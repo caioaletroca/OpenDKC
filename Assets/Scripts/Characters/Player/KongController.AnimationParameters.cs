@@ -1,6 +1,9 @@
 ﻿public partial class KongController
 {
-	public static class AnimationParameters
+    /// <summary>
+    /// Run time definitions for the state variables string names
+    /// </summary>
+    public static class AnimationParameters
     {
         #region Public Properties
 
@@ -17,6 +20,8 @@
         public static string Attack = "Attack";
 
         public static string Run = "Run";
+
+        public static string Hook = "Hook";
 
         #endregion
     }
