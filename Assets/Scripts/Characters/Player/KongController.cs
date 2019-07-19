@@ -142,8 +142,6 @@ public partial class KongController : Player
         Debug.Log("Player take damage");
 
         Destroy(gameObject, 1);
-
-        SceneController.Instance.EndGame();
     }
 
     #endregion

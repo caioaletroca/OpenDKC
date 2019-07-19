@@ -59,19 +59,9 @@ public class ScreenFader : MonoBehaviour
 
     #region Public Methods
 
-    protected IEnumerator Fade(float finalAlpha, CanvasGroup canvasGroup)
+    public static void SetAlpha(float alpha)
     {
-        IsFading = true;
-        canvasGroup.blocksRaycasts = true;
-        float fadeSpeed = Mathf.Abs(canvasGroup.alpha - finalAlpha) / FadeDuration;
-        while(!Mathf.Approximately(canvasGroup.alpha, finalAlpha))
-        {
-            canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, finalAlpha, fadeSpeed * Time.deltaTime);
-            yield return null;
-        }
-        canvasGroup.alpha = finalAlpha;
-        IsFading = false;
-        canvasGroup.blocksRaycasts = false;
+        Instance.FaderCanvasGroup.alpha = alpha;
     }
 
     public static IEnumerator FadeSceneIn()
@@ -103,6 +93,25 @@ public class ScreenFader : MonoBehaviour
 
         // Start the fading effect
         yield return Instance.StartCoroutine(Instance.Fade(1f, canvasGroup));
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    protected IEnumerator Fade(float finalAlpha, CanvasGroup canvasGroup)
+    {
+        IsFading = true;
+        canvasGroup.blocksRaycasts = true;
+        float fadeSpeed = Mathf.Abs(canvasGroup.alpha - finalAlpha) / FadeDuration;
+        while (!Mathf.Approximately(canvasGroup.alpha, finalAlpha))
+        {
+            canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, finalAlpha, fadeSpeed * Time.deltaTime);
+            yield return null;
+        }
+        canvasGroup.alpha = finalAlpha;
+        IsFading = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     #endregion
