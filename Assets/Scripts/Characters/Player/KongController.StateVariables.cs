@@ -146,6 +146,7 @@ public partial class KongController
         {
             Jump = true;
             Grounded = false;
+            Attack = false;
         };
         PlayerInput.Instance.KongMap.Jump.canceled += e => Jump = false;
 

@@ -133,22 +133,6 @@ public partial class KongController : Player
         yield return new WaitForEndOfFrame();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Hook")
-        {
-            Hook = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Hook")
-        {
-            Hook = false;
-        }
-    }
-
     #endregion
 
     #region Action Methods
