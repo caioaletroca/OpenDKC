@@ -143,7 +143,7 @@ public partial class KongController : Player
 
         Destroy(gameObject, 1);
 
-        GameManager.Instance.EndGame();
+        SceneController.Instance.EndGame();
     }
 
     #endregion
