@@ -75,7 +75,10 @@ public partial class KongController : Player
 
         // Start the state machine
         SceneSMB<KongController>.Initialise(animator, this);
+    }
 
+    private void Start()
+    {
         RegisterStateVariables();
     }
 

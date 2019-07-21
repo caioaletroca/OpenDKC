@@ -8,10 +8,29 @@ public class ScreenFader : MonoBehaviour
 {
     #region Singleton
 
+    protected static ScreenFader mInstance;
+
     /// <summary>
     /// A singleton instance for the <see cref="ScreenFader"/>
     /// </summary>
-    public static ScreenFader Instance;
+    public static ScreenFader Instance
+    {
+        get
+        {
+            // Return if instantiated
+            if (mInstance != null)
+                return mInstance;
+
+            // Find object in the scene
+            mInstance = FindObjectOfType<ScreenFader>();
+            if (mInstance != null)
+                return mInstance;
+
+            // TODO: Add ScreenFader prefab
+
+            return mInstance;
+        }
+    }
 
     #endregion
 
@@ -49,9 +68,6 @@ public class ScreenFader : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-
         DontDestroyOnLoad(gameObject);
     }
 
@@ -59,10 +75,7 @@ public class ScreenFader : MonoBehaviour
 
     #region Public Methods
 
-    public static void SetAlpha(float alpha)
-    {
-        Instance.FaderCanvasGroup.alpha = alpha;
-    }
+    public static void SetAlpha(float alpha) => Instance.FaderCanvasGroup.alpha = alpha;
 
     public static IEnumerator FadeSceneIn()
     {

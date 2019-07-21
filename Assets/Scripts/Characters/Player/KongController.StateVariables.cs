@@ -133,30 +133,33 @@ public partial class KongController
     /// </summary>
     public void RegisterStateVariables()
     {
+        // Get the player input before awake
+        var playerInput = FindObjectOfType<PlayerInput>();
+
         // HorizontalValue
-        PlayerInput.Instance.KongMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
-        PlayerInput.Instance.KongMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
+        playerInput.KongMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
+        playerInput.KongMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
 
         // VerticalValue
-        PlayerInput.Instance.KongMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
-        PlayerInput.Instance.KongMap.VerticalAxis.canceled += e => VerticalValue = 0;
+        playerInput.KongMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
+        playerInput.KongMap.VerticalAxis.canceled += e => VerticalValue = 0;
 
         // Jump
-        PlayerInput.Instance.KongMap.Jump.performed += e =>
+        playerInput.KongMap.Jump.performed += e =>
         {
             Jump = true;
             Grounded = false;
             Attack = false;
         };
-        PlayerInput.Instance.KongMap.Jump.canceled += e => Jump = false;
+        playerInput.KongMap.Jump.canceled += e => Jump = false;
 
         // Run
-        PlayerInput.Instance.KongMap.Attack.performed += e => Attack = true;
-        PlayerInput.Instance.KongMap.Attack.canceled += e => Attack = false;
+        playerInput.KongMap.Attack.performed += e => Attack = true;
+        playerInput.KongMap.Attack.canceled += e => Attack = false;
 
         // Run
-        PlayerInput.Instance.KongMap.Attack.performed += e => Run = true;
-        PlayerInput.Instance.KongMap.Attack.canceled += e => Run = false;
+        playerInput.KongMap.Attack.performed += e => Run = true;
+        playerInput.KongMap.Attack.canceled += e => Run = false;
     }
 
     /// <summary>
