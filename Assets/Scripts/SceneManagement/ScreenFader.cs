@@ -8,6 +8,9 @@ public class ScreenFader : MonoBehaviour
 {
     #region Singleton
 
+    /// <summary>
+    /// Private access for the singleton instance
+    /// </summary>
     protected static ScreenFader mInstance;
 
     /// <summary>
