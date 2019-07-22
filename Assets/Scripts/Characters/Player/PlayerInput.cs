@@ -71,4 +71,12 @@ public class PlayerInput : MonoBehaviour
     private void OnDisable() => KongMap.Disable();
 
     #endregion
+
+    #region Public Methods
+
+    public static void Enable() => Instance.KongMap.Enable();
+
+    public static void Disable() => Instance.KongMap.Disable();
+
+    #endregion
 }

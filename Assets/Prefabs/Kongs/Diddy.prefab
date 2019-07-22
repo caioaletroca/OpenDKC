@@ -1,5 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4545005017807094959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 578645620540164494}
+  - component: {fileID: 47353960692886668}
+  m_Layer: 9
+  m_Name: AudioListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &578645620540164494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545005017807094959}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6944360725309435768}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &47353960692886668
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545005017807094959}
+  m_Enabled: 1
 --- !u!1 &6944360724159364922
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +138,7 @@ Transform:
   - {fileID: 6944360724159364921}
   - {fileID: 6944360725566058430}
   - {fileID: 6944360724702264187}
+  - {fileID: 578645620540164494}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -238,9 +278,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attacked: 0
+  HookGameObject: {fileID: 0}
   MovementSettings: {fileID: -4134707158039321085}
   DamagerSettings: {fileID: -5515460545376665005}
   HookSettings: {fileID: 3604560453348423945}
+  CheckPointBarrelGameObject: {fileID: 0}
 --- !u!114 &-4134707158039321085
 MonoBehaviour:
   m_ObjectHideFlags: 0

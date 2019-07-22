@@ -56,9 +56,7 @@ public class CheckPointBarrel : MonoBehaviour
     }
 
     public void OnSpawnFinished()
-    {
-        Debug.Log("Deu bom");
-        
+    {   
         // Destroy it self
         Destroy(gameObject);
 

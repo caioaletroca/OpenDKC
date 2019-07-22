@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
 
 /// <summary>
 /// The player controller, handling all physics movements and animations for the Kong
@@ -84,58 +82,11 @@ public partial class KongController : Player
         RegisterStateVariables();
     }
 
-    private void Update()
-    {
-        //if (PlayerInput.Instance.Pause)
-        //{
-        //    //Display pause screen
-        //    Debug.Log("Game paused");
-
-        //    PlayerInput.Instance.KongMap.Disable();
-        //    PlayerInput.Instance.KongMap.Pause.Enable();
-
-        //    //Freeze the current time
-        //    Time.timeScale = 0;
-        //}
-        //else
-        //    Unpause();
-    }
-
     public void FixedUpdate()
     {
         UpdateStateVariables();
         UpdateHorizontalMovement();
         UpdateVerticalMovement();
-        //UpdateRunState();
-        //UpdateAttackState();
-        //UpdateJumpState();
-    }
-
-    #endregion
-
-    #region Public Methods
-
-    public void Unpause()
-    {
-        Debug.Log("Game unpaused");
-        
-        // If the game has continued already
-        if (Time.timeScale > 0)
-            return;
-    }
-
-    public IEnumerator UnpauseCoroutine()
-    {
-        // Resets the time scale
-        Time.timeScale = 1;
-
-        // Reenables inputs
-        PlayerInput.Instance.KongMap.Enable();
-
-        // We have to wait for a fixed update so the pause button state change, otherwise we can get in case were the update
-        // of this script happen BEFORE the input is updated, leading to setting the game in pause once again
-        yield return new WaitForFixedUpdate();
-        yield return new WaitForEndOfFrame();
     }
 
     #endregion

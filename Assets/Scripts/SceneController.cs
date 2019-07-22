@@ -4,13 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    #region Public Properties
+    #region Singleton
 
     /// <summary>
     /// A singleton instance access
     /// </summary>
     [HideInInspector]
     public static SceneController Instance = null;
+
+    #endregion
+
+    #region Public Properties
 
     [HideInInspector]
     public Scene CurrentScene;
@@ -28,10 +32,10 @@ public class SceneController : MonoBehaviour
 
     #endregion
 
-    #region Private Methods
+    #region Private Properties
 
     [HideInInspector]
-    public bool GameEnded = false;
+    public bool Paused = false;
 
     #endregion
 
@@ -50,6 +54,15 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Scene Start Executed");
+
+        // Register Bindings
+        PlayerInput.Instance.KongMap.Pause.performed += e =>
+        {
+            if (!Paused) Pause();
+            else Unpause();
+        };
+
         // Start the game
         Initialize();
     }
@@ -59,16 +72,103 @@ public class SceneController : MonoBehaviour
     #region Public Methods
 
     /// <summary>
+    /// Pauses the current scene and shows the Pause UI
+    /// </summary>
+    public static void Pause()
+    {
+        // Disable all buttons
+        PlayerInput.Disable();
+
+        // Only enables the unpause button
+        PlayerInput.Instance.KongMap.Pause.Enable();
+
+        // Stops time
+        Time.timeScale = 0;
+
+        // Loads the pause UI menus
+        SceneManager.LoadSceneAsync("UIMenus", LoadSceneMode.Additive);
+
+        // Set internal variable
+        Instance.Paused = true;
+    }
+
+    /// <summary>
+    /// Unpauses the current scene
+    /// </summary>
+    public static void Unpause()
+    {
+        // If the timescale is already > 0, we 
+        if (Time.timeScale > 0)
+            return;
+
+        // Unpauses the game
+        Instance.StartCoroutine(Instance.UnpauseCoroutine());
+    }
+
+    /// <summary>
     /// Restarts the current scene
     /// </summary>
     public static void Restart()
     {
+        // Reloads the scene
         Instance.StartCoroutine(Instance.Transition(Instance.CurrentScene.name, Instance.RestartDestinationTag));
     }
 
     #endregion
 
     #region Private Methods
+
+    /// <summary>
+    /// Initialize the entire game
+    /// </summary>
+    protected void Initialize()
+    {
+        if (InitialSceneTransitionDestination != null)
+        {
+            // Set entering place
+            SetEnteringGameObjectLocation(InitialSceneTransitionDestination);
+            ScreenFader.SetAlpha(1f);
+
+            // Make Player Invisible
+            KongController.Instance.Spawn = true;
+            KongController.Instance.CheckPointBarrelGameObject = InitialSceneTransitionDestination.gameObject;
+
+            // Fade the Screen
+            StartCoroutine(ScreenFader.FadeSceneIn());
+
+            // Start Spawn animation
+            InitialSceneTransitionDestination.OnReachDestination.Invoke();
+        }
+        else
+        {
+            CurrentScene = SceneManager.GetActiveScene();
+            RestartDestinationTag = SceneTransitionDestination.DestinationTag.A;
+        }
+    }
+
+    /// <summary>
+    /// Executes the unpause routine async
+    /// </summary>
+    /// <returns></returns>
+    protected IEnumerator UnpauseCoroutine()
+    {
+        // Resets the time
+        Time.timeScale = 1;
+
+        // Unloads the pause UI menus
+        SceneManager.UnloadSceneAsync("UIMenus");
+
+        // Re-enables the inputs
+        PlayerInput.Enable();
+
+        // We have to wait for a fixed update so the pause button state change, otherwise we can get in case were the update
+        // of this script happen BEFORE the input is updated, leading to setting the game in pause once again
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForEndOfFrame();
+
+        // Sets the state variable
+        Paused = false;
+    }
 
     protected IEnumerator Transition(string newSceneName, SceneTransitionDestination.DestinationTag destinationTag)
     {
@@ -136,31 +236,6 @@ public class SceneController : MonoBehaviour
     {
         CurrentScene = entrance.gameObject.scene;
         RestartDestinationTag = entrance.destinationTag;
-    }
-
-    protected void Initialize()
-    {
-        if(InitialSceneTransitionDestination != null)
-        {
-            // Set entering place
-            SetEnteringGameObjectLocation(InitialSceneTransitionDestination);
-            ScreenFader.SetAlpha(1f);
-
-            // Make Player Invisible
-            KongController.Instance.Spawn = true;
-            KongController.Instance.CheckPointBarrelGameObject = InitialSceneTransitionDestination.gameObject;
-
-            // Fade the Screen
-            StartCoroutine(ScreenFader.FadeSceneIn());
-
-            // Start Spawn animation
-            InitialSceneTransitionDestination.OnReachDestination.Invoke();
-        }
-        else
-        {
-            CurrentScene = SceneManager.GetActiveScene();
-            RestartDestinationTag = SceneTransitionDestination.DestinationTag.A;
-        }
     }
 
     #endregion
