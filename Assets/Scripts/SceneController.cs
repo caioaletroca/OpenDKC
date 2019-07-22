@@ -46,7 +46,10 @@ public class SceneController : MonoBehaviour
 
         // Do not destroy Game Manager when loading
         DontDestroyOnLoad(gameObject);
+    }
 
+    private void Start()
+    {
         // Start the game
         Initialize();
     }
@@ -139,9 +142,18 @@ public class SceneController : MonoBehaviour
     {
         if(InitialSceneTransitionDestination != null)
         {
+            // Set entering place
             SetEnteringGameObjectLocation(InitialSceneTransitionDestination);
             ScreenFader.SetAlpha(1f);
+
+            // Make Player Invisible
+            KongController.Instance.Spawn = true;
+            KongController.Instance.CheckPointBarrelGameObject = InitialSceneTransitionDestination.gameObject;
+
+            // Fade the Screen
             StartCoroutine(ScreenFader.FadeSceneIn());
+
+            // Start Spawn animation
             InitialSceneTransitionDestination.OnReachDestination.Invoke();
         }
         else

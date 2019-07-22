@@ -50,10 +50,20 @@ public class CheckPointBarrel : MonoBehaviour
 
     #region Public Methods
 
+    public void OnSpawnStart()
+    {
+        Spawn = true;
+    }
+
     public void OnSpawnFinished()
     {
+        Debug.Log("Deu bom");
+        
         // Destroy it self
-        Destroy(this);
+        Destroy(gameObject);
+
+        // Show player
+        KongController.Instance.Spawn = false;
 
         // TODO: Spawn effects
     }

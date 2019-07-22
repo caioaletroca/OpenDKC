@@ -124,6 +124,21 @@ public partial class KongController
         }
     }
 
+    /// <summary>
+    /// A flag that represents if the player is spawning
+    /// </summary>
+    public bool Spawn
+    {
+        get
+        {
+            return animator.GetBool(AnimationParameters.Spawn);
+        }
+        set
+        {
+            animator.SetBool(AnimationParameters.Spawn, value);
+        }
+    }
+
     #endregion
 
     #region State Methods

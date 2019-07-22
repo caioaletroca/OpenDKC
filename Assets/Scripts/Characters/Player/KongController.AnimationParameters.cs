@@ -23,6 +23,8 @@
 
         public static string Hook = "Hook";
 
+        public static string Spawn = "Spawn";
+
         #endregion
     }
 }
