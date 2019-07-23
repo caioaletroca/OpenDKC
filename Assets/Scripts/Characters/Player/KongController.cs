@@ -18,6 +18,12 @@ public partial class KongController : Player
 
     #endregion
 
+    #region Public Properties
+
+    public Damager Damager;
+
+    #endregion
+
     #region Private Properties
 
     /// <summary>

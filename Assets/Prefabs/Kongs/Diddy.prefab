@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: -4134707158039321085}
   - component: {fileID: -5515460545376665005}
   - component: {fileID: 3604560453348423945}
+  - component: {fileID: 5223639867485175071}
   m_Layer: 9
   m_Name: Diddy
   m_TagString: Player
@@ -279,10 +280,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attacked: 0
   HookGameObject: {fileID: 0}
+  SpawnGameObject: {fileID: 0}
+  Damager: {fileID: 5223639867485175071}
   MovementSettings: {fileID: -4134707158039321085}
   DamagerSettings: {fileID: -5515460545376665005}
   HookSettings: {fileID: 3604560453348423945}
-  CheckPointBarrelGameObject: {fileID: 0}
 --- !u!114 &-4134707158039321085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +334,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapOffset: {x: 0, y: -0.4, z: 0}
+--- !u!114 &5223639867485175071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  Offset: {x: 1.5, y: 1}
+  Size: {x: 2.5, y: 1}
+  CanHitTrigger: 1
+  HittableLayers:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &6944360725566058431
 GameObject:
   m_ObjectHideFlags: 0
