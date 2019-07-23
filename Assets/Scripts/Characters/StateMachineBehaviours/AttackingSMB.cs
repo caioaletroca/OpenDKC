@@ -11,7 +11,7 @@ public class AttackingSMB : SceneSMB<KongController>
     public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mMonoBehaviour.StartCoroutine(EndAttack());
-        mMonoBehaviour.Damager.GetComponent<Collider>().enabled = true;
+        mMonoBehaviour.Damager.Enable();
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,7 +21,7 @@ public class AttackingSMB : SceneSMB<KongController>
 
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.Damager.GetComponent<Collider>().enabled = false;
+        mMonoBehaviour.Damager.Disable();
     }
 
     #endregion

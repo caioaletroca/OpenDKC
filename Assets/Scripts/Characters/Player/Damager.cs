@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Damager : MonoBehaviour
 {
     #region Types
 
-    //public class DamagableEvent : UnityEvent<Damager, Damageble>
+    /// <summary>
+    /// Event for damaging hits for the <see cref="Damager"/> class
+    /// </summary>
+    public class DamageableEvent : UnityEvent<Damager, Damageable> { }
+
+    /// <summary>
+    /// Event for no damaging hits for the <see cref="Damager"/> class
+    /// </summary>
+    public class NonDamageableEvent : UnityEvent<Damager> { }
 
     #endregion
 
@@ -22,6 +25,9 @@ public class Damager : MonoBehaviour
     [Tooltip("The total damage inflicted on enemies.")]
     public int Damage = 1;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Vector2 Offset = new Vector2(1.5f, 1f);
 
     public Vector2 Size = new Vector2(2.5f, 1f);
@@ -31,6 +37,18 @@ public class Damager : MonoBehaviour
     /// </summary>
     [Tooltip("If disabled, damager ignore trigger when casting for damage.")]
     public bool CanHitTrigger = false;
+
+    /// <summary>
+    /// A flag that represents if the damager will disable automatically after the first hit
+    /// </summary>
+    [Tooltip("If enabled, the damager will disable automatically after the first hit.")]
+    public bool DisableAfterHit = false;
+    
+    /// <summary>
+    /// A flag that represents if the damager should ignore the damageable invulnerable status
+    /// </summary>
+    [Tooltip("If set, an invincible damageable hit will still get the onHit message (but won't loose any life).")]
+    public bool IgnoreInvincibility = false;
 
     /// <summary>
     /// The layer the damager will check for hits
@@ -45,7 +63,7 @@ public class Damager : MonoBehaviour
     /// <summary>
     /// A flag that represents if the damager is activated or not
     /// </summary>
-    protected bool CanDamage = true;
+    protected bool CanDamage = false;
 
     protected ContactFilter2D mContactFilter;
 
@@ -57,7 +75,15 @@ public class Damager : MonoBehaviour
 
     #region Events
 
+    /// <summary>
+    /// Fired when damager makes a hit with damage
+    /// </summary>
+    public DamageableEvent OnDamageableHit;
 
+    /// <summary>
+    /// Fired when damager makes a hit without damage
+    /// </summary>
+    public NonDamageableEvent OnNonDamageableHit;
 
     #endregion
 
@@ -96,12 +122,13 @@ public class Damager : MonoBehaviour
 
             if(damageable)
             {
-                
+                OnDamageableHit?.Invoke(this, damageable);
+                damageable.TakeDamage(this, IgnoreInvincibility);
+                if (DisableAfterHit)
+                    Disable();
             }
             else
-            {
-
-            }
+                OnNonDamageableHit?.Invoke(this);
         }
     }
 

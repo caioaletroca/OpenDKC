@@ -347,8 +347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  Offset: {x: 1.5, y: 1}
-  Size: {x: 2.5, y: 1}
+  Offset: {x: 0, y: 0.01}
+  Size: {x: 0.4, y: 0.4}
   CanHitTrigger: 1
   HittableLayers:
     serializedVersion: 2

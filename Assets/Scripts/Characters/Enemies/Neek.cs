@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Neek : Enemy
+public class Neek : MonoBehaviour
 {
+    #region State Variables
+
+    /// <summary>
+    /// Represents if the object has died
+    /// </summary>
+    [HideInInspector]
+    public bool Die
+    {
+        get => animator.GetBool("Die");
+        set => animator.SetBool("Die", value);
+    }
+
+    #endregion
+
     #region Public Properties
-
-    public Collider2D BaseCollider;
-
-    public Collider2D KillCollider;
-
-    public Collider2D DeathCollider;
 
     /// <summary>
     /// The direction for the death jump effect
     /// </summary>
-    public Vector2 DeathDirection = new Vector2(0, 200);
+    [Tooltip("The force applied when the object dies.")]
+    public Vector2 DeathJumpForce = new Vector2(0, 200);
+
+    /// <summary>
+    /// The amount of time to despawn the object after death
+    /// </summary>
+    [Tooltip("The amount of time to despawn the object after death.")]
+    public float TimeToDespawn = 5;
 
     #endregion
 
@@ -27,6 +42,13 @@ public class Neek : Enemy
     /// </summary>
     private Rigidbody2D mRigidBody2D;
 
+    /// <summary>
+    /// A instance for the <see cref="Animator"/> for the game Object
+    /// </summary>
+    private Animator animator;
+
+    private Collider2D[] colliders;
+
     #endregion 
 
     #region Unity Methods
@@ -34,26 +56,28 @@ public class Neek : Enemy
     private void Awake()
     {
         mRigidBody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        colliders = GetComponents<Collider2D>();
     }
 
     #endregion
 
-    private void Update()
+    #region Event Methods
+
+    public void OnDieEvent(Damager damager, Damageable damageable)
     {
-        
+        Die = true;
+        Debug.Log(damageable.DamageDirection);
+        // Perform Death jump
+        mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y));
+
+        // Disables all colliders
+        foreach (var collider in colliders)
+            collider.enabled = false;
+
+        // Despawn in time
+        Destroy(gameObject, TimeToDespawn);
     }
 
-    public override void TakeDamage()
-    {
-        base.TakeDamage();
-        
-        // Disable Collisions
-        BaseCollider.enabled = false;
-
-        // Mark state as dead
-        Dead = true;
-
-        // Add little jump
-        mRigidBody2D.AddForce(DeathDirection);
-    }
+    #endregion
 }
