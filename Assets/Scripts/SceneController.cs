@@ -34,6 +34,9 @@ public class SceneController : MonoBehaviour
 
     #region Private Properties
 
+    /// <summary>
+    /// A flag state variable to define if the game is paused or not
+    /// </summary>
     [HideInInspector]
     public bool Paused = false;
 
