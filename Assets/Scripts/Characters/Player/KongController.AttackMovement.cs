@@ -2,10 +2,12 @@
 
 public partial class KongController
 {
-    #region Public Properties
+    #region Public Methods
 
-    [HideInInspector]
-    public bool Attacked = false;
+    /// <summary>
+    /// Fires when the attack animation finishes
+    /// </summary>
+    public void OnAttackAnimationFinished() => Attack = false;
 
     #endregion
 }

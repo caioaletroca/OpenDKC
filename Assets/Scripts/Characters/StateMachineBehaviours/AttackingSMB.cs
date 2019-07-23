@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// The attacking state for the player controller
@@ -10,7 +9,6 @@ public class AttackingSMB : SceneSMB<KongController>
 
     public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.StartCoroutine(EndAttack());
         mMonoBehaviour.Damager.Enable();
     }
 
@@ -22,23 +20,6 @@ public class AttackingSMB : SceneSMB<KongController>
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mMonoBehaviour.Damager.Disable();
-    }
-
-    #endregion
-
-    #region Private Methods
-
-    /// <summary>
-    /// Exits the attack state after the duration time
-    /// </summary>
-    /// <returns></returns>
-    protected IEnumerator EndAttack()
-    {
-        yield return new WaitForSeconds(mMonoBehaviour.DamagerSettings.AttackDuration);
-        
-        mMonoBehaviour.Attack = false;
-
-        yield return null;
     }
 
     #endregion

@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public partial class KongController : Player
+public partial class KongController : MonoBehaviour
 {
     #region Singleton
 
@@ -20,6 +20,9 @@ public partial class KongController : Player
 
     #region Public Properties
 
+    /// <summary>
+    /// Instance for the Damager controller
+    /// </summary>
     public Damager Damager;
 
     #endregion
@@ -49,11 +52,6 @@ public partial class KongController : Player
     /// Instance for the Movement Settings
     /// </summary>
     public MovementSettings MovementSettings;
-
-    /// <summary>
-    /// Instance for the Damager Settings
-    /// </summary>
-    public DamagerSettings DamagerSettings;
 
     /// <summary>
     /// Instance for the Hook Settings
@@ -91,17 +89,6 @@ public partial class KongController : Player
         UpdateStateVariables();
         UpdateHorizontalMovement();
         UpdateVerticalMovement();
-    }
-
-    #endregion
-
-    #region Action Methods
-
-    public override void TakeDamage()
-    {
-        Debug.Log("Player take damage");
-
-        Destroy(gameObject, 1);
     }
 
     #endregion

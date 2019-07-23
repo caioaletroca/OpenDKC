@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Manages the game and the scene
+/// </summary>
 public class SceneController : MonoBehaviour
 {
     #region Singleton
@@ -22,6 +25,9 @@ public class SceneController : MonoBehaviour
     [HideInInspector]
     public SceneTransitionDestination.DestinationTag RestartDestinationTag;
 
+    /// <summary>
+    /// The initial default starting point for this scene
+    /// </summary>
     public SceneTransitionDestination InitialSceneTransitionDestination;
 
     /// <summary>
@@ -133,6 +139,9 @@ public class SceneController : MonoBehaviour
         {
             // Set entering place
             SetEnteringGameObjectLocation(InitialSceneTransitionDestination);
+            SetCurrentScene(InitialSceneTransitionDestination);
+
+            // Fade screen
             ScreenFader.SetAlpha(1f);
 
             // Make Player Invisible
@@ -197,6 +206,10 @@ public class SceneController : MonoBehaviour
 
         // Set the new scene
         SetCurrentScene(entrance);
+
+        // Make Player Invisible
+        // TODO: Remove this
+        KongController.Instance.SetSpawnState(true, entrance.gameObject);
 
         // Fire reach event
         if (entrance != null)

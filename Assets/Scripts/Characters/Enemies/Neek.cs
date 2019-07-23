@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Controls the neek enemy
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class Neek : MonoBehaviour
 {
@@ -47,6 +48,9 @@ public class Neek : MonoBehaviour
     /// </summary>
     private Animator animator;
 
+    /// <summary>
+    /// A instance for all the <see cref="Collider2D"/> for the game Object
+    /// </summary>
     private Collider2D[] colliders;
 
     #endregion 
@@ -66,8 +70,9 @@ public class Neek : MonoBehaviour
 
     public void OnDieEvent(Damager damager, Damageable damageable)
     {
+        // Set state variable
         Die = true;
-        Debug.Log(damageable.DamageDirection);
+        
         // Perform Death jump
         mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y));
 

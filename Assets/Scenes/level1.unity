@@ -939,6 +939,9 @@ MonoBehaviour:
   - prefab: {fileID: 1877980512446852538, guid: c3cc5d774f86f6446a7be7098bba2794,
       type: 3}
     lifetime: 0.6
+  - prefab: {fileID: 5273050369416827653, guid: 0d1b73ce71fce0845a347e45a67f9e6d,
+      type: 3}
+    lifetime: 0.333
 --- !u!4 &1146990474
 Transform:
   m_ObjectHideFlags: 0
@@ -2030,11 +2033,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6461590488899684875, guid: 5a9f9522f8587174289d208e29e8231f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6461590490467308013, guid: 5a9f9522f8587174289d208e29e8231f,
         type: 3}
