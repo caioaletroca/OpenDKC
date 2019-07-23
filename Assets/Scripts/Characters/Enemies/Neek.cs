@@ -23,6 +23,11 @@ public class Neek : MonoBehaviour
     #region Public Properties
 
     /// <summary>
+    /// A instance for the damager class
+    /// </summary>
+    public Damager Damager;
+
+    /// <summary>
     /// The direction for the death jump effect
     /// </summary>
     [Tooltip("The force applied when the object dies.")]
@@ -62,6 +67,9 @@ public class Neek : MonoBehaviour
         mRigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         colliders = GetComponents<Collider2D>();
+
+        // Enables damager
+        Damager.Enable();
     }
 
     #endregion

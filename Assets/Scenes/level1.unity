@@ -334,6 +334,18 @@ Transform:
   m_Father: {fileID: 1504889980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212392471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 255807493311451998, guid: 5a9f9522f8587174289d208e29e8231f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6461590489917135306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &249143766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1267,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5515460545376665005, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
 --- !u!1 &1412312029
 GameObject:
@@ -2054,6 +2067,11 @@ PrefabInstance:
       propertyPath: DisableOnDeath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5818538808288611294, guid: 5a9f9522f8587174289d208e29e8231f,
+        type: 3}
+      propertyPath: Damager
+      value: 
+      objectReference: {fileID: 212392471}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5a9f9522f8587174289d208e29e8231f, type: 3}

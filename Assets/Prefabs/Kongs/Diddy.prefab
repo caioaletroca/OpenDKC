@@ -115,9 +115,10 @@ GameObject:
   - component: {fileID: 2256076101454402901}
   - component: {fileID: 5993394080426852892}
   - component: {fileID: -4134707158039321085}
-  - component: {fileID: -5515460545376665005}
+  - component: {fileID: 8226759611177957186}
   - component: {fileID: 3604560453348423945}
   - component: {fileID: 5223639867485175071}
+  - component: {fileID: 9005975490835626365}
   m_Layer: 9
   m_Name: Diddy
   m_TagString: Player
@@ -278,12 +279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb1297c51e862b449bbaae0ca5afbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attacked: 0
+  DeathDirection: {x: 0, y: 0}
   HookGameObject: {fileID: 0}
   SpawnGameObject: {fileID: 0}
   Damager: {fileID: 5223639867485175071}
   MovementSettings: {fileID: -4134707158039321085}
-  DamagerSettings: {fileID: -5515460545376665005}
+  DamagerSettings: {fileID: 8226759611177957186}
   HookSettings: {fileID: 3604560453348423945}
 --- !u!114 &-4134707158039321085
 MonoBehaviour:
@@ -308,7 +309,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   GroundPoint: {fileID: 6944360724159364921}
---- !u!114 &-5515460545376665005
+--- !u!114 &8226759611177957186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,10 +318,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6944360725309435770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97450828864a78b41b80c070d87f4af3, type: 3}
+  m_Script: {fileID: 11500000, guid: dfa3df3da524c2a4abffc328d7eff4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDuration: 0.667
+  DeathJumpForce: {x: 100, y: 200}
 --- !u!114 &3604560453348423945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,9 +351,55 @@ MonoBehaviour:
   Offset: {x: 0, y: 0.01}
   Size: {x: 0.4, y: 0.4}
   CanHitTrigger: 1
+  DisableAfterHit: 0
+  IgnoreInvincibility: 0
   HittableLayers:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &9005975490835626365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4b95386c4443b4f94f0ccae99ca796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealth: 1
+  InvulnerableAfterDamage: 1
+  InvulnerabilityDuration: 3
+  DisableOnDeath: 0
+  CentreOffset: {x: 0, y: 0}
+  DamageDirection: {x: 0, y: 0}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Damageable+HealtEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5993394080426852892}
+        m_MethodName: OnDieEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &6944360725566058431
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,8 @@ public partial class KongController
     /// </summary>
     public void UpdateVerticalMovement()
     {
+        VerticalSpeed = mRigidBody2D.velocity.y;
+
         // Set terminal velocity
         if (mRigidBody2D.velocity.y >= MovementSettings.MaximumVelocityY)
             mRigidBody2D.velocity = new Vector2(mRigidBody2D.velocity.x, MovementSettings.MaximumVelocityY);

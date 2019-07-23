@@ -11,6 +11,8 @@
 
         public static string VerticalValue = "VerticalValue";
 
+        public static string VerticalSpeed = "VerticalSpeed";
+
         public static string GroundDistance = "GroundDistance";
 
         public static string Jump = "Jump";
@@ -24,6 +26,8 @@
         public static string Hook = "Hook";
 
         public static string Spawn = "Spawn";
+
+        public static string Die = "Die";
 
         #endregion
     }

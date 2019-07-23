@@ -24,14 +24,17 @@ public partial class KongController
     /// </summary>
     public float VerticalValue
     {
-        get
-        {
-            return animator.GetFloat(AnimationParameters.VerticalValue);
-        }
-        set
-        {
-            animator.SetFloat(AnimationParameters.VerticalValue, value);
-        }
+        get => animator.GetFloat(AnimationParameters.VerticalValue);
+        set => animator.SetFloat(AnimationParameters.VerticalValue, value);
+    }
+
+    /// <summary>
+    /// The vertical speed value
+    /// </summary>
+    public float VerticalSpeed
+    {
+        get => animator.GetFloat(AnimationParameters.VerticalSpeed);
+        set => animator.SetFloat(AnimationParameters.VerticalSpeed, value);
     }
 
     /// <summary>
@@ -129,14 +132,17 @@ public partial class KongController
     /// </summary>
     public bool Spawn
     {
-        get
-        {
-            return animator.GetBool(AnimationParameters.Spawn);
-        }
-        set
-        {
-            animator.SetBool(AnimationParameters.Spawn, value);
-        }
+        get => animator.GetBool(AnimationParameters.Spawn);
+        set => animator.SetBool(AnimationParameters.Spawn, value);
+    }
+
+    /// <summary>
+    /// A flag that represents if the player is dead
+    /// </summary>
+    public bool Die
+    {
+        get => animator.GetBool(AnimationParameters.Die);
+        set => animator.SetBool(AnimationParameters.Die, value);
     }
 
     #endregion

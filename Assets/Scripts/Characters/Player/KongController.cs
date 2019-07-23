@@ -54,6 +54,11 @@ public partial class KongController : MonoBehaviour
     public MovementSettings MovementSettings;
 
     /// <summary>
+    /// Instance for the Damage Settings
+    /// </summary>
+    public DamageSettings DamagerSettings;
+
+    /// <summary>
     /// Instance for the Hook Settings
     /// </summary>
     public HookSettings HookSettings;
@@ -89,6 +94,19 @@ public partial class KongController : MonoBehaviour
         UpdateStateVariables();
         UpdateHorizontalMovement();
         UpdateVerticalMovement();
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Fired when the player dies
+    /// </summary>
+    public void OnDieEvent()
+    {
+        // Set variable state
+        Die = true;
     }
 
     #endregion
