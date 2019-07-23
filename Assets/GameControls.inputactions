@@ -8,7 +8,7 @@
                 {
                     "name": "Pause",
                     "id": "ddbc815f-b9d5-4226-b808-5196f76a25ac",
-                    "expectedControlLayout": "",
+                    "expectedControlLayout": "Button",
                     "continuous": false,
                     "passThrough": false,
                     "initialStateCheck": false,

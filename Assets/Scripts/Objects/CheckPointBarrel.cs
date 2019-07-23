@@ -37,6 +37,8 @@ public class CheckPointBarrel : MonoBehaviour
     /// </summary>
     private Animator animator;
 
+    private AudioSource audioSource;
+
     #endregion
 
     #region Unity Events
@@ -44,6 +46,7 @@ public class CheckPointBarrel : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     #endregion
@@ -57,13 +60,17 @@ public class CheckPointBarrel : MonoBehaviour
 
     public void OnSpawnFinished()
     {   
-        // Destroy it self
-        Destroy(gameObject);
-
         // Show player
         KongController.Instance.Spawn = false;
 
         // TODO: Spawn effects
+        var test = Instantiate(DustEffect, gameObject.transform);
+        
+        // Sound XF
+        audioSource.Play();
+
+        // Destroy it self
+        Destroy(gameObject);
     }
 
     #endregion

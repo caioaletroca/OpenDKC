@@ -78,8 +78,16 @@ public class ScreenFader : MonoBehaviour
 
     #region Public Methods
 
+    /// <summary>
+    /// Set the alpha value for the fade canvas
+    /// </summary>
+    /// <param name="alpha">The new alpha value</param>
     public static void SetAlpha(float alpha) => Instance.FaderCanvasGroup.alpha = alpha;
 
+    /// <summary>
+    /// Fade the current scene in
+    /// </summary>
+    /// <returns></returns>
     public static IEnumerator FadeSceneIn()
     {
         var canvasGroup = Instance.FaderCanvasGroup;
@@ -91,6 +99,11 @@ public class ScreenFader : MonoBehaviour
         canvasGroup.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Fade the current scene out
+    /// </summary>
+    /// <param name="fadeType">The type to fade</param>
+    /// <returns></returns>
     public static IEnumerator FadeSceneOut(FadeType fadeType = FadeType.Black)
     {
         CanvasGroup canvasGroup;
@@ -115,6 +128,12 @@ public class ScreenFader : MonoBehaviour
 
     #region Private Methods
 
+    /// <summary>
+    /// Fades the screen using a final alpha value
+    /// </summary>
+    /// <param name="finalAlpha">The final alpha value</param>
+    /// <param name="canvasGroup">The canvas to fade</param>
+    /// <returns></returns>
     protected IEnumerator Fade(float finalAlpha, CanvasGroup canvasGroup)
     {
         IsFading = true;

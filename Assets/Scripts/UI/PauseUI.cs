@@ -15,7 +15,14 @@ public class PauseUI : MonoBehaviour
     /// <summary>
     /// Restarts the current scene
     /// </summary>
-    public void RestartButton() => SceneController.Restart();
+    public void RestartButton()
+    {
+        // First, unpauses the game
+        SceneController.Unpause();
+
+        // Then, restart the current scene
+        SceneController.Restart();
+    }
 
     #endregion
 }

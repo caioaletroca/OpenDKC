@@ -56,8 +56,6 @@ public partial class KongController : Player
 
     #endregion
 
-    public GameObject CheckPointBarrelGameObject;
-
     #region Unity Methods
 
     private void Awake()

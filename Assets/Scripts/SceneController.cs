@@ -54,10 +54,8 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Scene Start Executed");
-
         // Register Bindings
-        PlayerInput.Instance.KongMap.Pause.performed += e =>
+        PlayerInput.Instance.KongMap.Pause.started += e =>
         {
             if (!Paused) Pause();
             else Unpause();
@@ -97,12 +95,17 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public static void Unpause()
     {
-        // If the timescale is already > 0, we 
-        if (Time.timeScale > 0)
-            return;
+        // Re-enables the inputs
+        PlayerInput.Enable();
 
-        // Unpauses the game
-        Instance.StartCoroutine(Instance.UnpauseCoroutine());
+        // Resets the time
+        Time.timeScale = 1;
+
+        // Unloads the pause UI menus
+        SceneManager.UnloadSceneAsync("UIMenus");
+
+        // Sets the state variable
+        Instance.Paused = false;
     }
 
     /// <summary>
@@ -130,8 +133,8 @@ public class SceneController : MonoBehaviour
             ScreenFader.SetAlpha(1f);
 
             // Make Player Invisible
-            KongController.Instance.Spawn = true;
-            KongController.Instance.CheckPointBarrelGameObject = InitialSceneTransitionDestination.gameObject;
+            // TODO: Remove this
+            KongController.Instance.SetSpawnState(true, InitialSceneTransitionDestination.gameObject);
 
             // Fade the Screen
             StartCoroutine(ScreenFader.FadeSceneIn());
@@ -175,7 +178,7 @@ public class SceneController : MonoBehaviour
         IsTransitioning = true;
 
         // Disables inputs during transition
-        PlayerInput.Instance.KongMap.Disable();
+        PlayerInput.Disable();
 
         // Start fading effect
         yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.Black));
@@ -200,7 +203,7 @@ public class SceneController : MonoBehaviour
         yield return StartCoroutine(ScreenFader.FadeSceneIn());
 
         // Re-enables inputs
-        PlayerInput.Instance.KongMap.Enable();
+        PlayerInput.Enable();
 
         IsTransitioning = false;
     }
