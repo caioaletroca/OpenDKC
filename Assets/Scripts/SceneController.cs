@@ -64,7 +64,7 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         // Register Bindings
-        PlayerInput.Instance.KongMap.Pause.started += e =>
+        InputController.Instance.KongMap.Pause.started += e =>
         {
             if (!Paused) Pause();
             else Unpause();
@@ -84,10 +84,10 @@ public class SceneController : MonoBehaviour
     public static void Pause()
     {
         // Disable all buttons
-        PlayerInput.Disable();
+        InputController.Disable();
 
         // Only enables the unpause button
-        PlayerInput.Instance.KongMap.Pause.Enable();
+        InputController.Instance.KongMap.Pause.Enable();
 
         // Stops time
         Time.timeScale = 0;
@@ -105,7 +105,7 @@ public class SceneController : MonoBehaviour
     public static void Unpause()
     {
         // Re-enables the inputs
-        PlayerInput.Enable();
+        InputController.Enable();
 
         // Resets the time
         Time.timeScale = 1;
@@ -174,7 +174,7 @@ public class SceneController : MonoBehaviour
         SceneManager.UnloadSceneAsync("UIMenus");
 
         // Re-enables the inputs
-        PlayerInput.Enable();
+        InputController.Enable();
 
         // We have to wait for a fixed update so the pause button state change, otherwise we can get in case were the update
         // of this script happen BEFORE the input is updated, leading to setting the game in pause once again
@@ -190,7 +190,7 @@ public class SceneController : MonoBehaviour
         IsTransitioning = true;
 
         // Disables inputs during transition
-        PlayerInput.Disable();
+        InputController.Disable();
 
         // Start fading effect
         yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.Black));
@@ -219,7 +219,7 @@ public class SceneController : MonoBehaviour
         yield return StartCoroutine(ScreenFader.FadeSceneIn());
 
         // Re-enables inputs
-        PlayerInput.Enable();
+        InputController.Enable();
 
         IsTransitioning = false;
     }

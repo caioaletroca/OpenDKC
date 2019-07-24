@@ -103,10 +103,13 @@ public partial class KongController : MonoBehaviour
     /// <summary>
     /// Fired when the player dies
     /// </summary>
-    public void OnDieEvent()
+    public void OnDieEvent(Damager damager, Damageable damageable)
     {
         // Set variable state
         Die = true;
+
+        // Set Direction
+        DeathDirection = damageable.DamageDirection;
     }
 
     #endregion

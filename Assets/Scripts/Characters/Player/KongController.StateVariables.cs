@@ -155,7 +155,7 @@ public partial class KongController
     public void RegisterStateVariables()
     {
         // Get the player input before awake
-        var playerInput = FindObjectOfType<PlayerInput>();
+        var playerInput = FindObjectOfType<InputController>();
 
         // HorizontalValue
         playerInput.KongMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());

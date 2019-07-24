@@ -99,18 +99,60 @@ public class BackgroundMusicPlayer : MonoBehaviour
     /// </summary>
     protected AudioSource mAmbientAudioSource;
 
+    /// <summary>
+    /// A flag that represents if we should transfer the music execution
+    /// </summary>
+    private bool mTransferMusicTime = false;
+
+    /// <summary>
+    /// A flag that represents if we should transfer the ambient execution
+    /// </summary>
+    private bool mTransferAmbientTime = false;
+
+    /// <summary>
+    /// A variable to destroy the old sound reproducer
+    /// </summary>
+    private BackgroundMusicPlayer mOldInstanceToDestroy = null;
+
     #endregion
 
     #region Unity Methods
 
     private void Awake()
     {
-        StartAudioSource(mMusicAudioSource, MusicAudioClip, MusicOutput, MusicVolume, MusicPlayOnAwake);
-        StartAudioSource(mAmbientAudioSource, AmbientAudioClip, AmbientOutput, AmbientVolume, AmbientPlayOnAwake);
+        // If there's already a player...
+        if (Instance != null && Instance != this)
+        {
+            //...if it use the same music clip, we set the audio source to be at the same position, so music don't restart
+            if (Instance.MusicAudioClip == MusicAudioClip)
+                mTransferMusicTime = true;
+
+            //...if it use the same ambient clip, we set the audio source to be at the same position, so ambient don't restart
+            if (Instance.AmbientAudioClip == AmbientAudioClip)
+                mTransferAmbientTime = true;
+
+            // ... destroy the pre-existing player.
+            mOldInstanceToDestroy = Instance;
+        }
 
         mInstance = this;
 
         DontDestroyOnLoad(gameObject);
+
+        StartAudioSource(out mMusicAudioSource, MusicAudioClip, MusicOutput, MusicVolume, MusicPlayOnAwake);
+        StartAudioSource(out mAmbientAudioSource, AmbientAudioClip, AmbientOutput, AmbientVolume, AmbientPlayOnAwake);
+    }
+
+    private void Start()
+    {
+        // if delete & transfer time only in Start so we avoid the small gap that doing everything at the same time in Awake would create 
+        if (mOldInstanceToDestroy != null)
+        {
+            if (mTransferAmbientTime) mAmbientAudioSource.timeSamples = mOldInstanceToDestroy.mAmbientAudioSource.timeSamples;
+            if (mTransferMusicTime) mMusicAudioSource.timeSamples = mOldInstanceToDestroy.mMusicAudioSource.timeSamples;
+            mOldInstanceToDestroy.Stop();
+            Destroy(mOldInstanceToDestroy.gameObject);
+        }
     }
 
     private void Update()
@@ -302,7 +344,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
     /// <param name="mixer"></param>
     /// <param name="volume"></param>
     /// <param name="playOnAwake"></param>
-    protected void StartAudioSource(AudioSource source, AudioClip clip, AudioMixerGroup mixer, float volume, bool playOnAwake = false)
+    protected void StartAudioSource(out AudioSource source, AudioClip clip, AudioMixerGroup mixer, float volume, bool playOnAwake = false)
     {
         source = gameObject.AddComponent<AudioSource>();
         source.clip = clip;

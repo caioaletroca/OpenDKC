@@ -1267,6 +1267,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8226759611177957186, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: DeathJumpForce.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9005975490835626365, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: OnDie.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5515460545376665005, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}

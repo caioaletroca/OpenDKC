@@ -13,6 +13,8 @@ public partial class KongController
 
     public void PerformDeathJump()
     {
+        Debug.Log(DeathDirection);
+        Debug.Log(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y));
         // Makes the player jump dies
         mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y));
     }

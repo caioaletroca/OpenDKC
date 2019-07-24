@@ -27,7 +27,7 @@ public partial class KongController
     /// Set a new horizontal moviment
     /// </summary>
     /// <param name="Speed">The new speed</param>
-    public void PerformHorizontalMovement(float Speed) => Movement = new Vector2(Speed * PlayerInput.Instance.HorizontalValue, 0);
+    public void PerformHorizontalMovement(float Speed) => Movement = new Vector2(Speed * InputController.Instance.HorizontalValue, 0);
 
     #endregion
 
@@ -38,6 +38,9 @@ public partial class KongController
     /// </summary>
     protected void UpdateHorizontalMovement()
     {
+        if (Die)
+            return;
+
         // Normal movement
         TargetVelocity = new Vector2(Movement.x * 10f * Time.deltaTime, mRigidBody2D.velocity.y);
 

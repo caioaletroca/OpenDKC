@@ -71,6 +71,13 @@ public class ScreenFader : MonoBehaviour
 
     public void Awake()
     {
+        // Avoid more than one instance
+        if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 

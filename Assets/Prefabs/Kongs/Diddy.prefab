@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 6944360725309435751}
   - component: {fileID: 6944360725309435750}
   - component: {fileID: 6944360725309435748}
-  - component: {fileID: 2256076101454402901}
   - component: {fileID: 5993394080426852892}
   - component: {fileID: -4134707158039321085}
   - component: {fileID: 8226759611177957186}
@@ -250,23 +249,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2256076101454402901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6944360725309435770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53c1cb00285595c41a4508795aaa3ada, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HorizontalValue: 0
-  VerticalValue: 0
-  Pause: 0
-  Jump: 0
-  Attack: 0
 --- !u!114 &5993394080426852892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa3df3da524c2a4abffc328d7eff4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathJumpForce: {x: 100, y: 200}
+  DeathJumpForce: {x: 200, y: 200}
 --- !u!114 &3604560453348423945
 MonoBehaviour:
   m_ObjectHideFlags: 0

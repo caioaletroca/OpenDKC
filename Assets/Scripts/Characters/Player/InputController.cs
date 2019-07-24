@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using static GameControls;
 
-public class PlayerInput : MonoBehaviour
+/// <summary>
+/// Stores the input system
+/// </summary>
+public class InputController : MonoBehaviour
 {
     #region Singleton
 
@@ -9,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     /// A singleton instance for the Player Input
     /// </summary>
     [HideInInspector]
-    public static PlayerInput Instance = null;
+    public static InputController Instance;
 
     #endregion
 
@@ -35,23 +38,18 @@ public class PlayerInput : MonoBehaviour
 
     #endregion
 
-    #region Private Properties
-
-    /// <summary>
-    /// A reference to the <see cref="Animator"/> component
-    /// </summary>
-    private Animator animator;
-
-    #endregion
-
     #region Unity Methods
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
 
-        animator = GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
 
         // Register events
         KongMap = new GameControls().KongMap;
