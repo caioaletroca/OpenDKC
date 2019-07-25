@@ -20,6 +20,8 @@ public partial class KongController : MonoBehaviour
 
     #region Public Properties
 
+    [Header("Controller Instances")]
+
     /// <summary>
     /// Instance for the normal Attack controller
     /// </summary>
@@ -30,9 +32,18 @@ public partial class KongController : MonoBehaviour
     /// </summary>
     public Damager BounceDamager;
 
+    /// <summary>
+    /// Instance for the banana controller
+    /// </summary>
+    public BananaController BananaController;
+    
+    [Space(20)]
+
     #endregion
 
     #region Private Properties
+
+    [Header("Settings")]
 
     /// <summary>
     /// Instance for the <see cref="Rigidbody2D"/>

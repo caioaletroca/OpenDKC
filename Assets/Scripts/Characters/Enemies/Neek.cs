@@ -39,6 +39,15 @@ public class Neek : MonoBehaviour
     [Tooltip("The amount of time to despawn the object after death.")]
     public float TimeToDespawn = 5;
 
+    /// <summary>
+    /// The persistence data configuration
+    /// </summary>
+    [HideInInspector]
+    public DataSettings dataSettings = new DataSettings()
+    {
+        persistenceType = DataSettings.PersistenceType.NotPersist,
+    };
+
     #endregion
 
     #region Private Properties
