@@ -7,7 +7,7 @@ public partial class KongController
         if (collision.gameObject.tag == "Hook")
         {
             Hook = true;
-            HookGameObject = collision.gameObject;
+            SetParent(collision.gameObject);
         }
             
     }
@@ -17,7 +17,6 @@ public partial class KongController
         if (collision.gameObject.tag == "Hook")
         {
             Hook = false;
-            HookGameObject = null;
         }
     }
 }

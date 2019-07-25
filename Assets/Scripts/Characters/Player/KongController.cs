@@ -98,7 +98,7 @@ public partial class KongController : MonoBehaviour
 
     #endregion
 
-    #region Public Methods
+    #region Events Methods
 
     /// <summary>
     /// Fired when the player dies
@@ -111,6 +111,26 @@ public partial class KongController : MonoBehaviour
         // Set Direction
         DeathDirection = damageable.DamageDirection;
     }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Sets a new parent to the player object
+    /// </summary>
+    /// <param name="parent">The parent game object</param>
+    public void SetParent(GameObject parent) => transform.parent = parent.transform;
+
+    /// <summary>
+    /// Enables the physics for the <see cref="Rigidbody2D"/>
+    /// </summary>
+    public void EnableRigidBody() => mRigidBody2D.simulated = true;
+
+    /// <summary>
+    /// Disables the physics for the <see cref="Rigidbody2D"/>
+    /// </summary>
+    public void DisableRigidBody() => mRigidBody2D.simulated = false;
 
     #endregion
 

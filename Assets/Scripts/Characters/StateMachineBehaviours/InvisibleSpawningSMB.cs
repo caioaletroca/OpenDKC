@@ -8,6 +8,6 @@ public class InvisibleSpawningSMB : SceneSMB<KongController>
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mMonoBehaviour.PerformHorizontalMovement(0);
-        mMonoBehaviour.Teleport(mMonoBehaviour.SpawnGameObject.transform.position);
+        mMonoBehaviour.SetLocalPosition(mMonoBehaviour.SpawnGameObject.transform.position);
     }
 }
