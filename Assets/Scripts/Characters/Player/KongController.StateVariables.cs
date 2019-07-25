@@ -190,6 +190,7 @@ public partial class KongController
     {
         UpdateGroundDistance();
         UpdateGrounded();
+        UpdateVerticalSpeed();
     }
 
     public void UpdateGrounded()
@@ -212,6 +213,13 @@ public partial class KongController
         RaycastHit2D hit = Physics2D.Raycast(MovementSettings.GroundPoint.transform.position, Vector2.down, 100, MovementSettings.GroundLayer);
         if (hit != null)
             animator.SetFloat(AnimationParameters.GroundDistance, hit.distance);
+    }
+
+    public void UpdateVerticalSpeed()
+    {
+        // Only when player dies, saving process power
+        if (Die)
+            VerticalSpeed = mRigidBody2D.velocity.y;
     }
 
     #endregion

@@ -24,5 +24,10 @@ public class PauseUI : MonoBehaviour
         SceneController.Restart();
     }
 
+    /// <summary>
+    /// Quits the game
+    /// </summary>
+    public void QuitButton() => SceneController.Quit();
+
     #endregion
 }

@@ -149,8 +149,8 @@ public class Damager : MonoBehaviour
             // Find the damage direction
             if (damageable)
             {
+                // Calculate the collision direction
                 var damageDirection = (damageable.transform.position + ((Vector3)damageable.CentreOffset - transform.position)).normalized;
-                Debug.Log(damageDirection);
 
                 // Check if this damager makes hits from above
                 if(HitFromAbove)

@@ -137,6 +137,18 @@ public class SceneController : MonoBehaviour
         Instance.StartCoroutine(CallWithDelay(delay, Restart));
     }
 
+    /// <summary>
+    /// Closes completely the game
+    /// </summary>
+    public static void Quit()
+    {
+        // Fade the screen
+        ScreenFader.FadeSceneOut();
+
+        // Close game
+        Application.Quit();
+    }
+
     #endregion
 
     #region Private Methods
