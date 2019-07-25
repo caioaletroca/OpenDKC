@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Handles the damager interation with the <see cref="Damageable"/> class
+/// </summary>
 public class Damager : MonoBehaviour
 {
     #region Types
@@ -8,11 +12,13 @@ public class Damager : MonoBehaviour
     /// <summary>
     /// Event for damaging hits for the <see cref="Damager"/> class
     /// </summary>
+    [Serializable]
     public class DamageableEvent : UnityEvent<Damager, Damageable> { }
 
     /// <summary>
     /// Event for no damaging hits for the <see cref="Damager"/> class
     /// </summary>
+    [Serializable]
     public class NonDamageableEvent : UnityEvent<Damager> { }
 
     #endregion
@@ -56,6 +62,12 @@ public class Damager : MonoBehaviour
     [Tooltip("The layer available the damager to hit.")]
     public LayerMask HittableLayers;
 
+    /// <summary>
+    /// A flag that represents if the game object can hit another <see cref="Damageable"/> if hits from above
+    /// </summary>
+    [Tooltip("If enabled, the object will hit another if bounced above, like platform games as Super Mario.")]
+    public bool HitFromAbove = false;
+
     #endregion
 
     #region Private Properties
@@ -65,10 +77,19 @@ public class Damager : MonoBehaviour
     /// </summary>
     protected bool CanDamage = false;
 
+    /// <summary>
+    /// The contact filter instance
+    /// </summary>
     protected ContactFilter2D mContactFilter;
 
+    /// <summary>
+    /// Colliders results for the collision test
+    /// </summary>
     protected Collider2D[] mOverlapResults = new Collider2D[10];
 
+    /// <summary>
+    /// Variable used for manipulation, storing the last collider hit result
+    /// </summary>
     protected Collider2D mLastHit;
 
     #endregion
@@ -79,6 +100,11 @@ public class Damager : MonoBehaviour
     /// Fired when damager makes a hit with damage
     /// </summary>
     public DamageableEvent OnDamageableHit;
+
+    /// <summary>
+    /// Fired when damagers makes a above hit with damage
+    /// </summary>
+    public DamageableEvent OnBounceDamageableHit;
 
     /// <summary>
     /// Fired when damager makes a hit without damage
@@ -120,12 +146,33 @@ public class Damager : MonoBehaviour
             // Get the damageable component instance
             var damageable = mLastHit.GetComponent<Damageable>();
 
-            if(damageable)
+            // Find the damage direction
+            if (damageable)
             {
-                OnDamageableHit?.Invoke(this, damageable);
-                damageable.TakeDamage(this, IgnoreInvincibility);
-                if (DisableAfterHit)
-                    Disable();
+                var damageDirection = (damageable.transform.position + ((Vector3)damageable.CentreOffset - transform.position)).normalized;
+                Debug.Log(damageDirection);
+
+                // Check if this damager makes hits from above
+                if(HitFromAbove)
+                {
+                    // Check for hit from above
+                    if (damageDirection.y * -1 > Mathf.Abs(damageDirection.x))
+                    {
+                        OnDamageableHit?.Invoke(this, damageable);
+                        OnBounceDamageableHit?.Invoke(this, damageable);
+                        damageable.TakeDamage(this, IgnoreInvincibility);
+                        if (DisableAfterHit)
+                            Disable();
+                    }
+                }
+                else
+                {
+                    // Fire normal damage
+                    OnDamageableHit?.Invoke(this, damageable);
+                    damageable.TakeDamage(this, IgnoreInvincibility);
+                    if (DisableAfterHit)
+                        Disable();
+                }
             }
             else
                 OnNonDamageableHit?.Invoke(this);

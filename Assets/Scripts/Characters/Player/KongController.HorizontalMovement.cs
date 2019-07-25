@@ -38,6 +38,7 @@ public partial class KongController
     /// </summary>
     protected void UpdateHorizontalMovement()
     {
+        // Disable velocity updates for Die State
         if (Die)
             return;
 

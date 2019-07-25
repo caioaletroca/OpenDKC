@@ -21,9 +21,14 @@ public partial class KongController : MonoBehaviour
     #region Public Properties
 
     /// <summary>
-    /// Instance for the Damager controller
+    /// Instance for the normal Attack controller
     /// </summary>
-    public Damager Damager;
+    public Damager AttackDamager;
+
+    /// <summary>
+    /// Instance for the bounce controller
+    /// </summary>
+    public Damager BounceDamager;
 
     #endregion
 

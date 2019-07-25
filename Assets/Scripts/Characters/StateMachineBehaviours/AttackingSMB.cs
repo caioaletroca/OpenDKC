@@ -9,7 +9,7 @@ public class AttackingSMB : SceneSMB<KongController>
 
     public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.Damager.Enable();
+        mMonoBehaviour.AttackDamager.Enable();
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -19,7 +19,7 @@ public class AttackingSMB : SceneSMB<KongController>
 
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.Damager.Disable();
+        mMonoBehaviour.AttackDamager.Disable();
     }
 
     #endregion
