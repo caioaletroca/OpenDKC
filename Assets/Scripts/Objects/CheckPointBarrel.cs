@@ -22,22 +22,12 @@ public class CheckPointBarrel : MonoBehaviour
 
     #endregion
 
-    #region Public Properties
-
-    public GameObject DustEffect;
-
-    public GameObject CrackedEffect;
-
-    #endregion
-
     #region Private Methods
 
     /// <summary>
     /// Instance for the game object animator
     /// </summary>
     private Animator animator;
-
-    private AudioSource audioSource;
 
     #endregion
 
@@ -46,7 +36,6 @@ public class CheckPointBarrel : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     #endregion
@@ -56,6 +45,8 @@ public class CheckPointBarrel : MonoBehaviour
     public void OnSpawnStart()
     {
         Spawn = true;
+
+        KongController.Instance.SetParent(gameObject);
     }
 
     public void OnSpawnFinished()
@@ -63,11 +54,7 @@ public class CheckPointBarrel : MonoBehaviour
         // Show player
         KongController.Instance.Spawn = false;
 
-        // TODO: Spawn effects
-        var test = Instantiate(DustEffect, gameObject.transform);
-        
-        // Sound XF
-        audioSource.Play();
+        KongController.Instance.SetParent(null);
 
         // Destroy it self
         Destroy(gameObject);

@@ -146,7 +146,7 @@ public class SceneController : MonoBehaviour
 
             // Make Player Invisible
             // TODO: Remove this
-            KongController.Instance.SetSpawnState(true, InitialSceneTransitionDestination.gameObject);
+            //KongController.Instance.SetSpawnState(true, InitialSceneTransitionDestination.gameObject);
 
             // Fade the Screen
             StartCoroutine(ScreenFader.FadeSceneIn());

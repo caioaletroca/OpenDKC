@@ -56,6 +56,9 @@ public class VFXInstance : PoolObject<VFXInstancePool, VFXInstance>, IComparable
     /// </summary>
     public ParticleSystem[] particleSystems;
 
+    /// <summary>
+    /// The transform for the vfx
+    /// </summary>
     public Transform transform;
 
     /// <summary>
@@ -180,6 +183,9 @@ public class VFXController : MonoBehaviour
 
     #region Public Properties
 
+    /// <summary>
+    /// All VFX instances for the game
+    /// </summary>
     public VFX[] vfxConfig;
 
     #endregion

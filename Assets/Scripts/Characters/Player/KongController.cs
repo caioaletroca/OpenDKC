@@ -120,7 +120,13 @@ public partial class KongController : MonoBehaviour
     /// Sets a new parent to the player object
     /// </summary>
     /// <param name="parent">The parent game object</param>
-    public void SetParent(GameObject parent) => transform.parent = parent.transform;
+    public void SetParent(GameObject parent)
+    {
+        if (parent == null)
+            transform.parent = null;
+        else
+            transform.parent = parent.transform;
+    }
 
     /// <summary>
     /// Enables the physics for the <see cref="Rigidbody2D"/>
