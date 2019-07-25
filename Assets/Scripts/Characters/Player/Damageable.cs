@@ -5,7 +5,7 @@ using UnityEngine.Events;
 /// <summary>
 /// Handles the damage received from a <see cref="Damager"/> class
 /// </summary>
-public class Damageable : MonoBehaviour
+public class Damageable : MonoBehaviour, IDataPersister
 {
     #region Types
 
@@ -82,6 +82,12 @@ public class Damageable : MonoBehaviour
     [HideInInspector]
     public Vector2 DamageDirection;
 
+    /// <summary>
+    /// The instance for the data persistent settings
+    /// </summary>
+    [HideInInspector]
+    public DataSettings dataSettings;
+
     #endregion
 
     #region Private Methods
@@ -126,8 +132,16 @@ public class Damageable : MonoBehaviour
 
     private void OnEnable()
     {
+        // Register persistence
+        PersistentDataManager.RegisterPersister(this);
+
+        // Set initial health value
         Health = StartingHealth;
+
+        DisableInvulnerability();
     }
+
+    private void OnDisable() => PersistentDataManager.UnregisterPersister(this);
 
     private void Update()
     {
@@ -202,6 +216,22 @@ public class Damageable : MonoBehaviour
         else
             Health += amount;
     }
+
+    #endregion
+
+    #region Data Persister Methods
+
+    public DataSettings GetDataSettings() => dataSettings;
+
+    public void SetDataSettings(string dataTag, DataSettings.PersistenceType persistenceType)
+    {
+        dataSettings.dataTag = dataTag;
+        dataSettings.persistenceType = persistenceType;
+    }
+
+    public Data SaveData() => new Data<float>(Health);
+
+    public void LoadData(Data data) => Health = ((Data<float>)data).value;
 
     #endregion
 }
