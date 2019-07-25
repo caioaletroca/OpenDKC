@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -124,6 +125,16 @@ public class SceneController : MonoBehaviour
     {
         // Reloads the scene
         Instance.StartCoroutine(Instance.Transition(Instance.CurrentScene.name, Instance.RestartDestinationTag));
+    }
+
+    /// <summary>
+    /// Restarts the current scene with a specified delay time
+    /// </summary>
+    /// <param name="delay"></param>
+    public static void RestartDelay(float delay)
+    {
+        // Reloads the scene with delay
+        Instance.StartCoroutine(CallWithDelay(delay, Restart));
     }
 
     #endregion
@@ -255,6 +266,32 @@ public class SceneController : MonoBehaviour
     {
         CurrentScene = entrance.gameObject.scene;
         RestartDestinationTag = entrance.destinationTag;
+    }
+
+    /// <summary>
+    /// Calls an action after the delay specified in seconds
+    /// </summary>
+    /// <param name="delay"></param>
+    /// <param name="call"></param>
+    /// <returns></returns>
+    protected static IEnumerator CallWithDelay(float delay, Action call)
+    {
+        yield return new WaitForSeconds(delay);
+        call();
+    }
+
+    /// <summary>
+    /// Calls an action after the delay specified in seconds
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="delay"></param>
+    /// <param name="call"></param>
+    /// <param name="parameter"></param>
+    /// <returns></returns>
+    protected static IEnumerator CallWithDelay<T>(float delay, Action<T> call, T parameter)
+    {
+        yield return new WaitForSeconds(delay);
+        call(parameter);
     }
 
     #endregion

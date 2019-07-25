@@ -212,7 +212,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6944360725309435750
 CapsuleCollider2D:
@@ -243,7 +243,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 27150f7f32402d74781a0bff38065937, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathDirection: {x: 0, y: 0}
-  HookGameObject: {fileID: 0}
   SpawnGameObject: {fileID: 0}
   Damager: {fileID: 5223639867485175071}
   MovementSettings: {fileID: -4134707158039321085}
@@ -280,13 +279,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b3317ff1c111d4cad345ad717b4970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 100
-  RunSpeed: 200
-  AirSpeed: 100
+  WalkSpeed: 6
+  RunSpeed: 12
+  AirSpeed: 12
   CrouchSpeed: 0
-  MovementSmoothing: 0.3
+  MovementSmoothing: 0.1
   JumpForce: 200
-  MaximumVelocityY: 100
+  MaximumVelocityY: 10
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -303,7 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa3df3da524c2a4abffc328d7eff4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathJumpForce: {x: 200, y: 200}
+  DeathJumpForce: {x: 100, y: 200}
+  DeathMusic: {fileID: 8300000, guid: 555085fd0bd6b6047b5503050a23abe2, type: 3}
+  RestartDelay: 4
 --- !u!114 &3604560453348423945
 MonoBehaviour:
   m_ObjectHideFlags: 0

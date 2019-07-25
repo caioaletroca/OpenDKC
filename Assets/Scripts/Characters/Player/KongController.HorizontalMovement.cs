@@ -38,12 +38,8 @@ public partial class KongController
     /// </summary>
     protected void UpdateHorizontalMovement()
     {
-        Debug.Log(mRigidBody2D.velocity);
-
         if (Die)
             return;
-
-        Debug.Log("Not died");
 
         // Normal movement
         TargetVelocity = new Vector2(Movement.x * 10f * Time.deltaTime, mRigidBody2D.velocity.y);

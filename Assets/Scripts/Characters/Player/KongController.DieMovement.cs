@@ -11,12 +11,24 @@ public partial class KongController
 
     #region Public Methods
 
+    /// <summary>
+    /// Performs the death jump effect, when the player gets hit by the enemy
+    /// </summary>
     public void PerformDeathJump()
     {
-        Debug.Log(DeathDirection);
-        Debug.Log(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y));
+        // Resets velocity to better create movement with forces
+        mRigidBody2D.velocity = Vector2.zero;
+
         // Makes the player jump dies
         mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y));
+    }
+
+    public void PerformDeathBounce()
+    {
+        var factor = 0.5f;
+        
+        // Makes the player bounces dies
+        mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y) * factor);
     }
 
     #endregion

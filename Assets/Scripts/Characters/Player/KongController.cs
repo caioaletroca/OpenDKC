@@ -77,7 +77,7 @@ public partial class KongController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Test if has instance for all Settings
-        if (MovementSettings == null)
+        if (MovementSettings == null || DamagerSettings == null || HookSettings == null)
             Debug.Break();
 
         // Start the state machine
@@ -110,6 +110,12 @@ public partial class KongController : MonoBehaviour
 
         // Set Direction
         DeathDirection = damageable.DamageDirection;
+
+        // Plays death sound
+        BackgroundMusicPlayer.Instance.PushClip(DamagerSettings.DeathMusic);
+
+        // Calls delayed restart
+        SceneController.RestartDelay(DamagerSettings.RestartDelay);
     }
 
     #endregion

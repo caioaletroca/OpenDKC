@@ -80,6 +80,12 @@ public class Neek : MonoBehaviour
     {
         // Set state variable
         Die = true;
+
+        // Disables damager
+        Damager.Disable();
+
+        // Resets velocity
+        mRigidBody2D.velocity = Vector2.zero;
         
         // Perform Death jump
         mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y));
