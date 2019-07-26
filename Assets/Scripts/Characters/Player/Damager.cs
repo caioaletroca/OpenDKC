@@ -32,10 +32,15 @@ public class Damager : MonoBehaviour
     public int Damage = 1;
 
     /// <summary>
-    /// 
+    /// The offset position for the effective area
     /// </summary>
+    [Tooltip("The offset position for the effective area.")]
     public Vector2 Offset = new Vector2(1.5f, 1f);
 
+    /// <summary>
+    /// The size for the effective area
+    /// </summary>
+    [Tooltip("The size for the effective area.")]
     public Vector2 Size = new Vector2(2.5f, 1f);
 
     /// <summary>
@@ -179,6 +184,18 @@ public class Damager : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        // Calculate bounds points
+        var scale = transform.lossyScale;
+        var scaledSize = Vector2.Scale(Size, scale);
+        var facingOffset = Vector2.Scale(Offset, scale);
+
+        // Draw area
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + (Vector3)facingOffset, scaledSize);
+    }
+
     #endregion
 
     #region Public Methods
@@ -194,15 +211,4 @@ public class Damager : MonoBehaviour
     public void Disable() => CanDamage = false;
 
     #endregion
-
-    private void OnDrawGizmos()
-    {
-        // Calculate bounds points
-        var scale = transform.lossyScale;
-        var scaledSize = Vector2.Scale(Size, scale);
-        var facingOffset = Vector2.Scale(Offset, scale);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position + (Vector3)facingOffset, scaledSize);
-    }
 }

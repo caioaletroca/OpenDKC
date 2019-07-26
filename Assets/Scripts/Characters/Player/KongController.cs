@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[DisallowMultipleComponent]
 public partial class KongController : MonoBehaviour
 {
     #region Singleton
@@ -20,7 +21,7 @@ public partial class KongController : MonoBehaviour
 
     #region Public Properties
 
-    [Header("Controller Instances")]
+    [Header("Controller Instances", order = 0)]
 
     /// <summary>
     /// Instance for the normal Attack controller
@@ -33,17 +34,18 @@ public partial class KongController : MonoBehaviour
     public Damager BounceDamager;
 
     /// <summary>
+    /// Instance for the damageable controller
+    /// </summary>
+    public Damageable Damageable;
+
+    /// <summary>
     /// Instance for the banana controller
     /// </summary>
     public BananaController BananaController;
-    
-    [Space(20)]
 
     #endregion
 
     #region Private Properties
-
-    [Header("Settings")]
 
     /// <summary>
     /// Instance for the <see cref="Rigidbody2D"/>
@@ -63,6 +65,8 @@ public partial class KongController : MonoBehaviour
     #endregion
 
     #region Settings
+
+    [Header("Settings", order = 1)]
 
     /// <summary>
     /// Instance for the Movement Settings

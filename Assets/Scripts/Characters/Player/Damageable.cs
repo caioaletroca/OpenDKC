@@ -86,7 +86,7 @@ public class Damageable : MonoBehaviour, IDataPersister
     /// The instance for the data persistent settings
     /// </summary>
     [HideInInspector]
-    public DataSettings dataSettings;
+    public DataSettings dataSettings = new DataSettings();
 
     #endregion
 

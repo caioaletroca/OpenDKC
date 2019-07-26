@@ -4,18 +4,11 @@ public partial class KongController
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Hook")
-        {
-            Hook = true;
-            SetParent(collision.gameObject);
-        }
+        OnHookTriggerEnter2D(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Hook")
-        {
-            Hook = false;
-        }
+        OnHookTriggerExit2D(collision);
     }
 }

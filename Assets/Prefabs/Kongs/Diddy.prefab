@@ -183,8 +183,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6944360725309435770}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.844, y: -1.884, z: -1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6944360724159364921}
@@ -316,6 +316,7 @@ MonoBehaviour:
   SpawnGameObject: {fileID: 0}
   AttackDamager: {fileID: 5223639867485175071}
   BounceDamager: {fileID: 3476403386202510804}
+  Damageable: {fileID: 9005975490835626365}
   BananaController: {fileID: 8100942463350315834}
   MovementSettings: {fileID: -4134707158039321085}
   DamagerSettings: {fileID: 8226759611177957186}
@@ -332,13 +333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b3317ff1c111d4cad345ad717b4970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 6
-  RunSpeed: 12
-  AirSpeed: 12
+  WalkSpeed: 20
+  RunSpeed: 40
+  AirSpeed: 40
   CrouchSpeed: 0
   MovementSmoothing: 0.1
-  JumpForce: 200
-  MaximumVelocityY: 10
+  JumpForce: 15
+  MaximumVelocityY: 30
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -355,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa3df3da524c2a4abffc328d7eff4f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathJumpForce: {x: 75, y: 200}
+  DeathJumpForce: {x: 5, y: 12}
   DeathMusic: {fileID: 8300000, guid: 555085fd0bd6b6047b5503050a23abe2, type: 3}
   RestartDelay: 4
 --- !u!114 &3604560453348423945
@@ -370,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06a06319cd536b4888fb22532a2b775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SnapOffset: {x: 0, y: -1.5, z: 0}
+  SnapOffset: {x: 0, y: -1.28125, z: -1}
 --- !u!114 &5223639867485175071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Offset: {x: 0, y: 0.01}
-  Size: {x: 0.4, y: 0.4}
+  Size: {x: 1.02, y: 1.12}
   CanHitTrigger: 1
   DisableAfterHit: 0
   IgnoreInvincibility: 0
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Offset: {x: 0, y: 0.01}
-  Size: {x: 0.4, y: 0.4}
+  Size: {x: 1.03, y: 1.12}
   CanHitTrigger: 1
   DisableAfterHit: 0
   IgnoreInvincibility: 0

@@ -20,7 +20,7 @@ public partial class KongController
         mRigidBody2D.velocity = Vector2.zero;
 
         // Makes the player jump dies
-        mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y));
+        mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y), ForceMode2D.Impulse);
     }
 
     public void PerformDeathBounce()
@@ -28,7 +28,7 @@ public partial class KongController
         var factor = 0.5f;
         
         // Makes the player bounces dies
-        mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y) * factor);
+        mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y) * factor, ForceMode2D.Impulse);
     }
 
     #endregion

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6244182529335828398}
   - component: {fileID: 4539556868840630843}
   - component: {fileID: 4933251292433032358}
-  - component: {fileID: 8862764717183901467}
+  - component: {fileID: 8891790950622472790}
   - component: {fileID: 5832925835882047880}
   m_Layer: 5
   m_Name: BunchBananaCollectXF
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &8862764717183901467
+--- !u!95 &8891790950622472790
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

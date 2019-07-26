@@ -85,6 +85,11 @@ public class Neek : MonoBehaviour
 
     #region Event Methods
 
+    /// <summary>
+    /// Fired when the enemy dies
+    /// </summary>
+    /// <param name="damager"></param>
+    /// <param name="damageable"></param>
     public void OnDieEvent(Damager damager, Damageable damageable)
     {
         // Set state variable
@@ -97,7 +102,7 @@ public class Neek : MonoBehaviour
         mRigidBody2D.velocity = Vector2.zero;
         
         // Perform Death jump
-        mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y));
+        mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y), ForceMode2D.Impulse);
 
         // Disables all colliders
         foreach (var collider in colliders)

@@ -46,6 +46,7 @@ public class CheckPointBarrel : MonoBehaviour
     {
         Spawn = true;
 
+        KongController.Instance.SetLocalPosition(Vector2.zero);
         KongController.Instance.SetParent(gameObject);
     }
 
