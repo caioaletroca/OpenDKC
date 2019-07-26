@@ -13,7 +13,7 @@ public partial class KongController
         mRigidBody2D.velocity = new Vector2(mRigidBody2D.velocity.x, 0);
 
         // Add vertical force to the player
-        mRigidBody2D.AddForce(new Vector2(0f, MovementSettings.JumpForce));
+        mRigidBody2D.AddForce(new Vector2(0f, MovementSettings.JumpForce), ForceMode2D.Impulse);
     }
 
     #endregion

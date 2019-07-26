@@ -4,7 +4,7 @@ public partial class KongController
 {
     #region Public Methods
 
-    public void SetLocalPosition(Vector2 Position) => transform.localPosition = Position;
+    public void SetLocalPosition(Vector3 Position) => transform.localPosition = Position;
 
     #endregion
 }
