@@ -28,6 +28,11 @@ public class Neek : MonoBehaviour
     public Damager Damager;
 
     /// <summary>
+    /// The walking speed for the object
+    /// </summary>
+    public float Speed = 5;
+
+    /// <summary>
     /// The direction for the death jump effect
     /// </summary>
     [Tooltip("The force applied when the object dies.")]
@@ -81,6 +86,20 @@ public class Neek : MonoBehaviour
         Damager.Enable();
     }
 
+    private void FixedUpdate()
+    {  
+        var direction = transform.localScale.x * -1;
+
+        mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Controls the flip behaviour when hitting a wall
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            Flip();
+    }
+
     #endregion
 
     #region Event Methods
@@ -110,6 +129,21 @@ public class Neek : MonoBehaviour
 
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// Flips the sprite for the object
+    /// </summary>
+    private void Flip()
+    {
+        // Multiply the x local scale by -1
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     #endregion

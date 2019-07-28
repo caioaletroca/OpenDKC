@@ -89,7 +89,7 @@ public partial class KongController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        //if (Instance == null)
             Instance = this;
 
         // Instantiate components

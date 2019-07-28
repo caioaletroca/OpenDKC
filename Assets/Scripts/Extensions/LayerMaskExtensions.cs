@@ -11,5 +11,5 @@ public static class LayerMaskExtensions
     /// <param name="layers"></param>
     /// <param name="gameObject">The game object to check</param>
     /// <returns></returns>
-    public static bool Contains(this LayerMask layers, GameObject gameObject) => 0 != (layers.value & (1 << gameObject.layer));
+    public static bool Contains(this LayerMask layers, GameObject gameObject) => 0 != (layers.value & 1 << gameObject.layer);
 }
