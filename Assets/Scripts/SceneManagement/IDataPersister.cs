@@ -11,6 +11,7 @@ public interface IDataPersister
     void LoadData(Data data);
 }
 
+[Serializable]
 public class DataSettings
 {
     #region Types

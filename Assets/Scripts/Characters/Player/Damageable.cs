@@ -56,6 +56,12 @@ public class Damageable : MonoBehaviour, IDataPersister
     public Vector2 CentreOffset = Vector2.zero;
 
     /// <summary>
+    /// The instance for the data persistent settings
+    /// </summary>
+    [HideInInspector]
+    public DataSettings dataSettings;
+
+    /// <summary>
     /// The current health for the game object
     /// </summary>
     [HideInInspector]
@@ -81,12 +87,6 @@ public class Damageable : MonoBehaviour, IDataPersister
     /// </summary>
     [HideInInspector]
     public Vector2 DamageDirection;
-
-    /// <summary>
-    /// The instance for the data persistent settings
-    /// </summary>
-    [HideInInspector]
-    public DataSettings dataSettings = new DataSettings();
 
     #endregion
 

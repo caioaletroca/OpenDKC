@@ -89,8 +89,8 @@ public partial class KongController : MonoBehaviour
 
     private void Awake()
     {
-        //if (Instance == null)
-            Instance = this;
+        // Renew instance
+        Instance = this;
 
         // Instantiate components
         mRigidBody2D = GetComponent<Rigidbody2D>();

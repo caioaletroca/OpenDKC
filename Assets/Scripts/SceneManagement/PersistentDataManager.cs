@@ -78,6 +78,8 @@ public class PersistentDataManager : MonoBehaviour
     {
         if (Instance != this)
             Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
@@ -165,8 +167,18 @@ public class PersistentDataManager : MonoBehaviour
     /// </summary>
     protected void LoadAllDataInternal()
     {
-        foreach (var dp in mDataPersisters)
-            Load(dp);
+        schedule += () =>
+        {
+            foreach (var dp in mDataPersisters)
+            {
+                var dataSettings = dp.GetDataSettings();
+                if (dataSettings.persistenceType == DataSettings.PersistenceType.WriteOnly || dataSettings.persistenceType == DataSettings.PersistenceType.NotPersist)
+                    continue;
+                if (!string.IsNullOrEmpty(dataSettings.dataTag))
+                    if (mStore.ContainsKey(dataSettings.dataTag))
+                        dp.LoadData(mStore[dataSettings.dataTag]);
+            }
+        };
     }
 
     /// <summary>
@@ -181,21 +193,6 @@ public class PersistentDataManager : MonoBehaviour
             return;
         if (!string.IsNullOrEmpty(dataSettings.dataTag))
             mStore[dataSettings.dataTag] = dp.SaveData();
-    }
-
-    /// <summary>
-    /// Loads data to a single persister
-    /// </summary>
-    /// <param name="dp"></param>
-    protected void Load(IDataPersister dp)
-    {
-        var dataSettings = dp.GetDataSettings();
-        if (dataSettings.persistenceType == DataSettings.PersistenceType.WriteOnly ||
-            dataSettings.persistenceType == DataSettings.PersistenceType.NotPersist)
-            return;
-        if (!string.IsNullOrEmpty(dataSettings.dataTag))
-            if (mStore.ContainsKey(dataSettings.dataTag))
-                dp.LoadData(mStore[dataSettings.dataTag]);
     }
 
     #endregion

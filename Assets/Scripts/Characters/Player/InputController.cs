@@ -49,8 +49,6 @@ public class InputController : MonoBehaviour
         }
         Instance = this;
 
-        DontDestroyOnLoad(gameObject);
-
         // Register events
         KongMap = new GameControls().KongMap;
         KongMap.Jump.performed += e => Jump = true;
@@ -61,7 +59,8 @@ public class InputController : MonoBehaviour
         KongMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
         KongMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
         KongMap.VerticalAxis.canceled += e => VerticalValue = 0;
-        KongMap.Pause.started += e => Pause = !Pause;
+        KongMap.Pause.performed += e => Pause = true;
+        KongMap.Pause.canceled += e => Pause = false;
     }
 
     private void OnEnable() => KongMap.Enable();

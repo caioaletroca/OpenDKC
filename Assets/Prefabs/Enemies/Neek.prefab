@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &6461590488899684875
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damager: {fileID: 255807493311451998}
+  Speed: 2
   DeathJumpForce: {x: 5, y: 12}
   TimeToDespawn: 3
 --- !u!114 &255807493311451998

@@ -279,7 +279,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01, y: 0.01}
-  m_Size: {x: 0.54964083, y: 1.1580518}
+  m_Size: {x: 0.54964083, y: 1.04}
   m_Direction: 0
 --- !u!95 &6944360725309435748
 Animator:
@@ -342,7 +342,7 @@ MonoBehaviour:
   MaximumVelocityY: 30
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4352
   GroundPoint: {fileID: 6944360724159364921}
 --- !u!114 &8226759611177957186
 MonoBehaviour:

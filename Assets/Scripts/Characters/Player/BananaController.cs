@@ -63,6 +63,14 @@ public class BananaController : MonoBehaviour, IDataPersister
 
     #endregion
 
+    #region Unity Methods
+
+    private void OnEnable() => PersistentDataManager.RegisterPersister(this);
+
+    private void OnDisable() => PersistentDataManager.UnregisterPersister(this);
+
+    #endregion
+
     #region Event Methods
 
     private void OnTriggerEnter2D(Collider2D collision)

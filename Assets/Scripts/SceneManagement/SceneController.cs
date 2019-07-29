@@ -65,14 +65,24 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         // Register Bindings
-        InputController.Instance.KongMap.Pause.started += e =>
-        {
-            if (!Paused) Pause();
-            else Unpause();
-        };
+        InputController.Instance.KongMap.Pause.started += Pause_started;
 
         // Start the game
         Initialize();
+    }
+
+    #endregion
+
+    #region Events Methods
+
+    /// <summary>
+    /// Fired when the user press the pause button
+    /// </summary>
+    /// <param name="obj"></param>
+    private void Pause_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (!Instance.Paused) Pause();
+        else Unpause();
     }
 
     #endregion
@@ -105,17 +115,14 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public static void Unpause()
     {
+        if (Time.timeScale > 0)
+            return;
+        
         // Re-enables the inputs
         InputController.Enable();
-
-        // Resets the time
-        Time.timeScale = 1;
-
-        // Unloads the pause UI menus
-        SceneManager.UnloadSceneAsync("UIMenus");
-
-        // Sets the state variable
-        Instance.Paused = false;
+        
+        // Call unpause async
+        Instance.StartCoroutine(Instance.UnpauseCoroutine());
     }
 
     /// <summary>
@@ -212,14 +219,20 @@ public class SceneController : MonoBehaviour
     {
         IsTransitioning = true;
 
+        PersistentDataManager.SaveAllData();
+
         // Disables inputs during transition
         InputController.Disable();
 
         // Start fading effect
         yield return StartCoroutine(ScreenFader.FadeSceneOut(ScreenFader.FadeType.Black));
 
+        PersistentDataManager.ClearPersisters();
+
         // Loads scene
         yield return SceneManager.LoadSceneAsync(newSceneName);
+        
+        PersistentDataManager.LoadAllData();
 
         // Find the spawn point
         var entrance = FindDestination(destinationTag);
@@ -240,6 +253,9 @@ public class SceneController : MonoBehaviour
 
         // Start the fade in effect
         yield return StartCoroutine(ScreenFader.FadeSceneIn());
+
+        // Re-register the input bindings
+        InputController.Instance.KongMap.Pause.started += Pause_started;
 
         // Re-enables inputs
         InputController.Enable();

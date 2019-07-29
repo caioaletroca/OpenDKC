@@ -490,8 +490,8 @@ GameObject:
   - component: {fileID: 194099086}
   - component: {fileID: 194099085}
   - component: {fileID: 194099084}
-  m_Layer: 0
-  m_Name: Tilemap
+  m_Layer: 8
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,9 +685,23 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 194099086}
+    m_ColliderPaths:
+    - - X: -110000029
+        Y: -20000000
+      - X: -110000029
+        Y: -15000000
+      - X: -130000000
+        Y: -15000029
+      - X: -129999971
+        Y: -20000000
   m_CompositePaths:
-    m_Paths: []
+    m_Paths:
+    - - {x: -11.000003, y: -1.5}
+      - {x: -13, y: -1.5000029}
+      - {x: -12.999997, y: -2}
+      - {x: -11.000003, y: -2}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!50 &194099085
@@ -723,7 +737,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
@@ -1188,8 +1202,8 @@ GameObject:
   - component: {fileID: 634749017}
   - component: {fileID: 634749016}
   - component: {fileID: 634749015}
-  m_Layer: 8
-  m_Name: Ground
+  m_Layer: 12
+  m_Name: Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634749014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.08, y: -1.53, z: 0}
+  m_LocalPosition: {x: 3.95, y: -1.43, z: 0}
   m_LocalScale: {x: 2.2553973, y: 2.0028927, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1296,12 +1310,12 @@ PrefabInstance:
     - target: {fileID: 6461590488899684878, guid: 5a9f9522f8587174289d208e29e8231f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.51
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 6461590488899684878, guid: 5a9f9522f8587174289d208e29e8231f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.34
+      value: -1.63
       objectReference: {fileID: 0}
     - target: {fileID: 6461590488899684878, guid: 5a9f9522f8587174289d208e29e8231f,
         type: 3}
@@ -1347,16 +1361,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6461590488899684872, guid: 5a9f9522f8587174289d208e29e8231f,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5818538808288611294, guid: 5a9f9522f8587174289d208e29e8231f,
-        type: 3}
-      propertyPath: Speed
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9f9522f8587174289d208e29e8231f, type: 3}
@@ -1902,16 +1906,6 @@ PrefabInstance:
       propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6944360725309435750, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.04
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5515460545376665005, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
@@ -2007,8 +2001,8 @@ GameObject:
   - component: {fileID: 1504976250}
   - component: {fileID: 1504976249}
   - component: {fileID: 1504976248}
-  m_Layer: 8
-  m_Name: Ground (1)
+  m_Layer: 12
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2194,7 +2188,7 @@ GameObject:
   - component: {fileID: 1646050545}
   - component: {fileID: 1646050544}
   m_Layer: 0
-  m_Name: Tilemap (1)
+  m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

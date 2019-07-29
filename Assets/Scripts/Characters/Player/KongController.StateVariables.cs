@@ -155,32 +155,32 @@ public partial class KongController
     public void RegisterStateVariables()
     {
         // Get the player input before awake
-        var playerInput = FindObjectOfType<InputController>();
+        var inputMap = FindObjectOfType<InputController>().KongMap;
 
         // HorizontalValue
-        playerInput.KongMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
-        playerInput.KongMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
+        inputMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
+        inputMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
 
         // VerticalValue
-        playerInput.KongMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
-        playerInput.KongMap.VerticalAxis.canceled += e => VerticalValue = 0;
+        inputMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
+        inputMap.VerticalAxis.canceled += e => VerticalValue = 0;
 
         // Jump
-        playerInput.KongMap.Jump.performed += e =>
+        inputMap.Jump.performed += e =>
         {
             Jump = true;
             Grounded = false;
             Attack = false;
         };
-        playerInput.KongMap.Jump.canceled += e => Jump = false;
+        inputMap.Jump.canceled += e => Jump = false;
 
         // Run
-        playerInput.KongMap.Attack.performed += e => Attack = true;
-        playerInput.KongMap.Attack.canceled += e => Attack = false;
+        inputMap.Attack.performed += e => Attack = true;
+        inputMap.Attack.canceled += e => Attack = false;
 
         // Run
-        playerInput.KongMap.Attack.performed += e => Run = true;
-        playerInput.KongMap.Attack.canceled += e => Run = false;
+        inputMap.Attack.performed += e => Run = true;
+        inputMap.Attack.canceled += e => Run = false;
     }
 
     /// <summary>
