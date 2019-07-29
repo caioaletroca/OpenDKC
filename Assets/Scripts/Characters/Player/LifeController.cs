@@ -37,6 +37,9 @@ public class LifeController : MonoBehaviour, IDataPersister
             {
                 mLifeCount = value;
                 OnLifeCountChanged?.Invoke(this);
+
+                if (mLifeCount < 0)
+                    OnLifeCountNegative?.Invoke(this);
             }
         }
     }
@@ -101,7 +104,7 @@ public class LifeController : MonoBehaviour, IDataPersister
         LifeCount = ((Data<int>)data).value;
 
         // Fire event
-        //OnBananaLoaded?.Invoke(this);
+        OnLifeCountLoaded?.Invoke(this);
     }
 
     #endregion

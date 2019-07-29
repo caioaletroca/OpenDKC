@@ -85,6 +85,15 @@ public class SceneController : MonoBehaviour
         else Unpause();
     }
 
+    private void OnGameOverEvent()
+    {
+        // Find the player
+        var player = FindObjectOfType<KongController>();
+
+        // Give the player new lifes
+        player.LifeController.LifeCount = 4;
+    }
+
     #endregion
 
     #region Public Methods

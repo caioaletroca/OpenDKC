@@ -139,6 +139,9 @@ public partial class KongController : MonoBehaviour
         // Plays death sound
         BackgroundMusicPlayer.Instance.PushClip(DamagerSettings.DeathMusic);
 
+        // Reduce life count
+        LifeController.LifeCount--;
+
         // Calls delayed restart
         SceneController.RestartDelay(DamagerSettings.RestartDelay);
     }

@@ -56,16 +56,12 @@ public class LifeUI : MonoBehaviour
         // Shows the UI
         ShowUI();
 
+        // Update the value
+        CounterText.text = lifeController.LifeCount.ToString();
+
         // If enabled, never register disable action
         if (AlwaysShow)
             return;
-
-        // Check if needed to cancel previous task
-        //if (DisableUITask != null && !DisableUITask.IsCompleted)
-        //    CTS_DisableUIAsync.Cancel();
-
-        // Runs async
-
     }
 
     /// <summary>

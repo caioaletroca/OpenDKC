@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
@@ -40,6 +41,14 @@ public class BananaUI : MonoBehaviour
 
     #endregion
 
+    #region Private Properties
+
+    private Stack<bool> BananaIncome = new Stack<bool>();
+
+    private float VisibilityTimer;
+
+    #endregion
+
     #region Unity Events
 
     private void Start()
@@ -52,25 +61,41 @@ public class BananaUI : MonoBehaviour
         else DisableUI();
     }
 
+    private void Update()
+    {
+        if (BananaUICanvas.alpha == 0 || BananaIncome.Count != 0)
+            return;
+
+        if (BananaIncome.Count == 0)
+        {
+            if(VisibilityTimer == 0)
+                VisibilityTimer = InactivityTime;
+
+            VisibilityTimer -= Time.deltaTime;
+        }
+
+        if(VisibilityTimer <= 0)
+        {
+            DisableUI();
+        }
+    }
+
     #endregion
 
     #region Events Methods
 
     public void OnBananaCollected(BananaController bananaController)
     {
+        // Add to the stack
+        BananaIncome.Push(true);
+        VisibilityTimer = 0;
+
         // Shows the UI
         ShowUI();
 
         // If enabled, never register disable action
         if (AlwaysShow)
             return;
-
-        // Check if needed to cancel previous task
-        //if (DisableUITask != null && !DisableUITask.IsCompleted)
-        //    CTS_DisableUIAsync.Cancel();
-
-        // Runs async
-        
     }
 
     /// <summary>
@@ -79,6 +104,8 @@ public class BananaUI : MonoBehaviour
     public void OnBananaArrived(BananaController bananaController)
     {
         BananaCounterText.text = bananaController.BananaCount.ToString();
+
+        BananaIncome.Pop();
     }
 
     #endregion
