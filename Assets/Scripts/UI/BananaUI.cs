@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -55,7 +52,10 @@ public class BananaUI : MonoBehaviour
     {
         // Register event on player
         KongController.Instance.BananaController.OnBananaCountChanged.AddListener(OnBananaCollected);
-        KongController.Instance.BananaController.OnBananaLoaded.AddListener(OnBananaArrived);
+        KongController.Instance.BananaController.OnBananaLoaded.AddListener((e) =>
+        {
+            BananaCounterText.text = e.BananaCount.ToString();
+        });
 
         if (AlwaysShow) ShowUI();
         else DisableUI();
@@ -105,6 +105,7 @@ public class BananaUI : MonoBehaviour
     {
         BananaCounterText.text = bananaController.BananaCount.ToString();
 
+        // Remove from the stack
         BananaIncome.Pop();
     }
 
