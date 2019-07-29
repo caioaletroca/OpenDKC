@@ -3,23 +3,8 @@
 /// <summary>
 /// Controls the neek enemy
 /// </summary>
-[RequireComponent(typeof(Rigidbody2D))]
-public class Neek : MonoBehaviour
+public class Neek : Enemy
 {
-    #region State Variables
-
-    /// <summary>
-    /// Represents if the object has died
-    /// </summary>
-    [HideInInspector]
-    public bool Die
-    {
-        get => animator.GetBool("Die");
-        set => animator.SetBool("Die", value);
-    }
-
-    #endregion
-
     #region Public Properties
 
     /// <summary>
@@ -31,6 +16,12 @@ public class Neek : MonoBehaviour
     /// The walking speed for the object
     /// </summary>
     public float Speed = 5;
+
+    /// <summary>
+    /// The elapsed time to delay between loops
+    /// </summary>
+    [Tooltip("The elapsed time to delay the sound effect between loops")]
+    public float LoopDelay = 4;
 
     /// <summary>
     /// The direction for the death jump effect
@@ -58,32 +49,42 @@ public class Neek : MonoBehaviour
     #region Private Properties
 
     /// <summary>
-    /// A instance for the <see cref="Rigidbody2D"/> for the game Object
+    /// Instance for the audio source
     /// </summary>
-    private Rigidbody2D mRigidBody2D;
+    protected AudioSource audioSource;
 
     /// <summary>
-    /// A instance for the <see cref="Animator"/> for the game Object
+    /// Stores the timer to execute the sound
     /// </summary>
-    private Animator animator;
+    protected float AudioTimer;
 
-    /// <summary>
-    /// A instance for all the <see cref="Collider2D"/> for the game Object
-    /// </summary>
-    private Collider2D[] colliders;
-
-    #endregion 
+    #endregion
 
     #region Unity Methods
 
-    private void Awake()
+    private new void Awake()
     {
-        mRigidBody2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        colliders = GetComponents<Collider2D>();
+        base.Awake();
+
+        audioSource = GetComponent<AudioSource>();
 
         // Enables damager
         Damager.Enable();
+    }
+
+    private void Update()
+    {
+        // Decrement timer
+        AudioTimer -= Time.deltaTime;
+
+        if (AudioTimer < 0)
+        {
+            // Restart timer
+            AudioTimer = LoopDelay;
+
+            // Play sound
+            audioSource.Play();
+        }
     }
 
     private void FixedUpdate()
@@ -109,7 +110,7 @@ public class Neek : MonoBehaviour
     /// </summary>
     /// <param name="damager"></param>
     /// <param name="damageable"></param>
-    public void OnDieEvent(Damager damager, Damageable damageable)
+    public override void OnDieEvent(Damager damager, Damageable damageable)
     {
         // Set state variable
         Die = true;

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6461590488899684981
+--- !u!1 &2404841223065681099
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6461590488899684878}
-  - component: {fileID: 6461590488899684873}
-  - component: {fileID: 6461590488899684872}
-  - component: {fileID: 6461590488899684875}
-  - component: {fileID: 6461590488899684874}
-  - component: {fileID: 7688316341868662823}
-  - component: {fileID: 5818538808288611294}
-  - component: {fileID: 255807493311451998}
-  - component: {fileID: 8129699798552197409}
+  - component: {fileID: 2404841223065681094}
+  - component: {fileID: 2404841223065681097}
+  - component: {fileID: 2404841223065681092}
+  - component: {fileID: 2404841223065681096}
+  - component: {fileID: 2404841223065681093}
+  - component: {fileID: 2404841223065681095}
+  - component: {fileID: 2404841223065681090}
   m_Layer: 10
-  m_Name: Neek
+  m_Name: Zinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6461590488899684878
+--- !u!4 &2404841223065681094
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.198, y: -1.929, z: 0}
+  m_LocalPosition: {x: -0.57, y: 1.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6461590488899684873
+--- !u!212 &2404841223065681097
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,8 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3155901773457214568, guid: 1774f3dd35c8be541a168807b41279e4,
-    type: 3}
+  m_Sprite: {fileID: 230900866603960606, guid: 2f351f69477db96438570790d643c2dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,14 +85,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6461590488899684872
+--- !u!50 &2404841223065681092
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -103,39 +100,23 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!58 &6461590488899684875
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.079940915, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3296134
---- !u!95 &6461590488899684874
+  m_Constraints: 0
+--- !u!95 &2404841223065681096
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce399a3d8d839d145a73092db00af5c6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9790c62770ea31c479ca8a38103a6a8f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -144,28 +125,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!82 &7688316341868662823
+--- !u!82 &2404841223065681093
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7ca5d2db49bf41f43bd289eb7da7d160, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 4680850d6cf3e2d4b9a92493f08b21ee, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -240,41 +221,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5818538808288611294
+--- !u!114 &2404841223065681095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c3ef6f4d21f0414d997c8763e9e0dc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 51f3a5f15bff4494aad79d2d96821d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damager: {fileID: 255807493311451998}
-  Speed: 2
-  LoopDelay: 4
-  DeathJumpForce: {x: 5, y: 12}
-  TimeToDespawn: 3
-  dataSettings:
-    dataTag: bd00a6cf-cbd3-4314-858e-0ba5f4098e24
-    persistenceType: 0
---- !u!114 &255807493311451998
+  Damager: {fileID: 2404841223065681090}
+  Amplitude: 0.1
+  Speed: {x: 7, y: 8}
+--- !u!114 &2404841223065681090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
+  m_GameObject: {fileID: 2404841223065681099}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  Offset: {x: 0, y: 0}
-  Size: {x: 1, y: 0.57}
+  Offset: {x: 0.21, y: -0.16}
+  Size: {x: 1, y: 0.85}
   CanHitTrigger: 1
   DisableAfterHit: 0
   IgnoreInvincibility: 0
@@ -296,51 +272,4 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: Damager+NonDamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &8129699798552197409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461590488899684981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4b95386c4443b4f94f0ccae99ca796, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingHealth: 1
-  InvulnerableAfterDamage: 1
-  InvulnerabilityDuration: 3
-  DisableOnDeath: 0
-  CentreOffset: {x: 0, y: 0}
-  dataSettings:
-    dataTag: 14f04343-cb5e-4fd9-bec9-9d908909864d
-    persistenceType: 3
-  DamageDirection: {x: 0, y: 0}
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damageable+HealtEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnDie:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5818538808288611294}
-        m_MethodName: OnDieEvent
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
