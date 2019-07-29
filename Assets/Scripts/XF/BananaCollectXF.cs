@@ -75,7 +75,7 @@ public class BananaCollectXF : MonoBehaviour
     {
         // Notify the counter
         var bananaUI = FindObjectOfType<BananaUI>();
-        bananaUI.OnBananaArrived();
+        bananaUI.OnBananaArrived(KongController.Instance.BananaController);
 
         // Destroy the banana
         Destroy(gameObject);

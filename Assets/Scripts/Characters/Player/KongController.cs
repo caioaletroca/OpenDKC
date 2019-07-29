@@ -39,6 +39,11 @@ public partial class KongController : MonoBehaviour
     public Damageable Damageable;
 
     /// <summary>
+    /// Instance for the life controller
+    /// </summary>
+    public LifeController LifeController;
+
+    /// <summary>
     /// Instance for the banana controller
     /// </summary>
     public BananaController BananaController;

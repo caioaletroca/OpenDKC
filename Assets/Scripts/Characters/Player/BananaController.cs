@@ -52,6 +52,11 @@ public class BananaController : MonoBehaviour, IDataPersister
     /// </summary>
     public BananaEvent OnBananaOverflow;
 
+    /// <summary>
+    /// Fires when the banana value is loaded from persistence
+    /// </summary>
+    public BananaEvent OnBananaLoaded;
+
     #endregion
 
     #region Private Properties
@@ -111,7 +116,14 @@ public class BananaController : MonoBehaviour, IDataPersister
 
     public Data SaveData() => new Data<int>(BananaCount);
 
-    public void LoadData(Data data) => BananaCount = ((Data<int>)data).value;
+    public void LoadData(Data data)
+    {
+        // Load data
+        BananaCount = ((Data<int>)data).value;
+
+        // Fire event
+        OnBananaLoaded?.Invoke(this);
+    }
 
     #endregion
 }

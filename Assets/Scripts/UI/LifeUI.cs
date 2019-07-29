@@ -1,30 +1,22 @@
-﻿using System.Collections;
-using System.Threading;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// Handles the Banana UI
+/// Controls the Life UI for the game
 /// </summary>
-public class BananaUI : MonoBehaviour
+public class LifeUI : MonoBehaviour
 {
     #region Public Properties
 
     /// <summary>
-    /// Instance for the UI canvas
+    /// Instance for the owner canvas
     /// </summary>
-    public CanvasGroup BananaUICanvas;
+    public CanvasGroup Canvas;
 
     /// <summary>
     /// Instance for the counter text
     /// </summary>
-    public TextMeshProUGUI BananaCounterText;
-
-    /// <summary>
-    /// Instance for the Banana end point
-    /// </summary>
-    public Transform BananaEndPoint;
+    public TextMeshProUGUI CounterText;
 
     /// <summary>
     /// The Inactivity time to hide the UI
@@ -40,23 +32,26 @@ public class BananaUI : MonoBehaviour
 
     #endregion
 
-    #region Unity Events
+    #region Unity Methods
 
     private void Start()
     {
-        // Register event on player
-        KongController.Instance.BananaController.OnBananaCountChanged.AddListener(OnBananaCollected);
-        KongController.Instance.BananaController.OnBananaLoaded.AddListener(OnBananaArrived);
+        // Register events
+        KongController.Instance.LifeController.OnLifeCountChanged.AddListener(OnLifeCountChanged);
+        KongController.Instance.LifeController.OnLifeCountLoaded.AddListener(OnLifeCountLoaded);
 
         if (AlwaysShow) ShowUI();
         else DisableUI();
+
+        // Update value
+        OnLifeCountLoaded(KongController.Instance.LifeController);
     }
 
     #endregion
 
     #region Events Methods
 
-    public void OnBananaCollected(BananaController bananaController)
+    public void OnLifeCountChanged(LifeController lifeController)
     {
         // Shows the UI
         ShowUI();
@@ -70,15 +65,15 @@ public class BananaUI : MonoBehaviour
         //    CTS_DisableUIAsync.Cancel();
 
         // Runs async
-        
+
     }
 
     /// <summary>
-    /// Fired when a banana arrives the destination in the Banana UI
+    /// Fired when the life counter loads from memory
     /// </summary>
-    public void OnBananaArrived(BananaController bananaController)
+    public void OnLifeCountLoaded(LifeController lifeController)
     {
-        BananaCounterText.text = bananaController.BananaCount.ToString();
+        CounterText.text = lifeController.LifeCount.ToString();
     }
 
     #endregion
@@ -88,7 +83,7 @@ public class BananaUI : MonoBehaviour
     /// <summary>
     /// Shows the banana UI
     /// </summary>
-    public void ShowUI() => BananaUICanvas.alpha = 1;
+    public void ShowUI() => Canvas.alpha = 1;
 
     /// <summary>
     /// Hides the banana UI
@@ -96,9 +91,8 @@ public class BananaUI : MonoBehaviour
     public void DisableUI()
     {
         if (!AlwaysShow)
-            BananaUICanvas.alpha = 0;
+            Canvas.alpha = 0;
     }
 
-    
     #endregion
 }
