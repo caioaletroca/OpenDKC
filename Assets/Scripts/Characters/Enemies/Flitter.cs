@@ -4,18 +4,17 @@
 /// </summary>
 public class Flitter : Enemy
 {
-    #region Public Properties
+    #region State Variables
 
     /// <summary>
-    /// A instance for the damager class
+    /// The vertical speed state variable
     /// </summary>
-    public Damager Damager;
-
-    /// <summary>
-    /// The amount of time to despawn the object after death
-    /// </summary>
-    [Tooltip("The amount of time to despawn the object after death.")]
-    public float TimeToDespawn = 5;
+    [HideInInspector]
+    public float VerticalSpeed
+    {
+        get => animator.GetFloat("VerticalSpeed");
+        set => animator.SetFloat("VerticalSpeed", value);
+    }
 
     #endregion
 
@@ -29,6 +28,11 @@ public class Flitter : Enemy
         Damager.Enable();
     }
 
+    private void Update()
+    {
+        UpdateVerticalSpeed();
+    }
+
     #endregion
 
     #region Event Methods
@@ -38,22 +42,28 @@ public class Flitter : Enemy
         // Set state variable
         Die = true;
 
-        // Disables damager
-        Damager.Disable();
-
-        // Resets velocity
-        mRigidBody2D.velocity = Vector2.zero;
-        mRigidBody2D.gravityScale = 1;
-
-        // Perform Death jump
-        //mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y), ForceMode2D.Impulse);
-
-        // Disables all colliders
-        foreach (var collider in colliders)
-            collider.enabled = false;
+        DisableEnemy();
+        PerformDeathJump(damageable.DamageDirection);
 
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// Updates the vertical speed variable
+    /// </summary>
+    protected void UpdateVerticalSpeed()
+    {
+        // Do not update if alive
+        if (!Die)
+            return;
+
+        // Update state variable
+        VerticalSpeed = mRigidBody2D.velocity.y;
     }
 
     #endregion

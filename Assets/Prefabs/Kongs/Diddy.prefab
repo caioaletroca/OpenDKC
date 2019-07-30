@@ -450,15 +450,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5993394080426852892}
-        m_MethodName: PerformJump
-        m_Mode: 1
+        m_MethodName: set_Somersault
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
@@ -587,7 +587,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1646d66c9374b6049951d8d20ca55b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartValue: 4
+  OnLifeCountLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: LifeController+LifeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnLifeCountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: LifeController+LifeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnLifeCountNegative:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: LifeController+LifeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,

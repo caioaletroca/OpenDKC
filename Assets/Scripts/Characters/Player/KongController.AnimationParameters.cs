@@ -29,6 +29,8 @@
 
         public static string Die = "Die";
 
+        public static string Somersault = "Somersault";
+
         #endregion
     }
 }

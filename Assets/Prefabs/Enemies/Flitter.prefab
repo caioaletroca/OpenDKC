@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2376592209619658190}
   - component: {fileID: 2376592209619658191}
   - component: {fileID: 2376592209619658188}
+  - component: {fileID: 2356222176585197522}
   m_Layer: 10
   m_Name: Flitter
   m_TagString: Untagged
@@ -262,7 +263,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damager: {fileID: 2376592209619658191}
+  DeathJumpForce: {x: 3, y: 4}
   TimeToDespawn: 3
+  dataSettings:
+    dataTag: 45b3f056-cebf-4b41-ac9c-0624c078537b
+    persistenceType: 3
 --- !u!114 &2376592209619658191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,5 +350,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2356222176585197522}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &2356222176585197522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376592209619658185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf667f24685a94e4a8f70a21931a85f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amplitude: {x: 0.05, y: 0.05}
+  Speed: {x: 7.5, y: 8}
+  MovementFlip: 0
+  Velocity: {x: 0, y: 0}

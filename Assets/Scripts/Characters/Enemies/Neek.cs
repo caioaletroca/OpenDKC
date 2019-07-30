@@ -8,11 +8,6 @@ public class Neek : Enemy
     #region Public Properties
 
     /// <summary>
-    /// A instance for the damager class
-    /// </summary>
-    public Damager Damager;
-
-    /// <summary>
     /// The walking speed for the object
     /// </summary>
     public float Speed = 5;
@@ -22,27 +17,6 @@ public class Neek : Enemy
     /// </summary>
     [Tooltip("The elapsed time to delay the sound effect between loops")]
     public float LoopDelay = 4;
-
-    /// <summary>
-    /// The direction for the death jump effect
-    /// </summary>
-    [Tooltip("The force applied when the object dies.")]
-    public Vector2 DeathJumpForce = new Vector2(0, 200);
-
-    /// <summary>
-    /// The amount of time to despawn the object after death
-    /// </summary>
-    [Tooltip("The amount of time to despawn the object after death.")]
-    public float TimeToDespawn = 5;
-
-    /// <summary>
-    /// The persistence data configuration
-    /// </summary>
-    [HideInInspector]
-    public DataSettings dataSettings = new DataSettings()
-    {
-        persistenceType = DataSettings.PersistenceType.NotPersist,
-    };
 
     #endregion
 
@@ -115,36 +89,11 @@ public class Neek : Enemy
         // Set state variable
         Die = true;
 
-        // Disables damager
-        Damager.Disable();
-
-        // Resets velocity
-        mRigidBody2D.velocity = Vector2.zero;
-        
-        // Perform Death jump
-        mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageable.DamageDirection.x, DeathJumpForce.y), ForceMode2D.Impulse);
-
-        // Disables all colliders
-        foreach (var collider in colliders)
-            collider.enabled = false;
+        DisableEnemy();
+        PerformDeathJump(damageable.DamageDirection);
 
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
-    }
-
-    #endregion
-
-    #region Private Methods
-
-    /// <summary>
-    /// Flips the sprite for the object
-    /// </summary>
-    private void Flip()
-    {
-        // Multiply the x local scale by -1
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
     }
 
     #endregion

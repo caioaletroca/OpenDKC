@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2404841223065681093}
   - component: {fileID: 2404841223065681095}
   - component: {fileID: 2404841223065681090}
+  - component: {fileID: 3097632612344942702}
   m_Layer: 10
   m_Name: Zinger
   m_TagString: Untagged
@@ -234,8 +235,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damager: {fileID: 2404841223065681090}
-  Amplitude: 0.1
-  Speed: {x: 7, y: 8}
+  DeathJumpForce: {x: 0, y: 200}
+  TimeToDespawn: 5
+  dataSettings:
+    dataTag: 00552298-640b-4247-afe2-0e421dbb55c8
+    persistenceType: 3
 --- !u!114 &2404841223065681090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,3 +277,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Damager+NonDamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &3097632612344942702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2404841223065681099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf667f24685a94e4a8f70a21931a85f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amplitude: {x: 0.05, y: 0.05}
+  Speed: {x: 7.5, y: 8}
+  MovementFlip: 0
+  Velocity: {x: 0, y: 0}

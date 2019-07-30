@@ -145,6 +145,15 @@ public partial class KongController
         set => animator.SetBool(AnimationParameters.Die, value);
     }
 
+    /// <summary>
+    /// A flag that represents if the player is somersaulting
+    /// </summary>
+    public bool Somersault
+    {
+        get => animator.GetBool(AnimationParameters.Somersault);
+        set => animator.SetBool(AnimationParameters.Somersault, value);
+    }
+
     #endregion
 
     #region State Methods
@@ -201,7 +210,10 @@ public partial class KongController
         Collider2D[] colliders = Physics2D.OverlapCircleAll(MovementSettings.GroundPoint.position, mGroundedRadius, MovementSettings.GroundLayer);
         foreach (var collider in colliders)
             if (collider.gameObject != gameObject)
+            {
                 Grounded = true;
+                Somersault = false;
+            }
 
         // Set the state variable
         this.Grounded = Grounded;

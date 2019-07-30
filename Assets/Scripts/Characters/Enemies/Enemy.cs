@@ -21,6 +21,33 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
+    #region Public Properties
+
+    /// <summary>
+    /// A instance for the damager class
+    /// </summary>
+    public Damager Damager;
+
+    /// <summary>
+    /// The direction for the death jump effect
+    /// </summary>
+    [Tooltip("The force applied when the object dies.")]
+    public Vector2 DeathJumpForce = new Vector2(0, 200);
+
+    /// <summary>
+    /// The amount of time to despawn the object after death
+    /// </summary>
+    [Tooltip("The amount of time to despawn the object after death.")]
+    public float TimeToDespawn = 5;
+
+    /// <summary>
+    /// The persistence data configuration
+    /// </summary>
+    [HideInInspector]
+    public DataSettings dataSettings;
+
+    #endregion
+
     #region Private Properties
 
     /// <summary>
@@ -59,6 +86,38 @@ public class Enemy : MonoBehaviour
     /// <param name="damager"></param>
     /// <param name="damageable"></param>
     public virtual void OnDieEvent(Damager damager, Damageable damageable) { }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Disable collisions and damagers
+    /// </summary>
+    public void DisableEnemy()
+    {
+        // Disables damager
+        Damager.Disable();
+
+        // Disables all colliders
+        foreach (var collider in colliders)
+            collider.enabled = false;
+    }
+
+    /// <summary>
+    /// Performs the death jump for enemy
+    /// </summary>
+    public void PerformDeathJump(Vector2 damageDirection)
+    {
+        // Resets velocity
+        mRigidBody2D.velocity = Vector2.zero;
+
+        // Turn gravity on
+        mRigidBody2D.gravityScale = 1;
+
+        // Perform Death jump
+        mRigidBody2D.AddForce(new Vector2(DeathJumpForce.x * damageDirection.x, DeathJumpForce.y), ForceMode2D.Impulse);
+    }
 
     #endregion
 
