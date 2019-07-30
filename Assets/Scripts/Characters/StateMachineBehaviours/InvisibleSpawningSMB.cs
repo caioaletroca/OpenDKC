@@ -22,6 +22,5 @@ public class InvisibleSpawningSMB : SceneSMB<KongController>
     {
         mMonoBehaviour.Damageable.DisableInvulnerability();
         mMonoBehaviour.EnableRigidBody();
-        
     }
 }
