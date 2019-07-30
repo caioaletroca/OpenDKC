@@ -154,6 +154,8 @@ public partial class KongController
         set => animator.SetBool(AnimationParameters.Somersault, value);
     }
 
+    public void SomersaultTrigger() => animator.SetTrigger(AnimationParameters.SomersaultTrigger);
+
     #endregion
 
     #region State Methods

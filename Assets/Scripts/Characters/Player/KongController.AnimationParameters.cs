@@ -31,6 +31,8 @@
 
         public static string Somersault = "Somersault";
 
+        public static string SomersaultTrigger = "SomersaultTrigger";
+
         #endregion
     }
 }
