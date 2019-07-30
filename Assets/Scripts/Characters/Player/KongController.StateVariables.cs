@@ -117,14 +117,8 @@ public partial class KongController
     /// </summary>
     public bool Hook
     {
-        get
-        {
-            return animator.GetBool(AnimationParameters.Hook);
-        }
-        set
-        {
-            animator.SetBool(AnimationParameters.Hook, value);
-        }
+        get => animator.GetBool(AnimationParameters.Hook);
+        set => animator.SetBool(AnimationParameters.Hook, value);
     }
 
     /// <summary>
@@ -159,11 +153,19 @@ public partial class KongController
     /// </summary>
     public void SomersaultTrigger() => animator.SetTrigger(AnimationParameters.SomersaultTrigger);
 
+    /// <summary>
+    /// A flag that represents if the player is inside a barrel
+    /// </summary>
     public bool Barrel
     {
         get => animator.GetBool(AnimationParameters.Barrel);
         set => animator.SetBool(AnimationParameters.Barrel, value);
     }
+
+    /// <summary>
+    /// A triggers to the barrel state
+    /// </summary>
+    public void BarrelTrigger() => animator.SetTrigger(AnimationParameters.BarrelTrigger);
 
     #endregion
 

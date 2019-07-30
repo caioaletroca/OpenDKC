@@ -117,7 +117,8 @@ public partial class KongController : MonoBehaviour
     public void FixedUpdate()
     {
         UpdateStateVariables();
-        UpdateHorizontalMovement();
+        UpdateVelocityHorizontalMovement();
+        UpdateForceHorizontalMovement();
         UpdateVerticalMovement();
     }
 
@@ -163,14 +164,34 @@ public partial class KongController : MonoBehaviour
     }
 
     /// <summary>
+    /// Set a new local position using <see cref="Rigidbody2D"/>
+    /// </summary>
+    /// <param name="position">The new position</param>
+    public void SetLocalPosition(Vector3 position)
+    {
+        // Preserve Z position
+        var newPosition = new Vector3(position.x, position.y, transform.position.z);
+
+        transform.localPosition = newPosition;
+
+        // Set local position
+        //if (transform.parent != null)
+            //mRigidBody2D.position = transform.parent.TransformPoint(newPosition);
+        //else
+            //mRigidBody2D.MovePosition(transform.TransformPoint(newPosition));
+    }
+
+    public void SetVelocity(Vector2 velocity) => mRigidBody2D.velocity = velocity;
+
+    /// <summary>
     /// Enables the physics for the <see cref="Rigidbody2D"/>
     /// </summary>
-    public void EnableRigidBody() => mRigidBody2D.simulated = true;
+    public void EnableGravity() => mRigidBody2D.gravityScale = 3;
 
     /// <summary>
     /// Disables the physics for the <see cref="Rigidbody2D"/>
     /// </summary>
-    public void DisableRigidBody() => mRigidBody2D.simulated = false;
+    public void DisableGravity() => mRigidBody2D.gravityScale = 0;
 
     #endregion
 

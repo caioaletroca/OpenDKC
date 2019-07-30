@@ -234,6 +234,9 @@ public class SceneSMB<TMonoBehaviour> :  SealedSMB
     #endregion
 }
 
+/// <summary>
+/// Base sealed class for the State Behaviours
+/// </summary>
 public abstract class SealedSMB : StateMachineBehaviour
 {
     public sealed override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) { }

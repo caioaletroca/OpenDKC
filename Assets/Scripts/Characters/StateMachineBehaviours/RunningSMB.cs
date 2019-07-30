@@ -9,7 +9,7 @@ public class RunningSMB : SceneSMB<KongController>
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.PerformHorizontalMovement(KongController.Instance.MovementSettings.RunSpeed);
+        mMonoBehaviour.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.RunSpeed);
     }
 
     #endregion

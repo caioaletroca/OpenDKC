@@ -16,6 +16,12 @@ public class MovementSettings : MonoBehaviour
     [Range(0, 0.3f)]
     public float MovementSmoothing = 0.3f;
 
+    /// <summary>
+    /// The force magnitude applied to the X value when force driven movement
+    /// </summary>
+    [Tooltip("The force magnitude applied to the X value when force driven movement.")]
+    public float ForceMagnitude = 5f;
+
     public float JumpForce = 100f;
 
     public float MaximumVelocityY = 100;

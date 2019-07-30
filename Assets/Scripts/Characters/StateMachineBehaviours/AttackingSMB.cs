@@ -15,7 +15,7 @@ public class AttackingSMB : SceneSMB<KongController>
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.PerformHorizontalMovement(KongController.Instance.MovementSettings.RunSpeed);
+        mMonoBehaviour.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.RunSpeed);
     }
 
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

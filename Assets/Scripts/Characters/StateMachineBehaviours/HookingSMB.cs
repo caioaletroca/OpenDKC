@@ -13,7 +13,7 @@ public class HookingSMB : SceneSMB<KongController>
 
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.EnableRigidBody();
+        mMonoBehaviour.EnableGravity();
         mMonoBehaviour.SetParent(null);
     }
 }

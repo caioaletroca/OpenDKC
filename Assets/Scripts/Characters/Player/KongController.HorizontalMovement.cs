@@ -19,6 +19,21 @@ public partial class KongController
     /// </summary>
     private Vector2 mVelocity = Vector3.zero;
 
+    /// <summary>
+    /// A flag that represents if there's a velocity driven request
+    /// </summary>
+    private bool VelocityDriven = false;
+
+    /// <summary>
+    /// Stores the horizontal movement force
+    /// </summary>
+    private Vector2 Force = Vector2.zero;
+
+    /// <summary>
+    /// A flag that represents if there's a force driven request
+    /// </summary>
+    private bool ForceDriven = false;
+
     #endregion
 
     #region Public Methods
@@ -27,19 +42,34 @@ public partial class KongController
     /// Set a new horizontal moviment
     /// </summary>
     /// <param name="Speed">The new speed</param>
-    public void PerformHorizontalMovement(float Speed) => Movement = new Vector2(Speed * InputController.Instance.HorizontalValue, 0);
+    public void PerformVelocityHorizontalMovement(float Speed)
+    {
+        // Set the request as true
+        VelocityDriven = true;
+
+        // Set the movement
+        Movement = new Vector2(Speed * InputController.Instance.HorizontalValue, 0);
+    }
+
+    public void PerformForceHorizontalMovement(float Magnitude)
+    {
+        // Set the request as true
+        ForceDriven = true;
+
+        Force = new Vector2(Magnitude * InputController.Instance.HorizontalValue, 0);
+    }
 
     #endregion
 
     #region Private Methods
 
     /// <summary>
-    /// Updates the Movement Sequence
+    /// Updates the Movement using velocity
     /// </summary>
-    protected void UpdateHorizontalMovement()
+    protected void UpdateVelocityHorizontalMovement()
     {
-        // Disable velocity updates for Die State
-        if (Die)
+        // Check if a movement request was made
+        if (!VelocityDriven)
             return;
 
         // Normal movement
@@ -53,6 +83,31 @@ public partial class KongController
 
         // Apply smoothing to the movement
         mRigidBody2D.velocity = Vector2.SmoothDamp(mRigidBody2D.velocity, TargetVelocity, ref mVelocity, MovementSettings.MovementSmoothing);
+
+        // Turn off the request flag
+        VelocityDriven = false;
+    }
+
+    /// <summary>
+    /// Updates the movement using forces
+    /// </summary>
+    protected void UpdateForceHorizontalMovement()
+    {
+        // Check if a movement request was made
+        if (!ForceDriven)
+            return;
+
+        // Face the player to the right side depending on his movement
+        if (Force.x > 0 && !mFacingRight)
+            Flip();
+        else if (Force.x < 0 && mFacingRight)
+            Flip();
+
+        // Apply smoothing to the movement
+        mRigidBody2D.AddForce(Force, ForceMode2D.Force);
+
+        // Turn off the request flag
+        ForceDriven = false;
     }
 
     #endregion

@@ -9,11 +9,11 @@ public class WalkingSMB : SceneSMB<KongController>
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.PerformHorizontalMovement(KongController.Instance.MovementSettings.WalkSpeed);
+        mMonoBehaviour.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.WalkSpeed);
     }
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.PerformHorizontalMovement(KongController.Instance.MovementSettings.WalkSpeed);
+        mMonoBehaviour.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.WalkSpeed);
     }
 
     #endregion

@@ -6,7 +6,7 @@ public class AirborningSMB : SceneSMB<KongController>
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.PerformHorizontalMovement(
+        mMonoBehaviour.PerformVelocityHorizontalMovement(
             mMonoBehaviour.Run ?
             mMonoBehaviour.MovementSettings.RunSpeed :
             mMonoBehaviour.MovementSettings.WalkSpeed

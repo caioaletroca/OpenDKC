@@ -2,7 +2,7 @@
 
 public partial class KongController
 {
-    #region Public Methods
+    #region Unity Methods
 
     /// <summary>
     /// Handles the collision on a hook
@@ -13,6 +13,8 @@ public partial class KongController
         if (collision.gameObject.tag == "Barrel")
         {
             Barrel = true;
+            Jump = false;
+            BarrelTrigger();
             SetParent(collision.gameObject);
         }
     }
@@ -26,7 +28,29 @@ public partial class KongController
         if (collision.gameObject.tag == "Barrel")
         {
             Barrel = false;
+            SetParent(null);
         }
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Performs the blast jump from a barrel
+    /// </summary>
+    /// <param name="barrel">The barrel</param>
+    public void BlastFromBarrel(BlastBarrel barrel)
+    {
+        // Reset trigger
+        // TODO: Discover a better way to solve that problem
+        animator.ResetTrigger(AnimationParameters.BarrelTrigger);
+
+        // Resets velocity for more sensitivy movement
+        SetVelocity(Vector2.zero);
+
+        // Create jump force
+        mRigidBody2D.AddForce(barrel.transform.up * barrel.Force, ForceMode2D.Impulse);
     }
 
     #endregion

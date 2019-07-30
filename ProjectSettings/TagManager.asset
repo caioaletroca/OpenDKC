@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hook
   - Banana
+  - Barrel
   layers:
   - Default
   - TransparentFX
