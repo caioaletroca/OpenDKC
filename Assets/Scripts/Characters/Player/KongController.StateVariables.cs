@@ -154,6 +154,9 @@ public partial class KongController
         set => animator.SetBool(AnimationParameters.Somersault, value);
     }
 
+    /// <summary>
+    /// A triggers to the somersault state
+    /// </summary>
     public void SomersaultTrigger() => animator.SetTrigger(AnimationParameters.SomersaultTrigger);
 
     #endregion
@@ -225,7 +228,7 @@ public partial class KongController
     {
         // Calculate distance to the ground
         RaycastHit2D hit = Physics2D.Raycast(MovementSettings.GroundPoint.transform.position, Vector2.down, 100, MovementSettings.GroundLayer);
-        if (hit != null)
+        if (hit.collider != null)
             animator.SetFloat(AnimationParameters.GroundDistance, hit.distance);
     }
 

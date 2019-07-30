@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5818538808288611294}
   - component: {fileID: 255807493311451998}
   - component: {fileID: 8129699798552197409}
+  - component: {fileID: 2128402206844170612}
   m_Layer: 10
   m_Name: Neek
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6461590488899684981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.198, y: -1.929, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -253,13 +254,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damager: {fileID: 255807493311451998}
-  Speed: 2
-  LoopDelay: 4
   DeathJumpForce: {x: 5, y: 12}
   TimeToDespawn: 3
   dataSettings:
     dataTag: bd00a6cf-cbd3-4314-858e-0ba5f4098e24
     persistenceType: 0
+  Speed: 2
 --- !u!114 &255807493311451998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,3 +344,16 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &2128402206844170612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461590488899684981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41f8950a3e66494ea10cbe1bfdb54d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoopDelay: 2
