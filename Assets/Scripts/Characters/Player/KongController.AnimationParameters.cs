@@ -37,6 +37,8 @@
 
         public static string BarrelTrigger = "BarrelTrigger";
 
+        public static string Blast = "Blast";
+
         #endregion
     }
 }

@@ -13,7 +13,7 @@ public partial class KongController
         if (collision.gameObject.tag == "Barrel")
         {
             Barrel = true;
-            Jump = false;
+            Blast = false;
             BarrelTrigger();
             SetParent(collision.gameObject);
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Renders a Unit int value
 /// </summary>
+[RequireComponent(typeof(SpriteRenderer))]
 public class UnitIntSpriteRenderer : MonoBehaviour
 {
     #region Public Properties

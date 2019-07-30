@@ -167,6 +167,15 @@ public partial class KongController
     /// </summary>
     public void BarrelTrigger() => animator.SetTrigger(AnimationParameters.BarrelTrigger);
 
+    /// <summary>
+    /// A flag that represents if the player is inside a barrel
+    /// </summary>
+    public bool Blast
+    {
+        get => animator.GetBool(AnimationParameters.Blast);
+        set => animator.SetBool(AnimationParameters.Blast, value);
+    }
+
     #endregion
 
     #region State Methods
@@ -191,10 +200,15 @@ public partial class KongController
         inputMap.Jump.performed += e =>
         {
             Jump = true;
+            Blast = true;
             Grounded = false;
             Attack = false;
         };
-        inputMap.Jump.canceled += e => Jump = false;
+        inputMap.Jump.canceled += e =>
+        {
+            Jump = false;
+            Blast = false;
+        };
 
         // Run
         inputMap.Attack.performed += e => Attack = true;
