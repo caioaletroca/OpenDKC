@@ -181,6 +181,10 @@ public partial class KongController : MonoBehaviour
             //mRigidBody2D.MovePosition(transform.TransformPoint(newPosition));
     }
 
+    /// <summary>
+    /// Sets a new velocity for the <see cref="Rigidbody2D"/>
+    /// </summary>
+    /// <param name="velocity">The new velocity</param>
     public void SetVelocity(Vector2 velocity) => mRigidBody2D.velocity = velocity;
 
     /// <summary>

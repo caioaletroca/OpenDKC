@@ -18,8 +18,17 @@ public class InputController : MonoBehaviour
 
     #region Public Properties
 
+    /// <summary>
+    /// Instance for the kong mapping
+    /// </summary>
     [HideInInspector]
     public KongMapActions KongMap;
+
+    /// <summary>
+    /// Instance for the barrel mapping
+    /// </summary>
+    [HideInInspector]
+    public BarrelMapActions BarrelMap;
 
     [HideInInspector]
     public float HorizontalValue;
@@ -36,6 +45,9 @@ public class InputController : MonoBehaviour
     [HideInInspector]
     public bool Attack;
 
+    [HideInInspector]
+    public bool SideButton;
+
     #endregion
 
     #region Unity Methods
@@ -50,6 +62,7 @@ public class InputController : MonoBehaviour
         Instance = this;
 
         // Register events
+        BarrelMap = new GameControls().BarrelMap;
         KongMap = new GameControls().KongMap;
         KongMap.Jump.performed += e => Jump = true;
         KongMap.Jump.canceled += e => Jump = false;
@@ -61,6 +74,8 @@ public class InputController : MonoBehaviour
         KongMap.VerticalAxis.canceled += e => VerticalValue = 0;
         KongMap.Pause.performed += e => Pause = true;
         KongMap.Pause.canceled += e => Pause = false;
+        KongMap.SideButtons.performed += e => SideButton = true;
+        KongMap.SideButtons.canceled += e => SideButton = false;
     }
 
     private void OnEnable() => KongMap.Enable();

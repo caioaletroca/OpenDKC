@@ -73,6 +73,17 @@ public class GameControls : IInputActionCollection
                     ""processors"": """",
                     ""interactions"": """",
                     ""bindings"": []
+                },
+                {
+                    ""name"": ""SideButtons"",
+                    ""id"": ""7ff8e25c-8058-4a9e-a705-32dd9d6ad164"",
+                    ""expectedControlLayout"": """",
+                    ""continuous"": true,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""bindings"": []
                 }
             ],
             ""bindings"": [
@@ -183,6 +194,85 @@ public class GameControls : IInputActionCollection
                     ""isComposite"": false,
                     ""isPartOfComposite"": true,
                     ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""470b434f-9f99-42ce-ba93-9557d3d3b5af"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SideButtons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a27fa2fc-bd86-4d9e-bd18-b4d5f0a8d5c0"",
+                    ""path"": ""<Keyboard>/numpad7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SideButtons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                }
+            ]
+        },
+        {
+            ""name"": ""BarrelMap"",
+            ""id"": ""204ba88c-5deb-445a-9c9b-d957128c8ba2"",
+            ""actions"": [
+                {
+                    ""name"": ""HorizontalAxis"",
+                    ""id"": ""115ddc59-4719-4f09-9f7d-aec9441a60dc"",
+                    ""expectedControlLayout"": ""Axis"",
+                    ""continuous"": false,
+                    ""passThrough"": false,
+                    ""initialStateCheck"": false,
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""bindings"": []
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""609b6705-9d12-4adf-bfa3-8765c825a93d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalAxis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""00b531ef-3731-4689-9012-780ec6b04307"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true,
+                    ""modifiers"": """"
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6bb769dc-8025-4a22-914c-59aa24189aa0"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true,
+                    ""modifiers"": """"
                 }
             ]
         }
@@ -196,6 +286,10 @@ public class GameControls : IInputActionCollection
         m_KongMap_Jump = m_KongMap.GetAction("Jump");
         m_KongMap_Attack = m_KongMap.GetAction("Attack");
         m_KongMap_VerticalAxis = m_KongMap.GetAction("Vertical Axis");
+        m_KongMap_SideButtons = m_KongMap.GetAction("SideButtons");
+        // BarrelMap
+        m_BarrelMap = asset.GetActionMap("BarrelMap");
+        m_BarrelMap_HorizontalAxis = m_BarrelMap.GetAction("HorizontalAxis");
     }
 
     ~GameControls()
@@ -253,6 +347,7 @@ public class GameControls : IInputActionCollection
     private InputAction m_KongMap_Jump;
     private InputAction m_KongMap_Attack;
     private InputAction m_KongMap_VerticalAxis;
+    private InputAction m_KongMap_SideButtons;
     public struct KongMapActions
     {
         private GameControls m_Wrapper;
@@ -262,6 +357,7 @@ public class GameControls : IInputActionCollection
         public InputAction @Jump { get { return m_Wrapper.m_KongMap_Jump; } }
         public InputAction @Attack { get { return m_Wrapper.m_KongMap_Attack; } }
         public InputAction @VerticalAxis { get { return m_Wrapper.m_KongMap_VerticalAxis; } }
+        public InputAction @SideButtons { get { return m_Wrapper.m_KongMap_SideButtons; } }
         public InputActionMap Get() { return m_Wrapper.m_KongMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -287,6 +383,9 @@ public class GameControls : IInputActionCollection
                 VerticalAxis.started -= m_Wrapper.m_KongMapActionsCallbackInterface.OnVerticalAxis;
                 VerticalAxis.performed -= m_Wrapper.m_KongMapActionsCallbackInterface.OnVerticalAxis;
                 VerticalAxis.canceled -= m_Wrapper.m_KongMapActionsCallbackInterface.OnVerticalAxis;
+                SideButtons.started -= m_Wrapper.m_KongMapActionsCallbackInterface.OnSideButtons;
+                SideButtons.performed -= m_Wrapper.m_KongMapActionsCallbackInterface.OnSideButtons;
+                SideButtons.canceled -= m_Wrapper.m_KongMapActionsCallbackInterface.OnSideButtons;
             }
             m_Wrapper.m_KongMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -306,6 +405,9 @@ public class GameControls : IInputActionCollection
                 VerticalAxis.started += instance.OnVerticalAxis;
                 VerticalAxis.performed += instance.OnVerticalAxis;
                 VerticalAxis.canceled += instance.OnVerticalAxis;
+                SideButtons.started += instance.OnSideButtons;
+                SideButtons.performed += instance.OnSideButtons;
+                SideButtons.canceled += instance.OnSideButtons;
             }
         }
     }
@@ -316,6 +418,46 @@ public class GameControls : IInputActionCollection
             return new KongMapActions(this);
         }
     }
+
+    // BarrelMap
+    private InputActionMap m_BarrelMap;
+    private IBarrelMapActions m_BarrelMapActionsCallbackInterface;
+    private InputAction m_BarrelMap_HorizontalAxis;
+    public struct BarrelMapActions
+    {
+        private GameControls m_Wrapper;
+        public BarrelMapActions(GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HorizontalAxis { get { return m_Wrapper.m_BarrelMap_HorizontalAxis; } }
+        public InputActionMap Get() { return m_Wrapper.m_BarrelMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled { get { return Get().enabled; } }
+        public InputActionMap Clone() { return Get().Clone(); }
+        public static implicit operator InputActionMap(BarrelMapActions set) { return set.Get(); }
+        public void SetCallbacks(IBarrelMapActions instance)
+        {
+            if (m_Wrapper.m_BarrelMapActionsCallbackInterface != null)
+            {
+                HorizontalAxis.started -= m_Wrapper.m_BarrelMapActionsCallbackInterface.OnHorizontalAxis;
+                HorizontalAxis.performed -= m_Wrapper.m_BarrelMapActionsCallbackInterface.OnHorizontalAxis;
+                HorizontalAxis.canceled -= m_Wrapper.m_BarrelMapActionsCallbackInterface.OnHorizontalAxis;
+            }
+            m_Wrapper.m_BarrelMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                HorizontalAxis.started += instance.OnHorizontalAxis;
+                HorizontalAxis.performed += instance.OnHorizontalAxis;
+                HorizontalAxis.canceled += instance.OnHorizontalAxis;
+            }
+        }
+    }
+    public BarrelMapActions @BarrelMap
+    {
+        get
+        {
+            return new BarrelMapActions(this);
+        }
+    }
     public interface IKongMapActions
     {
         void OnPause(InputAction.CallbackContext context);
@@ -323,5 +465,10 @@ public class GameControls : IInputActionCollection
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnVerticalAxis(InputAction.CallbackContext context);
+        void OnSideButtons(InputAction.CallbackContext context);
+    }
+    public interface IBarrelMapActions
+    {
+        void OnHorizontalAxis(InputAction.CallbackContext context);
     }
 }

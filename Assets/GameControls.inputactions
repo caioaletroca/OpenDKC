@@ -59,6 +59,17 @@
                     "processors": "",
                     "interactions": "",
                     "bindings": []
+                },
+                {
+                    "name": "SideButtons",
+                    "id": "7ff8e25c-8058-4a9e-a705-32dd9d6ad164",
+                    "expectedControlLayout": "",
+                    "continuous": true,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
                 }
             ],
             "bindings": [
@@ -166,6 +177,85 @@
                     "processors": "",
                     "groups": "",
                     "action": "Vertical Axis",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "470b434f-9f99-42ce-ba93-9557d3d3b5af",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SideButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "",
+                    "id": "a27fa2fc-bd86-4d9e-bd18-b4d5f0a8d5c0",
+                    "path": "<Keyboard>/numpad7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SideButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                }
+            ]
+        },
+        {
+            "name": "BarrelMap",
+            "id": "204ba88c-5deb-445a-9c9b-d957128c8ba2",
+            "actions": [
+                {
+                    "name": "HorizontalAxis",
+                    "id": "115ddc59-4719-4f09-9f7d-aec9441a60dc",
+                    "expectedControlLayout": "Axis",
+                    "continuous": false,
+                    "passThrough": false,
+                    "initialStateCheck": false,
+                    "processors": "",
+                    "interactions": "",
+                    "bindings": []
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "609b6705-9d12-4adf-bfa3-8765c825a93d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalAxis",
+                    "isComposite": true,
+                    "isPartOfComposite": false,
+                    "modifiers": ""
+                },
+                {
+                    "name": "negative",
+                    "id": "00b531ef-3731-4689-9012-780ec6b04307",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": true,
+                    "modifiers": ""
+                },
+                {
+                    "name": "positive",
+                    "id": "6bb769dc-8025-4a22-914c-59aa24189aa0",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalAxis",
                     "isComposite": false,
                     "isPartOfComposite": true,
                     "modifiers": ""

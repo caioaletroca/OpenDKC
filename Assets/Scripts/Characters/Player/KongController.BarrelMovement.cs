@@ -40,17 +40,20 @@ public partial class KongController
     /// Performs the blast jump from a barrel
     /// </summary>
     /// <param name="barrel">The barrel</param>
-    public void BlastFromBarrel(BlastBarrel barrel)
+    public void PerformBarrelBlast(BlastBarrel barrel)
     {
         // Reset trigger
         // TODO: Discover a better way to solve that problem
         animator.ResetTrigger(AnimationParameters.BarrelTrigger);
 
+        // Advice barrel about the blast
+        barrel.PerformPlayerBlast();
+
         // Resets velocity for more sensitivy movement
         SetVelocity(Vector2.zero);
 
         // Create jump force
-        mRigidBody2D.AddForce(barrel.transform.up * barrel.Force, ForceMode2D.Impulse);
+        mRigidBody2D.AddForce(barrel.BlastDirection * barrel.Force, ForceMode2D.Impulse);
     }
 
     #endregion

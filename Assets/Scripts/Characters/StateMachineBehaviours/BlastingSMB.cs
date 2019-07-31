@@ -31,7 +31,7 @@ public class BlastingSMB : SceneSMB<KongController>
         var barrel = mMonoBehaviour.GetComponentInParent<BlastBarrel>();
 
         // Blast player
-        mMonoBehaviour.BlastFromBarrel(barrel);
+        mMonoBehaviour.PerformBarrelBlast(barrel);
 
         // Start the gravity coroutine
         co = mMonoBehaviour.StartCoroutine(TurnGravityDelay(barrel.PhysicsTime));
