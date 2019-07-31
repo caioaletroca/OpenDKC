@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Renders a Unit int value
 /// </summary>
-[RequireComponent(typeof(SpriteRenderer))]
-public class UnitIntSpriteRenderer : MonoBehaviour
+[RequireComponent(typeof(Image))]
+public class UnitIntImageRenderer : MonoBehaviour
 {
     #region Public Properties
 
@@ -31,7 +32,7 @@ public class UnitIntSpriteRenderer : MonoBehaviour
             }
 
             // Check if value changed
-            if(value != CurrentValue)
+            if (value != CurrentValue)
             {
                 CurrentValue = value;
 
@@ -54,7 +55,7 @@ public class UnitIntSpriteRenderer : MonoBehaviour
     /// <summary>
     /// Instance for the sprite renderer
     /// </summary>
-    private SpriteRenderer spriteRenderer;
+    private Image imageRenderer;
 
     /// <summary>
     /// The internal current value
@@ -73,7 +74,7 @@ public class UnitIntSpriteRenderer : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        imageRenderer = GetComponent<Image>();
 
         renderRequest = true;
     }
@@ -94,14 +95,14 @@ public class UnitIntSpriteRenderer : MonoBehaviour
     protected void Render()
     {
         // Check for out of range
-        if(CurrentValue > Numbers.Count)
+        if (CurrentValue > Numbers.Count)
         {
             Debug.LogError("Sprite for this number not defined.");
             return;
         }
-        
+
         // Renders number
-        spriteRenderer.sprite = Numbers[CurrentValue];
+        imageRenderer.sprite = Numbers[CurrentValue];
 
         // Disable request
         renderRequest = false;

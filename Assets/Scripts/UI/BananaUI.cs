@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -17,7 +16,7 @@ public class BananaUI : MonoBehaviour
     /// <summary>
     /// Instance for the counter text
     /// </summary>
-    public TextMeshProUGUI BananaCounterText;
+    public DecadeIntImageRenderer BananaCounter;
 
     /// <summary>
     /// Instance for the Banana end point
@@ -54,7 +53,7 @@ public class BananaUI : MonoBehaviour
         KongController.Instance.BananaController.OnBananaCountChanged.AddListener(OnBananaCollected);
         KongController.Instance.BananaController.OnBananaLoaded.AddListener((e) =>
         {
-            BananaCounterText.text = e.BananaCount.ToString();
+            BananaCounter.Value = e.BananaCount;
         });
 
         if (AlwaysShow) ShowUI();
@@ -103,7 +102,7 @@ public class BananaUI : MonoBehaviour
     /// </summary>
     public void OnBananaArrived(BananaController bananaController)
     {
-        BananaCounterText.text = bananaController.BananaCount.ToString();
+        BananaCounter.Value = bananaController.BananaCount;
 
         // Remove from the stack
         BananaIncome.Pop();

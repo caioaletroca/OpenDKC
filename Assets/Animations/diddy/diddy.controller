@@ -1668,6 +1668,7 @@ AnimatorState:
   - {fileID: 7982926322771094587}
   m_StateMachineBehaviours:
   - {fileID: 5227687975517745448}
+  - {fileID: 7406737983855042971}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -3358,6 +3359,24 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
+--- !u!114 &7406737983855042971
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2590a37f54049d4a918ef5443904ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VfxName: CrashNoSoundXF
+  Offset: {x: 0, y: 0, z: 0}
+  AttachToParent: 0
+  StartDelay: 0
+  OnEnter: 1
+  OnExit: 0
 --- !u!1109 &7545903283611846818
 AnimatorTransition:
   m_ObjectHideFlags: 1
