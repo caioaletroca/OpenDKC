@@ -38,18 +38,21 @@ public partial class KongController
     }
 
     /// <summary>
+    /// The maximum height for the last jump
+    /// </summary>
+    public float HeightJump
+    {
+        get => animator.GetFloat(AnimationParameters.HeightJump);
+        set => animator.SetFloat(AnimationParameters.HeightJump, value);
+    }
+
+    /// <summary>
     /// The current ground distance evaluated right below the character
     /// </summary>
     public float GroundDistance
     {
-        get
-        {
-            return animator.GetFloat(AnimationParameters.GroundDistance);
-        }
-        set
-        {
-            animator.SetFloat(AnimationParameters.GroundDistance, value);
-        }
+        get => animator.GetFloat(AnimationParameters.GroundDistance);
+        set => animator.SetFloat(AnimationParameters.GroundDistance, value);
     }
 
     /// <summary>
@@ -225,6 +228,7 @@ public partial class KongController
     public void UpdateStateVariables()
     {
         UpdateGroundDistance();
+        UpdateHeightJump();
         UpdateGrounded();
         UpdateVerticalSpeed();
     }
@@ -251,14 +255,22 @@ public partial class KongController
         // Calculate distance to the ground
         RaycastHit2D hit = Physics2D.Raycast(MovementSettings.GroundPoint.transform.position, Vector2.down, 100, MovementSettings.GroundLayer);
         if (hit.collider != null)
-            animator.SetFloat(AnimationParameters.GroundDistance, hit.distance);
+            GroundDistance = hit.distance;
     }
 
     public void UpdateVerticalSpeed()
     {
         // Only when player dies, saving process power
-        if (Die)
-            VerticalSpeed = mRigidBody2D.velocity.y;
+        VerticalSpeed = mRigidBody2D.velocity.y;
+    }
+
+    public void UpdateHeightJump()
+    {
+        if (GroundDistance > HeightJump)
+            HeightJump = GroundDistance;
+
+        if (Grounded)
+            HeightJump = 0;
     }
 
     #endregion

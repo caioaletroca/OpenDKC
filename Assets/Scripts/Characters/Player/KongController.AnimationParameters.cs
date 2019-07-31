@@ -15,6 +15,8 @@
 
         public static string GroundDistance = "GroundDistance";
 
+        public static string HeightJump = "HeightJump";
+
         public static string Jump = "Jump";
 
         public static string Grounded = "Grounded";
