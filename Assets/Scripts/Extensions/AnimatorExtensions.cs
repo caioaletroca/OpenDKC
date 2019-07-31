@@ -25,6 +25,28 @@ public static class AnimatorExtensions
     }
 
     /// <summary>
+    /// Gets the current frame of animation from a defined layer normalized
+    /// </summary>
+    /// <param name="animator">The animator</param>
+    /// <param name="layer">The specified layer</param>
+    /// <returns></returns>
+    public static int GetCurrentNormalizedFrame(this Animator animator, int layer)
+    {
+        // Get information
+        var animationClip = animator.GetCurrentAnimatorClipInfo(layer)[0].clip;
+        var animationState = animator.GetCurrentAnimatorStateInfo(layer);
+
+        // Calculate frame
+        var floatFrame = animationClip.length * (animationState.normalizedTime % 1) * animationClip.frameRate;
+
+        // Convert data
+        var frame = (int)Mathf.Floor(floatFrame);
+
+        // Normalize the frame value
+        return (frame >= 0) ? frame : frame + (int)animationClip.length;
+    }
+
+    /// <summary>
     /// Gets the current normalized time of an animation from a defined layer
     /// </summary>
     /// <param name="animator">The animator</param>

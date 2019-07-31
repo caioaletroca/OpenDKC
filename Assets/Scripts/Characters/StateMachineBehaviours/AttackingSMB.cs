@@ -9,6 +9,7 @@ public class AttackingSMB : SceneSMB<KongController>
 
     public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        mMonoBehaviour.EnableGravity();
         mMonoBehaviour.Damageable.EnableInvulnerability(true);
         mMonoBehaviour.AttackDamager.Enable();
     }

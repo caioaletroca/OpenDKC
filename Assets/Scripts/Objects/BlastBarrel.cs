@@ -159,5 +159,30 @@ public class BlastBarrel : MonoBehaviour
     /// <returns></returns>
     protected float GetNormalizedTime(int frame) => frame / (float)animator.GetCurrentTotalFrames(AnimationLayer);
 
+    /// <summary>
+    /// Calculates the shortest direction rotation to arrive a target frame
+    /// </summary>
+    /// <param name="startFrame">The start frame</param>
+    /// <param name="targetFrame">The target frame</param>
+    /// <returns></returns>
+    protected int GetShortestDirection(int startFrame, int targetFrame)
+    {
+        // Get the current frame
+        var animationLength = animator.GetCurrentTotalFrames(AnimationLayer);
+
+        // Updates the shortest direction
+        var distance = (targetFrame - startFrame + 2 * animationLength) % animationLength - animationLength / 2;
+
+        // Return the direction
+        return distance >= 0 ? -1 : 1;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="frame"></param>
+    /// <returns></returns>
+    protected int NormalizeFrame(int frame) => frame >= 0 ? frame : frame + animator.GetCurrentTotalFrames(AnimationLayer);
+
     #endregion
 }

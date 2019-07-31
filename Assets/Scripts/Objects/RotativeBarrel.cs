@@ -127,7 +127,7 @@ public class RotativeBarrel : BlastBarrel
     /// Check if the recoil movement has finished
     /// </summary>
     /// <returns></returns>
-    public bool CheckForRecoilFinish() => animator.GetCurrentFrame(AnimationLayer) == StartFrame;
+    public bool CheckForRecoilFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == StartFrame;
 
     #endregion
 
@@ -219,11 +219,10 @@ public class RotativeBarrel : BlastBarrel
     public void UpdateRecoilDirection()
     {
         // Get the current frame
-        var currentFrame = animator.GetCurrentFrame(AnimationLayer);
-        var animationLength = animator.GetCurrentTotalFrames(AnimationLayer);
+        var currentFrame = animator.GetCurrentNormalizedFrame(AnimationLayer);
 
-        // Updates the shortest direction
-        Direction = (currentFrame - StartFrame + animationLength) > animationLength ? 1 : -1;
+        // Gets the shortest direction for the target
+        Direction = GetShortestDirection(currentFrame, StartFrame);
     }
 
     #endregion
