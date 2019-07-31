@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BarrelRotateSMB : SceneSMB<RotativeBarrel>
+/// <summary>
+/// Controls the player controllable rotative state for the rotative barrel
+/// </summary>
+public class RotativeBarrelRotateSMB : SceneSMB<RotativeBarrel>
 {
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

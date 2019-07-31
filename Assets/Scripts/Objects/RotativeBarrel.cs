@@ -3,7 +3,6 @@
 /// <summary>
 /// Controls the rotative barrel
 /// </summary>
-[RequireComponent(typeof(Animator))]
 public class RotativeBarrel : BlastBarrel
 {
     #region State Variables
@@ -99,18 +98,6 @@ public class RotativeBarrel : BlastBarrel
             // Reset counter icon
             NumberIcon.Value = BlastTime;
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        // Calculate points
-        var direction = Force * PhysicsTime * BlastDirection;
-        var point = direction + (Vector2)transform.position;
-
-        // Draw the gizmo
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, point);
-        Gizmos.DrawWireSphere(point, 0.1f);
     }
 
     #endregion
@@ -224,17 +211,6 @@ public class RotativeBarrel : BlastBarrel
         // Gets the shortest direction for the target
         Direction = GetShortestDirection(currentFrame, StartFrame);
     }
-
-    #endregion
-
-    #region Private Methods
-
-    /// <summary>
-    /// Sets the Barrel state
-    /// </summary>
-    /// <param name="name">The name of the next state</param>
-    /// <param name="frame">The frame to start</param>
-    protected void SetState(string name, int frame = 0) => animator.Play(name, AnimationLayer, GetNormalizedTime(frame));
 
     #endregion
 }

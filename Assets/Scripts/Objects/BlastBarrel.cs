@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 /// <summary>
 /// Controls the default blast barrel
@@ -82,16 +83,23 @@ public class BlastBarrel : MonoBehaviour
         PerformBlastDirection(StartFrame);
     }
 
-    private void OnDrawGizmosSelected()
+    protected void OnDrawGizmosSelected()
     {
+        var direction = Vector2.zero;
+        
         // Calculate points
-        var direction = Force * PhysicsTime * BlastDirection;
+        if(Application.isPlaying)
+            direction = Force * PhysicsTime * BlastDirection;
+        else
+            direction = Force * PhysicsTime * GetBlastDirection(StartFrame);
+
         var point = direction + (Vector2)transform.position;
 
         // Draw the gizmo
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, point);
         Gizmos.DrawWireSphere(point, 0.1f);
+        Handles.Label(point, "Start Blast");
     }
 
     #endregion
@@ -137,6 +145,13 @@ public class BlastBarrel : MonoBehaviour
     #endregion
 
     #region Private Methods
+
+    /// <summary>
+    /// Sets the Barrel state
+    /// </summary>
+    /// <param name="name">The name of the next state</param>
+    /// <param name="frame">The frame to start</param>
+    protected void SetState(string name, int frame = 0) => animator.Play(name, AnimationLayer, GetNormalizedTime(frame));
 
     /// <summary>
     /// Get the current blast direction with the current animation frame

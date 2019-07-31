@@ -43,7 +43,7 @@ public static class AnimatorExtensions
         var frame = (int)Mathf.Floor(floatFrame);
 
         // Normalize the frame value
-        return (frame >= 0) ? frame : frame + (int)animationClip.length;
+        return (frame >= 0) ? frame : frame + animator.GetCurrentTotalFrames(layer);
     }
 
     /// <summary>
