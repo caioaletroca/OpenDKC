@@ -8,6 +8,6 @@ public class BarrelIdleSMB : SceneSMB<RotativeBarrel>
     public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mMonoBehaviour.PerformFrame(mMonoBehaviour.StartFrame);
-        mMonoBehaviour.UpdateBlastDiretion();
+        mMonoBehaviour.PerformBlastDirection(mMonoBehaviour.StartFrame);
     }
 }

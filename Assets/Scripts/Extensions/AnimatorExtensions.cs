@@ -41,7 +41,7 @@ public static class AnimatorExtensions
     public static int GetCurrentTotalFrames(this Animator animator, int layer)
     {
         // Get data
-        var animationClip = animator.GetCurrentAnimatorClipInfo(1)[0].clip;
+        var animationClip = animator.GetCurrentAnimatorClipInfo(layer)[0].clip;
 
         // Calculate frames
         var totalFrames = animationClip.length * animationClip.frameRate;

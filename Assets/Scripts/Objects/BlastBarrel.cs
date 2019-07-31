@@ -65,11 +65,22 @@ public class BlastBarrel : MonoBehaviour
     /// </summary>
     protected Animator animator;
 
+    /// <summary>
+    /// The used animation layer
+    /// </summary>
+    protected int AnimationLayer = 0;
+
     #endregion
 
     #region Unity Methods
 
     protected void Awake() => animator = GetComponent<Animator>();
+
+    private void Start()
+    {
+        PerformFrame(StartFrame);
+        PerformBlastDirection(StartFrame);
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -85,7 +96,20 @@ public class BlastBarrel : MonoBehaviour
 
     #endregion
 
-    #region Public Methods
+    #region Update Methods
+
+    /// <summary>
+    /// Updates the blaster direction using the current frame
+    /// </summary>
+    public void UpdateBlastDiretion()
+    {
+        // Update blast direction with the current animation frame
+        BlastDirection = GetBlastDirection(animator.GetCurrentFrame(AnimationLayer));
+    }
+
+    #endregion
+
+    #region Perform Methods
 
     /// <summary>
     /// Performs the normalized time using frames
@@ -98,6 +122,12 @@ public class BlastBarrel : MonoBehaviour
     /// </summary>
     /// <param name="normalizedTime"></param>
     public void PerformNormalizedTime(float normalizedTime) => NormalizedTime = normalizedTime;
+
+    /// <summary>
+    /// Performs the new blast direction using a frame
+    /// </summary>
+    /// <param name="frame"></param>
+    public void PerformBlastDirection(int frame) => BlastDirection = GetBlastDirection(frame);
 
     /// <summary>
     /// Performs the player executed blast, when player hits blast befores the timer runs out
@@ -127,7 +157,7 @@ public class BlastBarrel : MonoBehaviour
     /// </summary>
     /// <param name="frame">The specified frame</param>
     /// <returns></returns>
-    protected float GetNormalizedTime(int frame) => frame / (float)animator.GetCurrentTotalFrames(1);
+    protected float GetNormalizedTime(int frame) => frame / (float)animator.GetCurrentTotalFrames(AnimationLayer);
 
     #endregion
 }

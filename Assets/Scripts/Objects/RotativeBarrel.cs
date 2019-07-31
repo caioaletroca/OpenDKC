@@ -127,7 +127,7 @@ public class RotativeBarrel : BlastBarrel
     /// Check if the recoil movement has finished
     /// </summary>
     /// <returns></returns>
-    public bool CheckForRecoilFinish() => animator.GetCurrentFrame(1) == StartFrame;
+    public bool CheckForRecoilFinish() => animator.GetCurrentFrame(AnimationLayer) == StartFrame;
 
     #endregion
 
@@ -157,7 +157,7 @@ public class RotativeBarrel : BlastBarrel
             kongController.Blast = true;
 
             // Set internal state
-            SetState("recoil", animator.GetCurrentFrame(1));
+            SetState("recoil", animator.GetCurrentFrame(AnimationLayer));
         }
     }
 
@@ -167,7 +167,7 @@ public class RotativeBarrel : BlastBarrel
     public override void PerformPlayerBlast()
     {
         // Set internal state
-        SetState("recoil", animator.GetCurrentFrame(1));
+        SetState("recoil", animator.GetCurrentFrame(AnimationLayer));
     }
 
     #endregion
@@ -189,15 +189,6 @@ public class RotativeBarrel : BlastBarrel
 
         // Disable update request flag
         updateBlastTimerRequest = false;
-    }
-
-    /// <summary>
-    /// Updates the blaster direction using the current frame
-    /// </summary>
-    public void UpdateBlastDiretion()
-    {
-        // Update blast direction with the current animation frame
-        BlastDirection = GetBlastDirection(animator.GetCurrentFrame(1));
     }
 
     /// <summary>
@@ -228,8 +219,8 @@ public class RotativeBarrel : BlastBarrel
     public void UpdateRecoilDirection()
     {
         // Get the current frame
-        var currentFrame = animator.GetCurrentFrame(1);
-        var animationLength = animator.GetCurrentTotalFrames(1);
+        var currentFrame = animator.GetCurrentFrame(AnimationLayer);
+        var animationLength = animator.GetCurrentTotalFrames(AnimationLayer);
 
         // Updates the shortest direction
         Direction = (currentFrame - StartFrame + animationLength) > animationLength ? 1 : -1;
@@ -244,7 +235,7 @@ public class RotativeBarrel : BlastBarrel
     /// </summary>
     /// <param name="name">The name of the next state</param>
     /// <param name="frame">The frame to start</param>
-    protected void SetState(string name, int frame = 0) => animator.Play(name, 1, GetNormalizedTime(frame));
+    protected void SetState(string name, int frame = 0) => animator.Play(name, AnimationLayer, GetNormalizedTime(frame));
 
     #endregion
 }
