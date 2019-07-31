@@ -4,8 +4,33 @@ using UnityEngine;
 /// <summary>
 /// Controls the end level goal
 /// </summary>
+[RequireComponent(typeof(Animator))]
 public class LevelGoal : MonoBehaviour
 {
+    #region State Variables
+
+    /// <summary>
+    /// Defines if the player hits the target
+    /// </summary>
+    [HideInInspector]
+    public bool Bumped
+    {
+        get => animator.GetBool("Bumped");
+        set => animator.SetBool("Bumped", value);
+    }
+
+    /// <summary>
+    /// Defines if the player successful hits the goal
+    /// </summary>
+    [HideInInspector]
+    public bool Success
+    {
+        get => animator.GetBool("Success");
+        set => animator.SetBool("Success", value);
+    }
+
+    #endregion
+
     #region Public Properties
 
     /// <summary>
@@ -43,6 +68,11 @@ public class LevelGoal : MonoBehaviour
     #region Private Properties
 
     /// <summary>
+    /// Instance for the animator
+    /// </summary>
+    private Animator animator;
+
+    /// <summary>
     /// The timer for the prize swap
     /// </summary>
     private float PrizeTimer;
@@ -53,6 +83,9 @@ public class LevelGoal : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        
+        // Set the timer
         PrizeTimer = PrizeTime;
 
         // Set the sprite
@@ -92,12 +125,40 @@ public class LevelGoal : MonoBehaviour
         // Check if the player is in the air
         if(kongController.Grounded == false && kongController.VerticalSpeed < 0)
         {
-            // Check if player was successful
-            if(kongController.HeightJump >= SuccessfulHeight)
-            {
+            Bumped = true;
 
-            }
+            // Check if player was successful
+            if (kongController.HeightJump >= SuccessfulHeight)
+                OnPlayerSuccessHit();
         }
+    }
+
+    /// <summary>
+    /// Fires when the player is successful
+    /// </summary>
+    public void OnPlayerSuccessHit()
+    {
+        Success = true;
+
+        // Plays death sound
+        //BackgroundMusicPlayer.Instance.PushClip();
+
+        // Todo: Implement proper animation
+    }
+
+    /// <summary>
+    /// Fires when item should spawn
+    /// </summary>
+    public void OnSpawnItem()
+    {
+        // Remove Prize sprite
+        PrizeHolder.sprite = null;
+        
+        // Create the prize on the position
+        var item = Instantiate(Prizes[CurrentPrize], PrizeHolder.transform.position, PrizeHolder.transform.rotation);
+
+        // Add gravity to item
+        var rb = item.AddComponent(typeof(Rigidbody2D)) as Rigidbody2D;
     }
 
     #endregion
@@ -106,6 +167,10 @@ public class LevelGoal : MonoBehaviour
 
     public void UpdatePrizeTimer()
     {
+        // Do not update when bumped
+        if (Bumped)
+            return;
+        
         // Decremente the timer
         PrizeTimer -= Time.deltaTime;
 
