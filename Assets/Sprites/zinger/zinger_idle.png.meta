@@ -11,6 +11,21 @@ TextureImporter:
   - first:
       213: 7231599745074814972
     second: zinger_idle_2
+  - first:
+      213: -4778394162953938328
+    second: zinger_idle_3
+  - first:
+      213: -8213364744351329434
+    second: zinger_idle_4
+  - first:
+      213: 4553453286983720851
+    second: zinger_idle_5
+  - first:
+      213: 2741482308593505454
+    second: zinger_idle_6
+  - first:
+      213: -5159953227885750079
+    second: zinger_idle_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -133,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0080d4674e178aa4ea7125202ccac26f
+      spriteID: 9c33ff4fc144b3e449caa1ab676a2a45
       internalID: 230900866603960606
       vertices: []
       indices: 
@@ -154,7 +169,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b464c600596acc48ba75122561495ad
+      spriteID: 059319c5d3fe3e447bb6aea393dd1ea9
       internalID: 7058255695430126197
       vertices: []
       indices: 
@@ -175,8 +190,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aee7d6f927fd8ee44984e2c5c1c1c2ad
+      spriteID: d81a4361f760b7e44bcea57633110da1
       internalID: 7231599745074814972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zinger_idle_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb2b856bc8b5ce04fa55e8b6df921b83
+      internalID: -4778394162953938328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zinger_idle_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edd75daab7e1c2c40bced8c2552f8fc9
+      internalID: -8213364744351329434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zinger_idle_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee3d8cb56473b34bbbb8beebf5e22d8
+      internalID: 4553453286983720851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zinger_idle_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ca83c89b1b55540801b639cd60b3fa
+      internalID: 2741482308593505454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zinger_idle_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6559d68e6cc3b848be41009abacb59a
+      internalID: -5159953227885750079
       vertices: []
       indices: 
       edges: []

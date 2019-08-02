@@ -28,18 +28,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &-7115346892609732907
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75d626c3d9abfc54f8d5d93e31783fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5237215549724089389
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,7 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VfxName: KlamponBiteXF
-  Offset: {x: 0, y: 0, z: 0}
+  Offset: {x: 0.6, y: 0, z: 0}
   AttachToParent: 0
   StartDelay: 0
   OnEnter: 1
@@ -94,7 +82,7 @@ AnimatorState:
   - {fileID: 1747466319126944513}
   - {fileID: 2442606313968083140}
   m_StateMachineBehaviours:
-  - {fileID: -7115346892609732907}
+  - {fileID: 6694102281344452860}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -220,6 +208,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &6694102281344452860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d626c3d9abfc54f8d5d93e31783fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7343821433703223273
 MonoBehaviour:
   m_ObjectHideFlags: 1
