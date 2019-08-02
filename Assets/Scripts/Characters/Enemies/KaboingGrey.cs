@@ -25,6 +25,15 @@ public class KaboingGrey : Enemy
         set => animator.SetFloat("VerticalSpeed", value);
     }
 
+    /// <summary>
+    /// The speed for the current animation
+    /// </summary>
+    public float AnimationSpeed
+    {
+        get => animator.GetFloat("AnimationSpeed");
+        set => animator.SetFloat("AnimationSpeed", value);
+    }
+
     #endregion
 
     #region Public Properties
@@ -70,6 +79,10 @@ public class KaboingGrey : Enemy
 
     private void FixedUpdate()
     {
+        // Do not update when grounded
+        if (GroundDistance < 1)
+            return;
+
         var direction = transform.localScale.x * -1;
 
         mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
