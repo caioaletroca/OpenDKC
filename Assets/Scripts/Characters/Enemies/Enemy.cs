@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Represents if the object has died
     /// </summary>
-    [HideInInspector]
     public bool Die
     {
         get => animator.GetBool("Die");
