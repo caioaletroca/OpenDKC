@@ -12,7 +12,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4648742370555415500}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -5237215549724089389}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -27,6 +28,36 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-7115346892609732907
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d626c3d9abfc54f8d5d93e31783fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5237215549724089389
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2590a37f54049d4a918ef5443904ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VfxName: KlamponBiteXF
+  Offset: {x: 0, y: 0, z: 0}
+  AttachToParent: 0
+  StartDelay: 0
+  OnEnter: 1
+  OnExit: 0
 --- !u!1101 &-4648742370555415500
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -43,7 +74,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 1
+  m_ExitTime: 5
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -62,7 +93,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1747466319126944513}
   - {fileID: 2442606313968083140}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -7115346892609732907}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -119,8 +151,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: BiteTrigger
-    m_Type: 9
+  - m_Name: Bite
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -147,7 +179,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: BiteTrigger
+    m_ConditionEvent: Bite
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8226164268439403262}
@@ -200,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2590a37f54049d4a918ef5443904ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VfxName: CrashLandXF
+  VfxName: KlompDieXF
   Offset: {x: 0, y: 0, z: 0}
   AttachToParent: 0
   StartDelay: 0
