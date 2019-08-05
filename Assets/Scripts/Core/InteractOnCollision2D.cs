@@ -5,35 +5,30 @@ using UnityEngine.Events;
 /// Handles collision interactions on game objects
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class InteractOnCollision2D : MonoBehaviour
+public class InteractOnCollision2D : Interact
 {
     #region Public Properties
-
-    /// <summary>
-    /// The layers allowed to interact with the game object
-    /// </summary>
-    [Tooltip("The layers allowed to interact with the game object.")]
-    public LayerMask Layers;
 
     /// <summary>
     /// The event fired when the interaction happens
     /// </summary>
     public UnityEvent OnCollision;
 
+    /// <summary>
+    /// The event fired when the interaction happens with parameters
+    /// </summary>
+    public InteractCollision2DEvent OnCollisionParameter;
+
     #endregion
 
     #region Unity Methods
-
-    private void Reset()
-    {
-        Layers = LayerMask.NameToLayer("Everything");
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(Layers.Contains(collision.gameObject))
         {
-            OnCollision.Invoke();
+            OnCollision?.Invoke();
+            OnCollisionParameter?.Invoke(collision);
         }
     }
 

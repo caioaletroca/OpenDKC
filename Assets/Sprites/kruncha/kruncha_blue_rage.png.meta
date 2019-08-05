@@ -1,40 +1,31 @@
 fileFormatVersion: 2
-guid: 19ebcf3183d26d647823be86b2df2350
+guid: f8fa80713e102d346ba9743573f477c5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3852378198720745355
-    second: kruncha_red_walk_0
+      213: 7291876368748655873
+    second: kruncha_blue_rage_0
   - first:
-      213: -6579421902908003180
-    second: kruncha_red_walk_1
+      213: -7644466635116750373
+    second: kruncha_blue_rage_1
   - first:
-      213: 591839125154436192
-    second: kruncha_red_walk_2
+      213: 6308095399350883483
+    second: kruncha_blue_rage_2
   - first:
-      213: -4573032395081026026
-    second: kruncha_red_walk_3
+      213: 7851179033366695981
+    second: kruncha_blue_rage_3
   - first:
-      213: 6312868331687564032
-    second: kruncha_red_walk_4
+      213: 7386591695415113829
+    second: kruncha_blue_rage_4
   - first:
-      213: -6092714582654488964
-    second: kruncha_red_walk_5
+      213: -4397154988107161193
+    second: kruncha_blue_rage_5
   - first:
-      213: -8896582796288767910
-    second: kruncha_red_walk_6
+      213: 6095713361461769960
+    second: kruncha_blue_rage_6
   - first:
-      213: -3941283942683905636
-    second: kruncha_red_walk_7
-  - first:
-      213: -6385700189606990616
-    second: kruncha_red_walk_8
-  - first:
-      213: -6217388912978721389
-    second: kruncha_red_walk_9
-  - first:
-      213: 3101927247647478350
-    second: kruncha_red_walk_10
+      213: 4769401363330223896
+    second: kruncha_blue_rage_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -143,7 +134,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kruncha_red_walk_0
+      name: kruncha_blue_rage_0
       rect:
         serializedVersion: 2
         x: 0
@@ -157,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6adada6fd463cf844942922aa3ca85cd
-      internalID: -3852378198720745355
+      spriteID: f121b035430c7e14b963c9c49fa43a1d
+      internalID: 7291876368748655873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_1
+      name: kruncha_blue_rage_1
       rect:
         serializedVersion: 2
         x: 80
@@ -178,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e55b667aff556e84ea431b4aa94b65a7
-      internalID: -6579421902908003180
+      spriteID: fef92e4c05c5d014384b0a40a646a837
+      internalID: -7644466635116750373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_2
+      name: kruncha_blue_rage_2
       rect:
         serializedVersion: 2
         x: 160
@@ -199,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b23ba297da723e4992c5aab26ad73d0
-      internalID: 591839125154436192
+      spriteID: a282273b760e3f245b8b6379a7dd1e6d
+      internalID: 6308095399350883483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_3
+      name: kruncha_blue_rage_3
       rect:
         serializedVersion: 2
         x: 240
@@ -220,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30cf646282efec441ac26396fb34c197
-      internalID: -4573032395081026026
+      spriteID: 90b0393e13424ec4bb38e47a27fea1e7
+      internalID: 7851179033366695981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_4
+      name: kruncha_blue_rage_4
       rect:
         serializedVersion: 2
         x: 320
@@ -241,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65475a56ace01a94aa2b3d67d9f6e9fe
-      internalID: 6312868331687564032
+      spriteID: c44075f2beed90946bf6796a89c4f298
+      internalID: 7386591695415113829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_5
+      name: kruncha_blue_rage_5
       rect:
         serializedVersion: 2
         x: 400
@@ -262,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e8fa9829f2ae244588fba47bf499cd4
-      internalID: -6092714582654488964
+      spriteID: 7ef23bb102f6eb042b03d48fe763ef41
+      internalID: -4397154988107161193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_6
+      name: kruncha_blue_rage_6
       rect:
         serializedVersion: 2
         x: 480
@@ -283,14 +274,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4863e33dc7fe29443b6ff2626d97ad64
-      internalID: -8896582796288767910
+      spriteID: 01803b3546b8520468fc50cd12b94676
+      internalID: 6095713361461769960
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: kruncha_red_walk_7
+      name: kruncha_blue_rage_7
       rect:
         serializedVersion: 2
         x: 560
@@ -304,50 +295,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a554e3c2d8d04042881fafdcab064ab
-      internalID: -3941283942683905636
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kruncha_red_walk_8
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c197e7dd12cc5a742b37050afa7852a1
-      internalID: -6385700189606990616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: kruncha_red_walk_9
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c1960653a4103b34987e2e6dcdafd18b
-      internalID: -6217388912978721389
+      spriteID: 40d20ed69a8a38648890e81c61a2169a
+      internalID: 4769401363330223896
       vertices: []
       indices: 
       edges: []

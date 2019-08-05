@@ -147,6 +147,22 @@ public partial class KongController : MonoBehaviour
         SceneController.RestartDelay(DamagerSettings.RestartDelay);
     }
 
+    /// <summary>
+    /// Fired when the player gets knock back
+    /// </summary>
+    /// <param name="collision"></param>
+    public void OnKnockBackEvent(Collision2D collision)
+    {
+        // Calculate the direction vector
+        var collisionDirection = (transform.position - collision.gameObject.transform.position).normalized;
+
+        // Stops current velocity
+        mRigidBody2D.velocity = Vector2.zero;
+
+        // Add knock back force
+        mRigidBody2D.AddForce(new Vector2(MovementSettings.KnockBackForce.x * collisionDirection.x, MovementSettings.KnockBackForce.y), ForceMode2D.Impulse);
+    }
+
     #endregion
 
     #region Public Methods

@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 5223639867485175071}
   - component: {fileID: 3476403386202510804}
   - component: {fileID: 9005975490835626365}
+  - component: {fileID: 8192996590388843089}
   m_Layer: 9
   m_Name: Diddy
   m_TagString: Player
@@ -348,8 +349,10 @@ MonoBehaviour:
   AirSpeed: 40
   CrouchSpeed: 0
   MovementSmoothing: 0.1
+  ForceMagnitude: 10
   JumpForce: 15
   MaximumVelocityY: 30
+  KnockBackForce: {x: 8, y: 8}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 4352
@@ -525,6 +528,42 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &8192996590388843089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663ca3fe6ed14de449a6bfa7abe6db9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Layers:
+    serializedVersion: 2
+    m_Bits: 8192
+  OnCollision:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnCollisionParameter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5993394080426852892}
+        m_MethodName: OnKnockBackEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Interact+InteractCollision2DEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6944360725566058431
 GameObject:
   m_ObjectHideFlags: 0

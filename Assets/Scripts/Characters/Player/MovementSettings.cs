@@ -27,6 +27,12 @@ public class MovementSettings : MonoBehaviour
     public float MaximumVelocityY = 100;
 
     /// <summary>
+    /// The knock back force magnitude
+    /// </summary>
+    [Tooltip("The force applied to the player when knocked back by a enemy.")]
+    public Vector2 KnockBackForce = new Vector2(1, 1);
+
+    /// <summary>
     /// A <see cref="LayerMask"/> for the ground collision
     /// </summary>
     public LayerMask GroundLayer;

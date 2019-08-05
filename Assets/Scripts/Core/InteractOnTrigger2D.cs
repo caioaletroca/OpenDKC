@@ -17,7 +17,7 @@ public class InteractOnTrigger2D : Interact
     /// <summary>
     /// The event fired when the interaction happens with parameters
     /// </summary>
-    public Interact2DEvent OnTriggerParameter;
+    public InteractTrigger2DEvent OnTriggerParameter;
 
     #endregion
 

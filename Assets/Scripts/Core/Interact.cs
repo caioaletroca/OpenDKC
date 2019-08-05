@@ -13,7 +13,13 @@ public class Interact : MonoBehaviour
     /// Event with parameters
     /// </summary>
     [Serializable]
-    public class Interact2DEvent : UnityEvent<Collider2D> { }
+    public class InteractTrigger2DEvent : UnityEvent<Collider2D> { }
+
+    /// <summary>
+    /// Event with parameters
+    /// </summary>
+    [Serializable]
+    public class InteractCollision2DEvent : UnityEvent<Collision2D> { }
 
     #endregion
 
