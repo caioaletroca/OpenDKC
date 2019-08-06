@@ -80,7 +80,7 @@ public class Damager : MonoBehaviour
     /// <summary>
     /// A flag that represents if the damager is activated or not
     /// </summary>
-    protected bool CanDamage = false;
+    public bool CanDamage = false;
 
     /// <summary>
     /// The contact filter instance

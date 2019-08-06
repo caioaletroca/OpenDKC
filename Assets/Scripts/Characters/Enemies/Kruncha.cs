@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 
-public class Kruncha : Klomp
+/// <summary>
+/// Controls the Kruncha enemy
+/// </summary>
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PlatformMovement))]
+public class Kruncha : Enemy
 {
     #region State Variables
 
@@ -23,9 +28,31 @@ public class Kruncha : Klomp
     [Tooltip("The amount of time the object stays on the rage mode")]
     public float RageTime = 1;
 
+    /// <summary>
+    /// The speed for the normal state
+    /// </summary>
+    [Tooltip("The speed for the normal state.")]
+    public float NormalSpeed = 1;
+
+    /// <summary>
+    /// The speed for the rage state
+    /// </summary>
+    [Tooltip("The speed for the rage state.")]
+    public float RageSpeed = 2;
+
     #endregion
 
     #region Private Properties
+
+    /// <summary>
+    /// Instance for the audio source
+    /// </summary>
+    protected AudioSource audioSource;
+
+    /// <summary>
+    /// Instance for the platform movement
+    /// </summary>
+    protected PlatformMovement platformMovement;
 
     /// <summary>
     /// Stores the current timer value
@@ -41,6 +68,13 @@ public class Kruncha : Klomp
         base.Awake();
 
         audioSource = GetComponent<AudioSource>();
+        platformMovement = GetComponent<PlatformMovement>();
+
+        // Disable Damager
+        Damager.Disable();
+
+        // Set default speed
+        platformMovement.Speed = NormalSpeed;
     }
 
     private void Start()
@@ -72,6 +106,10 @@ public class Kruncha : Klomp
         // Turn on damager
         Damager.Enable();
 
+        // Stop Movement
+        platformMovement.enabled = false;
+        platformMovement.Speed = RageSpeed;
+
         // Sets the timer
         RageTimer = RageTime;
     }
@@ -84,6 +122,8 @@ public class Kruncha : Klomp
     /// Plays the step sound effect
     /// </summary>
     public void PerformStepSound() => audioSource.Play();
+
+    public void PerformEnableMovement() => platformMovement.enabled = true;
 
     #endregion
 
@@ -111,6 +151,9 @@ public class Kruncha : Klomp
 
             // Set the initial value
             RageTimer = RageTime;
+
+            // Set normal speed
+            platformMovement.Speed = NormalSpeed;
         }
     }
 

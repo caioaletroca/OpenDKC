@@ -1652,6 +1652,7 @@ GameObject:
   - component: {fileID: 63171559}
   - component: {fileID: 63171568}
   - component: {fileID: 63171566}
+  - component: {fileID: 63171569}
   - component: {fileID: 63171567}
   - component: {fileID: 63171565}
   m_Layer: 13
@@ -1674,7 +1675,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.05}
+  m_Offset: {x: 0, y: -0.17}
   serializedVersion: 2
   m_Radius: 0.6164051
 --- !u!58 &63171560
@@ -1690,7 +1691,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.33}
+  m_Offset: {x: 0, y: -0.62}
   serializedVersion: 2
   m_Radius: 0.2755279
 --- !u!50 &63171561
@@ -1851,12 +1852,9 @@ MonoBehaviour:
   dataSettings:
     dataTag: e1de896f-ef35-4548-9f3b-647ba7ebd029
     persistenceType: 3
-  Speed: 5
-  LookDirection: {x: -1, y: -1}
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 4352
   RageTime: 5
+  NormalSpeed: 2
+  RageSpeed: 3
 --- !u!114 &63171567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1990,6 +1988,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &63171569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63171558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0985444b28922b14cab699db2e773035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 2
+  LookDirection: {x: -1, y: -1}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!213 &81801475
 Sprite:
   m_ObjectHideFlags: 0
@@ -6176,21 +6194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8192996590388843089, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 543464440}
-    - target: {fileID: 8192996590388843089, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnKnockBackEvent
-      objectReference: {fileID: 0}
-    - target: {fileID: 8192996590388843089, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6944360725309435770, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_Name
@@ -6245,6 +6248,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192996590388843089, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 543464440}
+    - target: {fileID: 8192996590388843089, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnKnockBackEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192996590388843089, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
