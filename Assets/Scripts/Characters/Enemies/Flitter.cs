@@ -20,15 +20,7 @@ public class Flitter : Enemy
 
     #region Unity Methods
 
-    private new void Awake()
-    {
-        base.Awake();
-
-        // Enables damager
-        Damager.Enable();
-    }
-
-    private void Update()
+    protected void Update()
     {
         UpdateVerticalSpeed();
     }

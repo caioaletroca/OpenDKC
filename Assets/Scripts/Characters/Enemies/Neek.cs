@@ -16,22 +16,14 @@ public class Neek : Enemy
 
     #region Unity Methods
 
-    private new void Awake()
-    {
-        base.Awake();
-
-        // Enables damager
-        Damager.Enable();
-    }
-
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {  
         var direction = transform.localScale.x * -1;
 
         mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         // Controls the flip behaviour when hitting a wall
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))

@@ -64,7 +64,6 @@ public class Damageable : MonoBehaviour, IDataPersister
     /// <summary>
     /// The current health for the game object
     /// </summary>
-    [HideInInspector]
     public float Health
     {
         get { return mHealth; }

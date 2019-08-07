@@ -5,6 +5,7 @@ using UnityEngine.Events;
 /// <summary>
 /// Handles the damager interation with the <see cref="Damageable"/> class
 /// </summary>
+[RequireComponent(typeof(Collider2D))]
 public class Damager : MonoBehaviour
 {
     #region Types
@@ -30,18 +31,6 @@ public class Damager : MonoBehaviour
     /// </summary>
     [Tooltip("The total damage inflicted on enemies.")]
     public int Damage = 1;
-
-    /// <summary>
-    /// The offset position for the effective area
-    /// </summary>
-    [Tooltip("The offset position for the effective area.")]
-    public Vector2 Offset = new Vector2(1.5f, 1f);
-
-    /// <summary>
-    /// The size for the effective area
-    /// </summary>
-    [Tooltip("The size for the effective area.")]
-    public Vector2 Size = new Vector2(2.5f, 1f);
 
     /// <summary>
     /// A flag that represents if the damager should hit trigger colliders
@@ -75,30 +64,6 @@ public class Damager : MonoBehaviour
 
     #endregion
 
-    #region Private Properties
-
-    /// <summary>
-    /// A flag that represents if the damager is activated or not
-    /// </summary>
-    public bool CanDamage = false;
-
-    /// <summary>
-    /// The contact filter instance
-    /// </summary>
-    protected ContactFilter2D mContactFilter;
-
-    /// <summary>
-    /// Colliders results for the collision test
-    /// </summary>
-    protected Collider2D[] mOverlapResults = new Collider2D[10];
-
-    /// <summary>
-    /// Variable used for manipulation, storing the last collider hit result
-    /// </summary>
-    protected Collider2D mLastHit;
-
-    #endregion
-
     #region Events
 
     /// <summary>
@@ -120,95 +85,79 @@ public class Damager : MonoBehaviour
 
     #region Unity Methods
 
-    private void Awake()
-    {
-        mContactFilter.layerMask = HittableLayers;
-        mContactFilter.useLayerMask = true;
-        mContactFilter.useTriggers = CanHitTrigger;
-    }
+    protected void Update() { }
 
-    private void FixedUpdate()
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
-        // Does nothing if its disabled
-        if (!CanDamage)
+        // Do not execute if disabled
+        if (!enabled)
+            return;
+        
+        // Check for the right layer
+        if (!HittableLayers.Contains(collision.gameObject))
             return;
 
-        // Calculate bounds points
-        var scale = transform.lossyScale;
-        var scaledSize = Vector2.Scale(Size, scale);
-        var facingOffset = Vector2.Scale(Offset, scale);
-
-        var pointA = (Vector2)transform.position + facingOffset - scaledSize * 0.5f;
-        var pointB = pointA + scaledSize;
-
-        // Check for hits
-        var hitCount = Physics2D.OverlapArea(pointA, pointB, mContactFilter, mOverlapResults);
-        for (int i = 0; i < hitCount; i++)
-        {
-            // Get collider
-            mLastHit = mOverlapResults[i];
-
-            // Get the damageable component instance
-            var damageable = mLastHit.GetComponent<Damageable>();
-
-            // Find the damage direction
-            if (damageable)
-            {
-                // Calculate the collision direction
-                var damageDirection = (damageable.transform.position + ((Vector3)damageable.CentreOffset - transform.position)).normalized;
-
-                // Check if this damager makes hits from above
-                if(HitFromAbove)
-                {
-                    // Check for hit from above
-                    if (damageDirection.y * -1 > Mathf.Abs(damageDirection.x))
-                    {
-                        OnDamageableHit?.Invoke(this, damageable);
-                        OnBounceDamageableHit?.Invoke(this, damageable);
-                        damageable.TakeDamage(this, IgnoreInvincibility);
-                        if (DisableAfterHit)
-                            Disable();
-                    }
-                }
-                else
-                {
-                    // Fire normal damage
-                    OnDamageableHit?.Invoke(this, damageable);
-                    damageable.TakeDamage(this, IgnoreInvincibility);
-                    if (DisableAfterHit)
-                        Disable();
-                }
-            }
-            else
-                OnNonDamageableHit?.Invoke(this);
-        }
+        // Get the damageable component instance
+        var damageable = collision.gameObject.GetComponent<Damageable>();
+        if (damageable)
+            TakeDamage(damageable);
+        else
+            OnNonDamageableHit?.Invoke(this);
     }
 
-    private void OnDrawGizmos()
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        // Calculate bounds points
-        var scale = transform.lossyScale;
-        var scaledSize = Vector2.Scale(Size, scale);
-        var facingOffset = Vector2.Scale(Offset, scale);
+        // Do not execute if disabled
+        if (!enabled)
+            return;
 
-        // Draw area
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position + (Vector3)facingOffset, scaledSize);
+        // Check for the right layer
+        if (!HittableLayers.Contains(collision.gameObject))
+            return;
+
+        // Get the damageable component instance
+        var damageable = collision.gameObject.GetComponent<Damageable>();
+        if (damageable)
+            TakeDamage(damageable);
+        else
+            OnNonDamageableHit?.Invoke(this);
     }
 
     #endregion
 
-    #region Public Methods
+    #region Private Methods
 
     /// <summary>
-    /// Enables the damager system
+    /// Computes the damage for a <see cref="Damageable"/> component
     /// </summary>
-    public void Enable() => CanDamage = true;
+    /// <param name="damageable">The component who takes the hit</param>
+    protected void TakeDamage(Damageable damageable)
+    {
+        // Calculate the collision direction
+        var damageDirection = (damageable.transform.position + ((Vector3)damageable.CentreOffset - transform.position)).normalized;
 
-    /// <summary>
-    /// Disables the damager system
-    /// </summary>
-    public void Disable() => CanDamage = false;
+        // Check if this damager makes hits from above
+        if (HitFromAbove)
+        {
+            // Check for hit from above
+            if (damageDirection.y * -1 > Mathf.Abs(damageDirection.x))
+            {
+                OnDamageableHit?.Invoke(this, damageable);
+                OnBounceDamageableHit?.Invoke(this, damageable);
+                damageable.TakeDamage(this, IgnoreInvincibility);
+                if (DisableAfterHit)
+                    enabled = false;
+            }
+        }
+        else
+        {
+            // Fire normal damage
+            OnDamageableHit?.Invoke(this, damageable);
+            damageable.TakeDamage(this, IgnoreInvincibility);
+            if (DisableAfterHit)
+                enabled = false;
+        }
+    }
 
     #endregion
 }

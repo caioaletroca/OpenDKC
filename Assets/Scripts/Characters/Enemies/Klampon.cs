@@ -37,11 +37,9 @@ public class Klampon : Neek
 
         // Start state machine
         SceneSMB<Klampon>.Initialise(animator, this);
-
-        Damager.Enable();
     }
 
-    private void FixedUpdate()
+    private new void FixedUpdate()
     {
         // Do not move if in bite state
         if (Bite)

@@ -60,24 +60,21 @@ public class KaboingGrey : Enemy
 
     #region Unity Methods
 
-    private new void Awake()
+    protected new void Awake()
     {
         base.Awake();
 
         // Enable State machine
         SceneSMB<KaboingGrey>.Initialise(animator, this);
-
-        // Enables damager
-        Damager.Enable();
     }
 
-    private void Update()
+    protected void Update()
     {
         UpdateGroundDistance();
         UpdateVerticalSpeed();
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         // Do not update when grounded
         if (GroundDistance < 1)
@@ -88,7 +85,7 @@ public class KaboingGrey : Enemy
         mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         // Controls the flip behaviour when hitting a wall
         if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))

@@ -71,7 +71,7 @@ public class Kruncha : Enemy
         platformMovement = GetComponent<PlatformMovement>();
 
         // Disable Damager
-        Damager.Disable();
+        Damager.enabled = false;
 
         // Set default speed
         platformMovement.Speed = NormalSpeed;
@@ -104,7 +104,7 @@ public class Kruncha : Enemy
         Rage = true;
 
         // Turn on damager
-        Damager.Enable();
+        Damager.enabled = true;
 
         // Stop Movement
         platformMovement.enabled = false;
@@ -147,7 +147,7 @@ public class Kruncha : Enemy
             Rage = false;
 
             // Disables damager
-            Damager.Disable();
+            Damager.enabled = false;
 
             // Set the initial value
             RageTimer = RageTime;

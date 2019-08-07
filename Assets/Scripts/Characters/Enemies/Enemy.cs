@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
     public void DisableEnemy()
     {
         // Disables damager
-        Damager.Disable();
+        Damager.enabled = false;
 
         // Disables all colliders
         foreach (var collider in colliders)

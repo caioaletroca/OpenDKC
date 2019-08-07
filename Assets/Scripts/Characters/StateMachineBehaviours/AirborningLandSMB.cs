@@ -7,6 +7,6 @@ public class AirborningLandSMB : SceneSMB<KongController>
 {
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.BounceDamager.Disable();
+        mMonoBehaviour.BounceDamager.enabled = false;
     }
 }

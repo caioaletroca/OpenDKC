@@ -11,7 +11,7 @@ public class AttackingSMB : SceneSMB<KongController>
     {
         mMonoBehaviour.EnableGravity();
         mMonoBehaviour.Damageable.EnableInvulnerability(true);
-        mMonoBehaviour.AttackDamager.Enable();
+        mMonoBehaviour.AttackDamager.enabled = true;
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -22,7 +22,7 @@ public class AttackingSMB : SceneSMB<KongController>
     public override void OnSLStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         mMonoBehaviour.Damageable.DisableInvulnerability();
-        mMonoBehaviour.AttackDamager.Disable();
+        mMonoBehaviour.AttackDamager.enabled = false;
     }
 
     #endregion
