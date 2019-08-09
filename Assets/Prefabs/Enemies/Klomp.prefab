@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3319326694972093484}
   - component: {fileID: 3319326694972093487}
   - component: {fileID: 8992806638939137247}
+  - component: {fileID: 4949523343938222863}
   m_Layer: 10
   m_Name: Klomp
   m_TagString: Untagged
@@ -353,6 +354,56 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 4096
+--- !u!114 &4949523343938222863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319326694972093479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f20ae9529298d04f89d36499229e240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Distance: 10
+  Layer:
+    serializedVersion: 2
+    m_Bits: 512
+  ReturnSpawn: 1
+  DestroyOnDeactivate: 0
+  OnActivateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3319326694972093484}
+        m_MethodName: OnActivateEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDeactivateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3319326694972093484}
+        m_MethodName: OnDeactivateEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7370952109396808668
 GameObject:
   m_ObjectHideFlags: 0

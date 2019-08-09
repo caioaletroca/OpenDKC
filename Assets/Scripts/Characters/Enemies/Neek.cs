@@ -3,31 +3,25 @@
 /// <summary>
 /// Controls the neek enemy
 /// </summary>
+[RequireComponent(typeof(PlatformMovement))]
 public class Neek : Enemy
 {
-    #region Public Properties
+    #region Private Properties
 
     /// <summary>
-    /// The walking speed for the object
+    /// Instance for the platform movement
     /// </summary>
-    public float Speed = 5;
+    protected PlatformMovement platformMovement;
 
     #endregion
 
-    #region Unity Methods
+    #region Unity Methdos
 
-    protected void FixedUpdate()
-    {  
-        var direction = transform.localScale.x * -1;
-
-        mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
-    }
-
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected new void Awake()
     {
-        // Controls the flip behaviour when hitting a wall
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
-            Flip();
+        base.Awake();
+
+        platformMovement = GetComponent<PlatformMovement>();
     }
 
     #endregion
@@ -49,6 +43,20 @@ public class Neek : Enemy
 
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
+    }
+
+    public override void OnActivateEvent()
+    {
+        base.OnActivateEvent();
+
+        platformMovement.enabled = true;
+    }
+
+    public override void OnDeactivateEvent()
+    {
+        base.OnDeactivateEvent();
+
+        platformMovement.enabled = false;
     }
 
     #endregion

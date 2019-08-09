@@ -35,11 +35,6 @@ public class Klomp : Enemy
 
     #region Event Methods
 
-    /// <summary>
-    /// Fired when the enemy dies
-    /// </summary>
-    /// <param name="damager"></param>
-    /// <param name="damageable"></param>
     public override void OnDieEvent(Damager damager, Damageable damageable)
     {
         // Set state variable
@@ -51,9 +46,22 @@ public class Klomp : Enemy
         DisableEnemy();
         PerformDeathJump(damageable.DamageDirection);
         
-
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
+    }
+
+    public override void OnActivateEvent()
+    {
+        base.OnActivateEvent();
+
+        platformMovement.enabled = true;
+    }
+
+    public override void OnDeactivateEvent()
+    {
+        base.OnDeactivateEvent();
+        
+        platformMovement.enabled = false;
     }
 
     #endregion

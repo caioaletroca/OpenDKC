@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 6461590488899684874}
   - component: {fileID: 7688316341868662823}
   - component: {fileID: 5818538808288611294}
-  - component: {fileID: 255807493311451998}
+  - component: {fileID: 1913539159174065013}
   - component: {fileID: 8129699798552197409}
   - component: {fileID: 2128402206844170612}
+  - component: {fileID: 1796325719094108377}
   m_Layer: 10
   m_Name: Neek
   m_TagString: Untagged
@@ -35,7 +36,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6897874886200892559}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -253,14 +255,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3ef6f4d21f0414d997c8763e9e0dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damager: {fileID: 255807493311451998}
-  DeathJumpForce: {x: 5, y: 12}
+  Damager: {fileID: 6882647852230774618}
+  DeathJumpForce: {x: 5, y: 5}
   TimeToDespawn: 3
   dataSettings:
     dataTag: bd00a6cf-cbd3-4314-858e-0ba5f4098e24
     persistenceType: 0
-  Speed: 2
---- !u!114 &255807493311451998
+--- !u!114 &1913539159174065013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,34 +270,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6461590488899684981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
+  m_Script: {fileID: 11500000, guid: 0985444b28922b14cab699db2e773035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
-  Offset: {x: 0, y: 0}
-  Size: {x: 1, y: 0.57}
-  CanHitTrigger: 1
-  DisableAfterHit: 0
-  IgnoreInvincibility: 0
-  HittableLayers:
+  Speed: 2
+  IgnoreGround: 1
+  LookDirection: {x: 0, y: 0}
+  GroundLayer:
     serializedVersion: 2
-    m_Bits: 512
-  HitFromAbove: 0
-  OnDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnBounceDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnNonDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+NonDamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_Bits: 256
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &8129699798552197409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,3 +342,157 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoopDelay: 2
+--- !u!114 &1796325719094108377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461590488899684981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f20ae9529298d04f89d36499229e240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Distance: 10
+  Layer:
+    serializedVersion: 2
+    m_Bits: 512
+  ReturnSpawn: 1
+  DestroyOnDeactivate: 0
+  OnActivateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5818538808288611294}
+        m_MethodName: OnActivateEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDeactivateEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5818538808288611294}
+        m_MethodName: OnDeactivateEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!1 &6664203091118275316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6897874886200892559}
+  - component: {fileID: 2692239930202370614}
+  - component: {fileID: 6882647852230774618}
+  m_Layer: 10
+  m_Name: Damager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6897874886200892559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203091118275316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6461590488899684878}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2692239930202370614
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203091118275316}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.6891913}
+  m_EdgeRadius: 0
+--- !u!114 &6882647852230774618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664203091118275316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  CanHitTrigger: 1
+  DisableAfterHit: 0
+  IgnoreInvincibility: 0
+  HittableLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  HitFromAbove: 0
+  OnDamageableHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5818538808288611294}
+        m_MethodName: OnDamageEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnBounceDamageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnNonDamageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Damager+NonDamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

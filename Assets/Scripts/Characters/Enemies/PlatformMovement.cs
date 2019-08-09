@@ -14,6 +14,12 @@ public class PlatformMovement : MonoBehaviour
     public float Speed = 5;
 
     /// <summary>
+    /// A flag that represents if the movement should ignore walls
+    /// </summary>
+    [Tooltip("If enabled, the movement will ignore the cliff detection.")]
+    public bool IgnoreGround = false;
+
+    /// <summary>
     /// The look direction for the cliff detection system
     /// </summary>
     [Tooltip("Look direction for the cliff detection system.")]
@@ -55,6 +61,10 @@ public class PlatformMovement : MonoBehaviour
 
         // Set speed
         mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
+
+        // If enabled, ignore cliff detection
+        if (IgnoreGround)
+            return;
 
         // Check if should turn on cliff
         var realDirection = new Vector2(LookDirection.x * transform.localScale.x, LookDirection.y);

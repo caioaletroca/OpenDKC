@@ -96,6 +96,23 @@ public class Enemy : MonoBehaviour
         VFXController.Instance.Trigger("CrashLandXF", damageable.transform.position);
     }
 
+    /// <summary>
+    /// Fired when the enemy is activated
+    /// </summary>
+    public virtual void OnActivateEvent()
+    {
+        animator.enabled = true;
+    }
+
+    /// <summary>
+    /// Fired when the enemy is deactivated
+    /// </summary>
+    public virtual void OnDeactivateEvent()
+    {
+        animator.Play("start", -1, 0);
+        animator.enabled = false;
+    }
+
     #endregion
 
     #region Public Methods

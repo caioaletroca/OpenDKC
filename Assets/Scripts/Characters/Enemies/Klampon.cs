@@ -3,7 +3,9 @@
 /// <summary>
 /// Controls the bitten enemy
 /// </summary>
-public class Klampon : Neek
+[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PlatformMovement))]
+public class Klampon : Enemy
 {
     #region State Variable
 
@@ -25,29 +27,24 @@ public class Klampon : Neek
     /// </summary>
     protected AudioSource audioSource;
 
+    /// <summary>
+    /// Instance for the platform movement
+    /// </summary>
+    protected PlatformMovement platformMovement;
+
     #endregion
 
     #region Unity Methods
 
-    private new void Awake()
+    protected new void Awake()
     {
         base.Awake();
 
         audioSource = GetComponent<AudioSource>();
+        platformMovement = GetComponent<PlatformMovement>();
 
         // Start state machine
         SceneSMB<Klampon>.Initialise(animator, this);
-    }
-
-    private new void FixedUpdate()
-    {
-        // Do not move if in bite state
-        if (Bite)
-            return;
-
-        var direction = transform.localScale.x * -1;
-
-        mRigidBody2D.velocity = new Vector2(direction * Speed, mRigidBody2D.velocity.y);
     }
 
     #endregion
