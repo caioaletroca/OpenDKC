@@ -137,8 +137,12 @@ public class SceneController : MonoBehaviour
     /// <summary>
     /// Restarts the current scene
     /// </summary>
-    public static void Restart()
+    public static void Restart(bool resetHealth = true)
     {
+        // Resets health state
+        if (resetHealth && KongController.Instance != null)
+            KongController.Instance.Damageable.Health = KongController.Instance.Damageable.StartingHealth;
+        
         // Reloads the scene
         Instance.StartCoroutine(Instance.Transition(Instance.CurrentScene.name, Instance.RestartDestinationTag));
     }
@@ -147,10 +151,10 @@ public class SceneController : MonoBehaviour
     /// Restarts the current scene with a specified delay time
     /// </summary>
     /// <param name="delay"></param>
-    public static void RestartDelay(float delay)
+    public static void RestartDelay(float delay, bool resetHealth = true)
     {
         // Reloads the scene with delay
-        Instance.StartCoroutine(CallWithDelay(delay, Restart));
+        Instance.StartCoroutine(CallWithDelay(delay, Restart, resetHealth));
     }
 
     /// <summary>

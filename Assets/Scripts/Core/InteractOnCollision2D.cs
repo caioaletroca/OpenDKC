@@ -25,7 +25,10 @@ public class InteractOnCollision2D : Interact
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(Layers.Contains(collision.gameObject))
+        if (!enabled)
+            return;
+
+        if (Layers.Contains(collision.gameObject))
         {
             OnCollision?.Invoke();
             OnCollisionParameter?.Invoke(collision);
@@ -34,6 +37,9 @@ public class InteractOnCollision2D : Interact
 
     private void OnDrawGizmos()
     {
+        if (!enabled)
+            return;
+
         Gizmos.DrawIcon(transform.position, "InteractionTrigger", false);
     }
 

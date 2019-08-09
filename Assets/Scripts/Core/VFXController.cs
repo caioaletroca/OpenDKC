@@ -24,8 +24,6 @@ public class VFX
     [NonSerialized]
     public VFXInstancePool pool;
 
-    //public Dictionary<Ti>
-
     #endregion
 }
 
@@ -271,7 +269,7 @@ public class VFXController : MonoBehaviour
     /// <param name="flip"></param>
     /// <param name="parent"></param>
     /// <param name="tileOverride"></param>
-    public void Trigger(string name, Vector3 position, float startDelay, bool flip, Transform parent, TileBase tileOverride = null)
+    public void Trigger(string name, Vector3 position, float startDelay = 0, bool flip = false, Transform parent = null, TileBase tileOverride = null)
     {
         Trigger(StringToHash(name), position, startDelay, flip, parent, tileOverride);
     }

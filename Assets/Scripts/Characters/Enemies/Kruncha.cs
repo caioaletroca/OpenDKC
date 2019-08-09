@@ -18,6 +18,15 @@ public class Kruncha : Enemy
         set => animator.SetBool("Rage", value);
     }
 
+    /// <summary>
+    /// Trigger to activate if the player has been killed
+    /// </summary>
+    public bool Kill
+    {
+        get => animator.GetBool("Kill");
+        set => animator.SetBool("Kill", value);
+    }
+
     #endregion
 
     #region Public Properties
@@ -94,10 +103,10 @@ public class Kruncha : Enemy
     /// <summary>
     /// Fires when the player hits the object
     /// </summary>
-    public void OnRageEvent()
+    public void OnRageEvent(Collision2D collision)
     {
         // Avoid double rage
-        if (Rage)
+        if (Rage || Kill)
             return;
 
         // Set variable
@@ -112,6 +121,27 @@ public class Kruncha : Enemy
 
         // Sets the timer
         RageTimer = RageTime;
+
+        // Trigger VFX
+        VFXController.Instance.Trigger("KrunchaRageXF", collision.gameObject.transform.position);
+    }
+
+    /// <summary>
+    /// Fires when the player gets killed
+    /// </summary>
+    /// <param name="damager"></param>
+    /// <param name="damageable"></param>
+    public override void OnDamageEvent(Damager damager, Damageable damageable)
+    {
+        base.OnDamageEvent(damager, damageable);
+
+        // Set state variables
+        Rage = false;
+        Kill = true;
+
+        // Stop Movement
+        platformMovement.enabled = false;
+        platformMovement.Speed = NormalSpeed;
     }
 
     #endregion

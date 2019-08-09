@@ -25,6 +25,9 @@ public class InteractOnTrigger2D : Interact
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
+        if (!enabled)
+            return;
+
         if (Layers.Contains(collider.gameObject))
         {
             OnTrigger?.Invoke();
@@ -34,6 +37,9 @@ public class InteractOnTrigger2D : Interact
 
     private void OnDrawGizmos()
     {
+        if (!enabled)
+            return;
+
         Gizmos.DrawIcon(transform.position, "InteractionTrigger", false);
     }
 

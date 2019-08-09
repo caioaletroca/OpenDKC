@@ -1815,23 +1815,23 @@ MonoBehaviour:
     m_Bits: 512
   OnCollision:
     m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnCollisionParameter:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 63171566}
         m_MethodName: OnRageEvent
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnCollisionParameter:
-    m_PersistentCalls:
-      m_Calls: []
     m_TypeName: Interact+InteractCollision2DEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &63171566
@@ -5443,6 +5443,9 @@ MonoBehaviour:
   - prefab: {fileID: 5782320213542007798, guid: 55d52d20c10f1854791ad735559835bd,
       type: 3}
     lifetime: 0.333
+  - prefab: {fileID: 6044003311204082837, guid: 4a1f191385cf47940bb98355f57dedf3,
+      type: 3}
+    lifetime: 1
 --- !u!4 &1146990474
 Transform:
   m_ObjectHideFlags: 0
@@ -5591,7 +5594,18 @@ MonoBehaviour:
   HitFromAbove: 0
   OnDamageableHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 63171566}
+        m_MethodName: OnDamageEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnBounceDamageableHit:

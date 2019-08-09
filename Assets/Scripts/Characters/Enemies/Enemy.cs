@@ -86,6 +86,16 @@ public class Enemy : MonoBehaviour
     /// <param name="damageable"></param>
     public virtual void OnDieEvent(Damager damager, Damageable damageable) { }
 
+    /// <summary>
+    /// Fired when the enemy hits damage on player
+    /// </summary>
+    /// <param name="damager"></param>
+    /// <param name="damageable"></param>
+    public virtual void OnDamageEvent(Damager damager, Damageable damageable)
+    {
+        VFXController.Instance.Trigger("CrashLandXF", damageable.transform.position);
+    }
+
     #endregion
 
     #region Public Methods
