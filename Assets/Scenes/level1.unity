@@ -5586,7 +5586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   CanHitTrigger: 1
-  DisableAfterHit: 0
+  DisableAfterHit: 1
   IgnoreInvincibility: 0
   HittableLayers:
     serializedVersion: 2
@@ -6254,6 +6254,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 543464440}
+    - target: {fileID: 0}
+      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PerformJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6944360725309435770, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_Name
@@ -6269,16 +6289,6 @@ PrefabInstance:
       propertyPath: KnockBackForce.y
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5993394080426852892, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: AttackDamager
-      value: 
-      objectReference: {fileID: 1376527644}
-    - target: {fileID: 5993394080426852892, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: BounceDamager
-      value: 
-      objectReference: {fileID: 1585204971}
     - target: {fileID: 6944360725309435768, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6334,31 +6344,6 @@ PrefabInstance:
       propertyPath: OnCollision.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 543464440}
-    - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PerformJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: OnBounceDamageableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2233210664475902182, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_IsTrigger
@@ -6369,23 +6354,13 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -5515460545376665005, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
-    - {fileID: 5223639867485175071, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
-    - {fileID: 3476403386202510804, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
+    - target: {fileID: 6944360725309435751, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: b07cea0ca99f7cc4dab2f42311324a00, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
---- !u!114 &1376527644 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4039656893350583217, guid: 5f07af95569c326498a1f64b4cea1fa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1376527643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1412312029
 GameObject:
   m_ObjectHideFlags: 0
@@ -7281,18 +7256,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 235323948150643077}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1585204971 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5647374538391374554, guid: 5f07af95569c326498a1f64b4cea1fa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1376527643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1646050542
 GameObject:
   m_ObjectHideFlags: 0

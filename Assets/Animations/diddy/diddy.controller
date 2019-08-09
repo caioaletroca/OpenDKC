@@ -1293,31 +1293,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-1301917628801411655
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Grounded
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 0}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 1
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0.625
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1109 &-929039829366388847
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -1834,9 +1809,9 @@ AnimatorState:
   m_Transitions:
   - {fileID: 4934494865784668429}
   - {fileID: 6056102555493212223}
-  - {fileID: -1301917628801411655}
   - {fileID: 5880769469581074467}
   - {fileID: -2075871352667999487}
+  - {fileID: 7826068997168227984}
   m_StateMachineBehaviours:
   - {fileID: 2805964171249418821}
   m_Position: {x: 50, y: 50, z: 0}
@@ -3393,6 +3368,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cadac498ba74d640950b1ddef8d74a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1101 &7826068997168227984
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Attack
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Grounded
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 0}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 1
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.625
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &7982926322771094587
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -24,6 +24,11 @@ public partial class KongController : MonoBehaviour
     [Header("Controller Instances", order = 0)]
 
     /// <summary>
+    /// Instance for the knock back system
+    /// </summary>
+    public InteractOnCollision2D KnockBackController;
+
+    /// <summary>
     /// Instance for the normal Attack controller
     /// </summary>
     public Damager AttackDamager;
@@ -137,6 +142,9 @@ public partial class KongController : MonoBehaviour
         // Set Direction
         DeathDirection = damageable.DamageDirection;
 
+        // Disable knock back system
+        KnockBackController.enabled = false;
+
         // Plays death sound
         BackgroundMusicPlayer.Instance.PushClip(DamagerSettings.DeathMusic);
 
@@ -153,6 +161,9 @@ public partial class KongController : MonoBehaviour
     /// <param name="collision"></param>
     public void OnKnockBackEvent(Collision2D collision)
     {
+        // Cancel attack movement
+        Attack = false;
+        
         // Calculate the direction vector
         var collisionDirection = (transform.position - collision.gameObject.transform.position).normalized;
 

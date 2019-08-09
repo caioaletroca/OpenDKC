@@ -267,8 +267,6 @@ GameObject:
   - component: {fileID: -4134707158039321085}
   - component: {fileID: 8226759611177957186}
   - component: {fileID: 3604560453348423945}
-  - component: {fileID: 5223639867485175071}
-  - component: {fileID: 3476403386202510804}
   - component: {fileID: 9005975490835626365}
   - component: {fileID: 8192996590388843089}
   m_Layer: 9
@@ -419,8 +417,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathDirection: {x: 0, y: 0}
   SpawnGameObject: {fileID: 0}
-  AttackDamager: {fileID: 5223639867485175071}
-  BounceDamager: {fileID: 3476403386202510804}
+  KnockBackController: {fileID: 8192996590388843089}
+  AttackDamager: {fileID: 4039656893350583217}
+  BounceDamager: {fileID: 5647374538391374554}
   Damageable: {fileID: 9005975490835626365}
   LifeController: {fileID: 2240454143441081290}
   BananaController: {fileID: 8100942463350315834}
@@ -480,98 +479,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapOffset: {x: 0, y: -1.28125, z: -1}
---- !u!114 &5223639867485175071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6944360725309435770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
-  CanHitTrigger: 1
-  DisableAfterHit: 0
-  IgnoreInvincibility: 0
-  HittableLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  HitFromAbove: 0
-  OnDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnBounceDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnNonDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+NonDamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &3476403386202510804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6944360725309435770}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d3637b143a5944ba24475e47925394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
-  CanHitTrigger: 1
-  DisableAfterHit: 0
-  IgnoreInvincibility: 0
-  HittableLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  HitFromAbove: 1
-  OnDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnBounceDamageableHit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5993394080426852892}
-        m_MethodName: set_Somersault
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 5993394080426852892}
-        m_MethodName: SomersaultTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-    m_TypeName: Damager+DamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnNonDamageableHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Damager+NonDamageableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &9005975490835626365
 MonoBehaviour:
   m_ObjectHideFlags: 0
