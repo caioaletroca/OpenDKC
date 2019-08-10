@@ -156,6 +156,26 @@ public partial class KongController : MonoBehaviour
     }
 
     /// <summary>
+    /// Fired when the player falls to death
+    /// </summary>
+    public void OnFallDieEvent()
+    {
+        // Set variable state
+        Die = true;
+
+        // TODO: Adjust fall death
+
+        // Plays death sound
+        BackgroundMusicPlayer.Instance.PushClip(DamagerSettings.DeathMusic);
+
+        // Reduce life count
+        LifeController.LifeCount--;
+
+        // Calls delayed restart
+        SceneController.RestartDelay(DamagerSettings.RestartDelay);
+    }
+
+    /// <summary>
     /// Fired when the player gets knock back
     /// </summary>
     /// <param name="collision"></param>
