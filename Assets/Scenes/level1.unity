@@ -7697,7 +7697,9 @@ GameObject:
   - component: {fileID: 1422159729}
   - component: {fileID: 1422159728}
   - component: {fileID: 1422159732}
+  - component: {fileID: 1422159734}
   - component: {fileID: 1422159731}
+  - component: {fileID: 1422159733}
   m_Layer: 13
   m_Name: Kannon
   m_TagString: Untagged
@@ -7827,6 +7829,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1422159733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422159727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab0c6c198d84cd5418cf1a271c137708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 0}
+  initialPoolCount: 10
+--- !u!61 &1422159734
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422159727}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.15}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.125, y: 3.1341553}
+    newSize: {x: 3.125, y: 3.1341553}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1031183, y: 1.6633463}
+  m_EdgeRadius: 0
 --- !u!213 &1471825583
 Sprite:
   m_ObjectHideFlags: 0
@@ -12674,6 +12716,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15851ee7881327a418907d894efd108a, type: 3}
+--- !u!1001 &6102268297053883474
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6102268295849513372, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_Name
+      value: KannonBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102268295849513345, guid: 9bb66c759896f0b4080f7515f51a9aa0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9bb66c759896f0b4080f7515f51a9aa0, type: 3}
 --- !u!1001 &7153378590570157167
 PrefabInstance:
   m_ObjectHideFlags: 0
