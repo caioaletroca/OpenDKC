@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using UnityEngine;
+/// <summary>
 /// Controls the Kannon Ball projetile object
 /// </summary>
 public class KannonBall : Bullet
@@ -11,5 +12,4 @@ public class KannonBall : Bullet
     }
 
     #endregion
-
 }
