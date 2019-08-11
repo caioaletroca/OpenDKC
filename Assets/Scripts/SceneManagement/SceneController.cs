@@ -289,7 +289,7 @@ public class SceneController : MonoBehaviour
         return null;
     }
 
-    protected void SetEnteringGameObjectLocation(SceneTransitionDestination entrance)
+    protected void SetEnteringGameObjectLocation(SceneTransitionDestination entrance, bool keepZIndex = true)
     {
         if(entrance == null)
         {
@@ -299,8 +299,14 @@ public class SceneController : MonoBehaviour
 
         // Set the entering game object the new position
         var entranceGameObject = entrance.transitioningGameObject;
-        entranceGameObject.transform.position = entrance.transform.position;
+        var entrancePosition = entrance.transform.position;
         entranceGameObject.transform.rotation = entrance.transform.rotation;
+
+        // If enabled, do not touch the z value
+        if (keepZIndex)
+            entranceGameObject.transform.position = new Vector3(entrancePosition.x, entrancePosition.y, entranceGameObject.transform.position.z);
+        else
+            entranceGameObject.transform.position = entrancePosition;
     }
 
     protected void SetCurrentScene(SceneTransitionDestination entrance)

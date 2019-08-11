@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-/// <summary>
+﻿/// <summary>
 /// Controls the Kannon Ball projetile object
 /// </summary>
 public class KannonBall : Bullet

@@ -203,7 +203,7 @@ MonoBehaviour:
   IgnoreInvincibility: 0
   HittableLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 66560
   HitFromAbove: 1
   OnDamageableHit:
     m_PersistentCalls:
