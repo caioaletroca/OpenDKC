@@ -11,17 +11,17 @@ public class BananaUI : MonoBehaviour
     /// <summary>
     /// Instance for the UI canvas
     /// </summary>
-    public CanvasGroup BananaUICanvas;
+    public CanvasGroup Canvas;
 
     /// <summary>
     /// Instance for the counter text
     /// </summary>
-    public DecadeIntImageRenderer BananaCounter;
+    public DecadeIntImageRenderer Counter;
 
     /// <summary>
     /// Instance for the Banana end point
     /// </summary>
-    public Transform BananaEndPoint;
+    public Transform EndPoint;
 
     /// <summary>
     /// The Inactivity time to hide the UI
@@ -41,6 +41,9 @@ public class BananaUI : MonoBehaviour
 
     private Stack<bool> BananaIncome = new Stack<bool>();
 
+    /// <summary>
+    /// Internal stored value for the timer
+    /// </summary>
     private float VisibilityTimer;
 
     #endregion
@@ -53,7 +56,7 @@ public class BananaUI : MonoBehaviour
         KongController.Instance.BananaController.OnBananaCountChanged.AddListener(OnBananaCollected);
         KongController.Instance.BananaController.OnBananaLoaded.AddListener((e) =>
         {
-            BananaCounter.Value = e.BananaCount;
+            Counter.Value = e.BananaCount;
         });
 
         if (AlwaysShow) ShowUI();
@@ -62,20 +65,19 @@ public class BananaUI : MonoBehaviour
 
     private void Update()
     {
-        if (BananaUICanvas.alpha == 0 || BananaIncome.Count != 0)
+        if (Canvas.alpha == 0 || BananaIncome.Count != 0)
             return;
 
         if (BananaIncome.Count == 0)
         {
-            if(VisibilityTimer == 0)
-                VisibilityTimer = InactivityTime;
-
+            // Decrement timer
             VisibilityTimer -= Time.deltaTime;
-        }
 
-        if(VisibilityTimer <= 0)
-        {
-            DisableUI();
+            if (VisibilityTimer <= 0)
+            {
+                // Tries to disable the UI
+                DisableUI();
+            }
         }
     }
 
@@ -87,7 +89,9 @@ public class BananaUI : MonoBehaviour
     {
         // Add to the stack
         BananaIncome.Push(true);
-        VisibilityTimer = 0;
+
+        // Sets the timer
+        VisibilityTimer = InactivityTime;
 
         // Shows the UI
         ShowUI();
@@ -102,7 +106,7 @@ public class BananaUI : MonoBehaviour
     /// </summary>
     public void OnBananaArrived(BananaController bananaController)
     {
-        BananaCounter.Value = bananaController.BananaCount;
+        Counter.Value = bananaController.BananaCount;
 
         // Remove from the stack
         BananaIncome.Pop();
@@ -115,7 +119,7 @@ public class BananaUI : MonoBehaviour
     /// <summary>
     /// Shows the banana UI
     /// </summary>
-    public void ShowUI() => BananaUICanvas.alpha = 1;
+    public void ShowUI() => Canvas.alpha = 1;
 
     /// <summary>
     /// Hides the banana UI
@@ -123,7 +127,7 @@ public class BananaUI : MonoBehaviour
     public void DisableUI()
     {
         if (!AlwaysShow)
-            BananaUICanvas.alpha = 0;
+            Canvas.alpha = 0;
     }
 
     

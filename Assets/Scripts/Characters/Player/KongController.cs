@@ -219,13 +219,13 @@ public partial class KongController : MonoBehaviour
         // Preserve Z position
         var newPosition = new Vector3(position.x, position.y, transform.position.z);
 
-        transform.localPosition = newPosition;
+        //transform.localPosition = newPosition;
 
         // Set local position
-        //if (transform.parent != null)
-            //mRigidBody2D.position = transform.parent.TransformPoint(newPosition);
-        //else
-            //mRigidBody2D.MovePosition(transform.TransformPoint(newPosition));
+        if (transform.parent != null)
+            mRigidBody2D.MovePosition(transform.parent.TransformPoint(newPosition));
+        else
+            mRigidBody2D.MovePosition(transform.TransformPoint(newPosition));
     }
 
     /// <summary>

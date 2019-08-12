@@ -50,7 +50,7 @@ public class BananaItem : MonoBehaviour
         var position = Camera.main.WorldToScreenPoint(transform.position);
 
         // Spawn the prefab
-        Instantiate(BananaIcon, position, transform.rotation, bananaUI.BananaUICanvas.transform);
+        Instantiate(BananaIcon, position, transform.rotation, bananaUI.Canvas.transform);
 
         // Destroy it self
         Destroy(gameObject);

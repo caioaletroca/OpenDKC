@@ -4,7 +4,6 @@
 /// Handles the Bullet projetile object
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Damager))]
 public class Bullet : MonoBehaviour
 {
     #region Public Methods

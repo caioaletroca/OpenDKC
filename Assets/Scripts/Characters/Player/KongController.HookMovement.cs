@@ -13,6 +13,7 @@ public partial class KongController
         if (collision.gameObject.tag == "Hook")
         {
             Hook = true;
+            HookTrigger();
             SetParent(collision.gameObject);
         }
     }

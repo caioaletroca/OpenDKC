@@ -27,6 +27,8 @@
 
         public static string Hook = "Hook";
 
+        public static string HookTrigger = "HookTrigger";
+
         public static string Spawn = "Spawn";
 
         public static string Die = "Die";

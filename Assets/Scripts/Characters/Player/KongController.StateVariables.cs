@@ -125,6 +125,11 @@ public partial class KongController
     }
 
     /// <summary>
+    /// A triggers to the hook state
+    /// </summary>
+    public void HookTrigger() => animator.SetTrigger(AnimationParameters.HookTrigger);
+
+    /// <summary>
     /// A flag that represents if the player is spawning
     /// </summary>
     public bool Spawn
@@ -244,6 +249,10 @@ public partial class KongController
             {
                 Grounded = true;
                 Somersault = false;
+
+                // Avoid multiples jumps if the player keeps jump button pressed
+                if(VerticalSpeed < 0)
+                    Jump = false;
             }
 
         // Set the state variable

@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Controls the Life UI for the game
@@ -16,7 +15,7 @@ public class LifeUI : MonoBehaviour
     /// <summary>
     /// Instance for the counter text
     /// </summary>
-    public TextMeshProUGUI CounterText;
+    public UnitIntImageRenderer Counter;
 
     /// <summary>
     /// The Inactivity time to hide the UI
@@ -32,9 +31,18 @@ public class LifeUI : MonoBehaviour
 
     #endregion
 
+    #region Private Properties
+
+    /// <summary>
+    /// The value stored for the timer
+    /// </summary>
+    private float VisibilityTimer;
+
+    #endregion
+
     #region Unity Methods
 
-    private void Start()
+    protected void Start()
     {
         // Register events
         KongController.Instance.LifeController.OnLifeCountChanged.AddListener(OnLifeCountChanged);
@@ -47,6 +55,22 @@ public class LifeUI : MonoBehaviour
         OnLifeCountLoaded(KongController.Instance.LifeController);
     }
 
+    protected void Update()
+    {
+        // Do not update timer if invisible
+        if (Canvas.alpha == 0)
+            return;
+                
+        // Decrement the timer
+        VisibilityTimer -= Time.deltaTime;
+
+        if (VisibilityTimer <= 0)
+        {
+            // Tries to disable the UI
+            DisableUI();
+        }
+    }
+
     #endregion
 
     #region Events Methods
@@ -56,8 +80,11 @@ public class LifeUI : MonoBehaviour
         // Shows the UI
         ShowUI();
 
+        // Sets timer
+        VisibilityTimer = InactivityTime;
+
         // Update the value
-        CounterText.text = lifeController.LifeCount.ToString();
+        Counter.Value = lifeController.LifeCount;
 
         // If enabled, never register disable action
         if (AlwaysShow)
@@ -69,7 +96,7 @@ public class LifeUI : MonoBehaviour
     /// </summary>
     public void OnLifeCountLoaded(LifeController lifeController)
     {
-        CounterText.text = lifeController.LifeCount.ToString();
+        Counter.Value = lifeController.LifeCount;
     }
 
     #endregion

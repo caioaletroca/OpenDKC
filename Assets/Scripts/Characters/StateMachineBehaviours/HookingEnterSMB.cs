@@ -9,6 +9,7 @@ public class HookingEnterSMB : SceneSMB<KongController>
     {
         mMonoBehaviour.PerformVelocityHorizontalMovement(0);
         mMonoBehaviour.DisableGravity();
+        mMonoBehaviour.SetVelocity(Vector2.zero);
         mMonoBehaviour.SetLocalPosition(mMonoBehaviour.HookSettings.SnapOffset);
     }
 }

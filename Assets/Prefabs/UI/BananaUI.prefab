@@ -126,9 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a80bf9cb7b31e4e98b4f665d9867c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BananaUICanvas: {fileID: 5565648982698478401}
-  BananaCounter: {fileID: 932900941083657811}
-  BananaEndPoint: {fileID: 5565648982155994648}
+  Canvas: {fileID: 5565648982698478401}
+  Counter: {fileID: 932900941083657811}
+  EndPoint: {fileID: 5565648982155994648}
   InactivityTime: 2
   AlwaysShow: 0
 --- !u!1001 &2453668120303778787
@@ -138,11 +138,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5565648982698478403}
     m_Modifications:
-    - target: {fileID: 3386559934467636622, guid: a134332f99d5ef6469297a97f5d6c447,
-        type: 3}
-      propertyPath: m_Name
-      value: DecadeIntImageRenderer
-      objectReference: {fileID: 0}
     - target: {fileID: 3386559934467636657, guid: a134332f99d5ef6469297a97f5d6c447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -247,6 +242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3386559934467636622, guid: a134332f99d5ef6469297a97f5d6c447,
+        type: 3}
+      propertyPath: m_Name
+      value: DecadeIntImageRenderer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a134332f99d5ef6469297a97f5d6c447, type: 3}

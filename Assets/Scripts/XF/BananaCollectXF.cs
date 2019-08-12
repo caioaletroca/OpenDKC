@@ -47,7 +47,7 @@ public class BananaCollectXF : MonoBehaviour
         if (bananaUI == null)
             Debug.LogError("Could not find the Banana UI.");
 
-        TargetPoint = bananaUI.BananaEndPoint.position;
+        TargetPoint = bananaUI.EndPoint.position;
     }
 
     private void FixedUpdate()
