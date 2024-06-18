@@ -53,7 +53,7 @@ public partial class KongController
         SetVelocity(Vector2.zero);
 
         // Create jump force
-        mRigidBody2D.AddForce(barrel.BlastDirection * barrel.Force, ForceMode2D.Impulse);
+        mRigidBody2D.AddForce(barrel.BlastDirection * barrel.Velocity, ForceMode2D.Impulse);
     }
 
     #endregion

@@ -26,7 +26,7 @@ public class AutoBarrel : BlastBarrel
     /// The target direction to blast the player
     /// </summary>
     [Tooltip("The target direction to blast the player.")]
-    public int TargetFrame;
+    public int TargetDirection;
 
     #endregion
 
@@ -48,7 +48,7 @@ public class AutoBarrel : BlastBarrel
             Full = true;
 
             // Change to new state
-            SetState("aim", StartFrame);
+            SetState("aim", StartDirection);
         }
     }
 
@@ -65,21 +65,12 @@ public class AutoBarrel : BlastBarrel
     {
         base.OnDrawGizmosSelected();
 
-        var direction = Vector2.zero;
-
-        // Calculate points
-        if (Application.isPlaying)
-            direction = Force * PhysicsTime * GetBlastDirection(TargetFrame);
-        else
-            direction = Force * PhysicsTime * GetBlastDirection(TargetFrame);
-
-        var point = direction + (Vector2)transform.position;
+        var blastDirection = Application.isPlaying ? BlastDirection : GetBlastDirection(TargetDirection);
+        var blastEnd = Velocity * HangTime * blastDirection + (Vector2)transform.position;
 
         // Draw the gizmo
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, point);
-        Gizmos.DrawWireSphere(point, 0.1f);
-        Handles.Label(point, "Target Blast");
+        Gizmos.color = Color.red;
+        DrawDirection("Blast End", blastEnd);
     }
 
     #endregion
@@ -90,13 +81,13 @@ public class AutoBarrel : BlastBarrel
     /// Check if the aim movement has finished
     /// </summary>
     /// <returns></returns>
-    public bool CheckForAimFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == TargetFrame;
+    public bool CheckForAimFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == TargetDirection;
 
     /// <summary>
     /// Check if the recoil movement has finished
     /// </summary>
     /// <returns></returns>
-    public bool CheckForRecoilFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == StartFrame;
+    public bool CheckForRecoilFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == StartDirection;
 
     #endregion
 
@@ -105,7 +96,7 @@ public class AutoBarrel : BlastBarrel
     /// <summary>
     /// Returns the barrel to the idle state
     /// </summary>
-    public void PerformIdle() => SetState("idle", StartFrame);
+    public void PerformIdle() => SetState("idle", StartDirection);
 
     /// <summary>
     /// Gets the direction to aim
@@ -116,7 +107,7 @@ public class AutoBarrel : BlastBarrel
         var currentFrame = animator.GetCurrentNormalizedFrame(AnimationLayer);
 
         // Find the shortest direction
-        Direction = GetShortestDirection(currentFrame, TargetFrame);
+        Direction = GetShortestDirection(currentFrame, TargetDirection);
     }
 
     /// <summary>
@@ -128,7 +119,7 @@ public class AutoBarrel : BlastBarrel
         var currentFrame = animator.GetCurrentNormalizedFrame(AnimationLayer);
 
         // Gets the shortest direction for the target
-        Direction = GetShortestDirection(currentFrame, StartFrame);
+        Direction = GetShortestDirection(currentFrame, StartDirection);
     }
 
     /// <summary>

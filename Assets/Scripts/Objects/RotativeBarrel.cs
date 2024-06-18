@@ -82,7 +82,7 @@ public class RotativeBarrel : BlastBarrel
             Full = true;
             
             // Change to new state
-            SetState("rotate", StartFrame);
+            SetState("rotate", StartDirection);
 
             BlastTimer = BlastTime;
         }
@@ -114,7 +114,7 @@ public class RotativeBarrel : BlastBarrel
     /// Check if the recoil movement has finished
     /// </summary>
     /// <returns></returns>
-    public bool CheckForRecoilFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == StartFrame;
+    public bool CheckForRecoilFinish() => animator.GetCurrentNormalizedFrame(AnimationLayer) == StartDirection;
 
     #endregion
 
@@ -123,7 +123,7 @@ public class RotativeBarrel : BlastBarrel
     /// <summary>
     /// Returns the barrel to the idle state
     /// </summary>
-    public void PerformIdle() => SetState("idle", StartFrame);
+    public void PerformIdle() => SetState("idle", StartDirection);
 
     /// <summary>
     /// Performs blast timer count
@@ -209,7 +209,7 @@ public class RotativeBarrel : BlastBarrel
         var currentFrame = animator.GetCurrentNormalizedFrame(AnimationLayer);
 
         // Gets the shortest direction for the target
-        Direction = GetShortestDirection(currentFrame, StartFrame);
+        Direction = GetShortestDirection(currentFrame, StartDirection);
     }
 
     #endregion

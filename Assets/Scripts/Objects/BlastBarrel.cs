@@ -34,22 +34,22 @@ public class BlastBarrel : MonoBehaviour
     #region Public Properties
 
     /// <summary>
-    /// The power the barrel will blast the player
+    /// Velocity which the player will be thrown
     /// </summary>
-    [Tooltip("The power the barrel will blast the player.")]
-    public float Force = 1;
+    [Tooltip("Defines the velocity blast of the barrel")]
+    public float Velocity = 0;
 
     /// <summary>
     /// The amount of time the gravity will be off after the barrel blast
     /// </summary>
     [Tooltip("The amount of time the gravity will be off after the barrel blast.")]
-    public float PhysicsTime = 1;
+    public float HangTime = 1;
 
     /// <summary>
     /// The start direction the barrel will face
     /// </summary>
     [Tooltip("Defines the default barrel facing side.")]
-    public int StartFrame = 0;
+    public int StartDirection = 0;
 
     /// <summary>
     /// The Direction the player will be blasted
@@ -79,27 +79,26 @@ public class BlastBarrel : MonoBehaviour
 
     private void Start()
     {
-        PerformFrame(StartFrame);
-        PerformBlastDirection(StartFrame);
+        PerformFrame(StartDirection);
+        PerformBlastDirection(StartDirection);
     }
 
     protected void OnDrawGizmosSelected()
     {
-        var direction = Vector2.zero;
-        
-        // Calculate points
-        if(Application.isPlaying)
-            direction = Force * PhysicsTime * BlastDirection;
-        else
-            direction = Force * PhysicsTime * GetBlastDirection(StartFrame);
-
-        var point = direction + (Vector2)transform.position;
+        var blastDirection = Application.isPlaying ? BlastDirection : GetBlastDirection(StartDirection);
 
         // Draw the gizmo
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, point);
-        Gizmos.DrawWireSphere(point, 0.1f);
-        Handles.Label(point, "Start Blast");
+        if(HangTime > 0) {
+            var blastEnd = Velocity * HangTime * blastDirection + (Vector2)transform.position;
+
+            DrawDirection("Blast End", blastEnd);
+        }
+        else {
+            var direction = blastDirection + (Vector2)transform.position;
+
+            DrawDirection("Blast Direction", direction);
+        }
     }
 
     #endregion
@@ -177,16 +176,16 @@ public class BlastBarrel : MonoBehaviour
     /// <summary>
     /// Calculates the shortest direction rotation to arrive a target frame
     /// </summary>
-    /// <param name="startFrame">The start frame</param>
+    /// <param name="startDirection">The start frame</param>
     /// <param name="targetFrame">The target frame</param>
     /// <returns></returns>
-    protected int GetShortestDirection(int startFrame, int targetFrame)
+    protected int GetShortestDirection(int startDirection, int targetFrame)
     {
         // Get the current frame
         var animationLength = animator.GetCurrentTotalFrames(AnimationLayer);
 
         // Updates the shortest direction
-        var distance = (targetFrame - startFrame + 2 * animationLength) % animationLength - animationLength / 2;
+        var distance = (targetFrame - startDirection + 2 * animationLength) % animationLength - animationLength / 2;
 
         // Return the direction
         return distance >= 0 ? -1 : 1;
@@ -198,6 +197,16 @@ public class BlastBarrel : MonoBehaviour
     /// <param name="frame"></param>
     /// <returns></returns>
     protected int NormalizeFrame(int frame) => frame >= 0 ? frame : frame + animator.GetCurrentTotalFrames(AnimationLayer);
+
+    #endregion
+
+    #region Debug Methods
+
+    protected void DrawDirection(string label, Vector2 direction) {
+        Gizmos.DrawLine(transform.position, direction);
+        Gizmos.DrawWireSphere(direction, 0.1f);
+        Handles.Label(direction + new Vector2(0.1f, 0), label);
+    }
 
     #endregion
 }

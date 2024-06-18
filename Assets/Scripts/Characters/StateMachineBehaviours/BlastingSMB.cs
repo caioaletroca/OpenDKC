@@ -34,7 +34,7 @@ public class BlastingSMB : SceneSMB<KongController>
         mMonoBehaviour.PerformBarrelBlast(barrel);
 
         // Start the gravity coroutine
-        co = mMonoBehaviour.StartCoroutine(TurnGravityDelay(barrel.PhysicsTime));
+        co = mMonoBehaviour.StartCoroutine(TurnGravityDelay(barrel.HangTime));
     }
 
     public override void OnSLStateNoTransitionUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

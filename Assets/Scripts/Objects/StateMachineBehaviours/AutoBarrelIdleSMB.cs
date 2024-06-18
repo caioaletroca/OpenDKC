@@ -7,7 +7,7 @@ public class AutoBarrelIdleSMB : SceneSMB<AutoBarrel>
 {
     public override void OnSLStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        mMonoBehaviour.PerformFrame(mMonoBehaviour.StartFrame);
-        mMonoBehaviour.PerformBlastDirection(mMonoBehaviour.StartFrame);
+        mMonoBehaviour.PerformFrame(mMonoBehaviour.StartDirection);
+        mMonoBehaviour.PerformBlastDirection(mMonoBehaviour.StartDirection);
     }
 }
