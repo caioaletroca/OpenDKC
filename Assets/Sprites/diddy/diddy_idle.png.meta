@@ -72,7 +72,7 @@ TextureImporter:
       213: -4007383202938601528
     second: diddy_idle_22
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -89,9 +89,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -101,8 +104,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -123,9 +126,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -137,6 +146,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -149,6 +159,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -161,6 +172,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -173,6 +185,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -650,9 +663,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      diddy_idle_0: -2861394647714065654
+      diddy_idle_1: -5911929247818697561
+      diddy_idle_10: -8828734229436080442
+      diddy_idle_11: 2082472567718670353
+      diddy_idle_12: 5182427886356764539
+      diddy_idle_13: -3565620804553149203
+      diddy_idle_14: -7599861551076553449
+      diddy_idle_15: 7300789349958783359
+      diddy_idle_16: 4379481339931016965
+      diddy_idle_17: -6622180400952296408
+      diddy_idle_18: 6364856373282868743
+      diddy_idle_19: -2281674639967762764
+      diddy_idle_2: 6226340303836526237
+      diddy_idle_20: -232281214690674068
+      diddy_idle_21: 3293749125201119663
+      diddy_idle_3: -8712494245329132911
+      diddy_idle_4: -8684033700740732516
+      diddy_idle_5: 9163324586211780479
+      diddy_idle_6: 2650793526290474220
+      diddy_idle_7: -8606973817022939537
+      diddy_idle_8: 585488787247816609
+      diddy_idle_9: 4110694232142454005
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

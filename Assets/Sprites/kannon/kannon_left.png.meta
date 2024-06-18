@@ -81,7 +81,7 @@ TextureImporter:
       213: 7760754791750876547
     second: kannon_left_25
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -98,9 +98,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -110,8 +113,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -132,9 +135,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -146,6 +155,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -158,6 +168,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -170,6 +181,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -182,6 +194,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -743,9 +756,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      kannon_left_0: 3613836286733304189
+      kannon_left_1: -3210653968317608619
+      kannon_left_10: 9205247587331385294
+      kannon_left_11: -3770603732322414341
+      kannon_left_12: -1639306175679120861
+      kannon_left_13: 428834748164299091
+      kannon_left_14: -8876639471465120972
+      kannon_left_15: 4599317559585748628
+      kannon_left_16: 4846977992478242796
+      kannon_left_17: -2172571934986683430
+      kannon_left_18: -7477627564392683229
+      kannon_left_19: 3362241827565061126
+      kannon_left_2: 1637763729219152000
+      kannon_left_20: -8095147314009768336
+      kannon_left_21: -4772228302840471444
+      kannon_left_22: -4544279152647022612
+      kannon_left_23: 3371760661816342264
+      kannon_left_24: 5872318451635823462
+      kannon_left_25: 7760754791750876547
+      kannon_left_3: 8600869519528044401
+      kannon_left_4: 6896203382787085960
+      kannon_left_5: -7131385796462010586
+      kannon_left_6: 6069669873222488328
+      kannon_left_7: 5244034435368135911
+      kannon_left_8: -1800613386349816126
+      kannon_left_9: -4526994452921250598
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

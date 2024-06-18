@@ -65,7 +65,7 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         // Register Bindings
-        InputController.Instance.KongMap.Pause.started += Pause_started;
+        // InputController.Instance.KongMap.Pause.started += Pause_started;
 
         // Start the game
         Initialize();
@@ -107,7 +107,7 @@ public class SceneController : MonoBehaviour
         InputController.Disable();
 
         // Only enables the unpause button
-        InputController.Instance.KongMap.Pause.Enable();
+        // InputController.Instance.KongMap.Pause.Enable();
 
         // Stops time
         Time.timeScale = 0;
@@ -268,7 +268,7 @@ public class SceneController : MonoBehaviour
         yield return StartCoroutine(ScreenFader.FadeSceneIn());
 
         // Re-register the input bindings
-        InputController.Instance.KongMap.Pause.started += Pause_started;
+        // InputController.Instance.KongMap.Pause.started += Pause_started;
 
         // Re-enables inputs
         InputController.Enable();

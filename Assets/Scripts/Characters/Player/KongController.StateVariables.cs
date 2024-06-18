@@ -194,37 +194,37 @@ public partial class KongController
     public void RegisterStateVariables()
     {
         // Get the player input before awake
-        var inputMap = FindObjectOfType<InputController>().KongMap;
+        // var inputMap = FindObjectOfType<InputController>().KongMap;
 
         // HorizontalValue
-        inputMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
-        inputMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
+        // inputMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
+        // inputMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
 
-        // VerticalValue
-        inputMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
-        inputMap.VerticalAxis.canceled += e => VerticalValue = 0;
+        // // VerticalValue
+        // inputMap.VerticalAxis.performed += e => VerticalValue = e.ReadValue<float>();
+        // inputMap.VerticalAxis.canceled += e => VerticalValue = 0;
 
-        // Jump
-        inputMap.Jump.performed += e =>
-        {
-            Jump = true;
-            Blast = true;
-            Grounded = false;
-            Attack = false;
-        };
-        inputMap.Jump.canceled += e =>
-        {
-            Jump = false;
-            Blast = false;
-        };
+        // // Jump
+        // inputMap.Jump.performed += e =>
+        // {
+        //     Jump = true;
+        //     Blast = true;
+        //     Grounded = false;
+        //     Attack = false;
+        // };
+        // inputMap.Jump.canceled += e =>
+        // {
+        //     Jump = false;
+        //     Blast = false;
+        // };
 
-        // Run
-        inputMap.Attack.performed += e => Attack = true;
-        inputMap.Attack.canceled += e => Attack = false;
+        // // Run
+        // inputMap.Attack.performed += e => Attack = true;
+        // inputMap.Attack.canceled += e => Attack = false;
 
-        // Run
-        inputMap.Attack.performed += e => Run = true;
-        inputMap.Attack.canceled += e => Run = false;
+        // // Run
+        // inputMap.Attack.performed += e => Run = true;
+        // inputMap.Attack.canceled += e => Run = false;
     }
 
     /// <summary>
