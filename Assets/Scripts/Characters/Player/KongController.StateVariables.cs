@@ -9,14 +9,8 @@ public partial class KongController
     /// </summary>
     public float HorizontalValue
     {
-        get
-        {
-            return animator.GetFloat(AnimationParameters.HorizontalValue);
-        }
-        set
-        {
-            animator.SetFloat(AnimationParameters.HorizontalValue, value);
-        }
+        get => animator.GetFloat(AnimationParameters.HorizontalValue);
+        set => animator.SetFloat(AnimationParameters.HorizontalValue, value);
     }
 
     /// <summary>
@@ -60,14 +54,8 @@ public partial class KongController
     /// </summary>
     public bool Grounded
     {
-        get
-        {
-            return animator.GetBool(AnimationParameters.Grounded);
-        }
-        set
-        {
-            animator.SetBool(AnimationParameters.Grounded, value);
-        }
+        get => animator.GetBool(AnimationParameters.Grounded);
+        set => animator.SetBool(AnimationParameters.Grounded, value);
     }
 
     /// <summary>
@@ -75,14 +63,8 @@ public partial class KongController
     /// </summary>
     public bool Jump
     {
-        get
-        {
-            return animator.GetBool(AnimationParameters.Jump);
-        }
-        set
-        {
-            animator.SetBool(AnimationParameters.Jump, value);
-        }
+        get => animator.GetBool(AnimationParameters.Jump);
+        set => animator.SetBool(AnimationParameters.Jump, value);
     }
 
     /// <summary>
@@ -183,6 +165,11 @@ public partial class KongController
         get => animator.GetBool(AnimationParameters.Blast);
         set => animator.SetBool(AnimationParameters.Blast, value);
     }
+
+    /// <summary>
+    /// A trigger to the flip state, used in walking and running states
+    /// </summary>
+    public void FlipTrigger() => animator.SetTrigger(AnimationParameters.FlipTrigger);
 
     #endregion
 

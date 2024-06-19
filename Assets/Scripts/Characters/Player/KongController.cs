@@ -260,6 +260,9 @@ public partial class KongController : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+
+        // Call Animation trigger to handle the walking/running flipping animation
+        FlipTrigger();
     }
 
     #endregion
