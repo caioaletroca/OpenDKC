@@ -29,9 +29,15 @@ public class KongAirbornMachine : BaseStateMachine<KongController>
 
     public override void OnStateStart()
     {
-        base.OnStateStart();
+        if(controller.Jump) {
+            SetState(typeof(KongAirbornRiseState));
+            return;
+        }
 
-        SetState(typeof(KongAirbornRiseState));
+        if(!controller.Grounded) {
+            SetState(typeof(KongAirbornAirState));
+            return;
+        }
     }
 
     #endregion

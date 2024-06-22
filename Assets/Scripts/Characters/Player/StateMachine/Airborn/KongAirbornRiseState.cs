@@ -12,12 +12,12 @@ public class KongAirbornRiseState : BaseState<KongController>
     {
         var air = stateMachine.GetStateByType(typeof(KongAirbornAirState));
 
-        AddTransition(air, new FunctionPredicate(() => {
-            return 
-                animator.GetCurrentAnimatorStateInfo(0).IsName("diddy_rise") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f &&
-                controller.VerticalSpeed < 0;
-        }));
+        AddTransition(air, new CompositePredicate(
+            new IPredicate[] {
+                new AnimationPredicate(animator, KongController.Animations.Rise, AnimationPredicate.Timing.End),
+                new FunctionPredicate(() => controller.VerticalSpeed < 0)
+            }
+        ));
     }
 
     #region State Events

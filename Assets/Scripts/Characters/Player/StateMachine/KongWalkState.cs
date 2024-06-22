@@ -17,6 +17,7 @@ public class KongWalkState : BaseState<KongController> {
 
         AddTransition(idle, new FunctionPredicate(() => controller.HorizontalValue < 0.001));
         AddTransition(airborn, new FunctionPredicate(() => controller.Jump));
+        AddTransition(airborn, new FunctionPredicate(() => !controller.Grounded));
         AddTransition(attack, new FunctionPredicate(() => controller.Attack));
     }
 

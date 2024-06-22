@@ -19,6 +19,7 @@ public class KongRunState : BaseState<KongController>
         AddTransition(walk, new FunctionPredicate(() => controller.HorizontalValue > 0.001 && !controller.Run));
         AddTransition(idle, new FunctionPredicate(() => controller.HorizontalValue < 0.001));
         AddTransition(airborn, new FunctionPredicate(() => controller.Jump));
+        AddTransition(airborn, new FunctionPredicate(() => !controller.Grounded));
     }
 
     #endregion

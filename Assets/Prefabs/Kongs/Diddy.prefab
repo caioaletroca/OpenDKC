@@ -517,7 +517,7 @@ MonoBehaviour:
   CrouchSpeed: 0
   MovementSmoothing: 0.05
   ForceMagnitude: 10
-  JumpForce: 15
+  JumpForce: 13.8
   MaximumVelocityY: 30
   KnockBackForce: {x: 8, y: 8}
   GroundLayer:
