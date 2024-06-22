@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class KongAttackState : BaseState<KongController>
 {
+    #region Private Properties
+
+    /// <summary>
+    /// Flag to control if we should perform a attack from idle state
+    /// </summary>
+    bool idleAttack = false;
+
+    #endregion
+
     #region Constructor
 
     public KongAttackState(KongController controller, Animator animator) : base(controller, animator) { }
@@ -36,11 +45,21 @@ public class KongAttackState : BaseState<KongController>
         controller.Damageable.EnableInvulnerability(true);
         controller.AttackDamager.enabled = true;
 
+        if(controller.HorizontalValue < 0.001) {
+            idleAttack = true;
+
+            controller.PerformIdleAttack();
+        }
+
         animator.Play(KongController.Animations.Attack);
     }
 
     public override void OnStateUpdate()
     {
+        if(idleAttack) {
+            return;
+        }
+
         controller.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.RunSpeed);
     }
 
@@ -48,6 +67,7 @@ public class KongAttackState : BaseState<KongController>
     {
         controller.Damageable.DisableInvulnerability();
         controller.AttackDamager.enabled = false;
+        idleAttack = false;
     }
 
     #endregion

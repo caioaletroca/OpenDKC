@@ -56,7 +56,14 @@ public partial class KongController
         // Set the request as true
         ForceDriven = true;
 
+        // Set the force
         Force = new Vector2(Magnitude * InputController.Instance.HorizontalValue, 0);
+    }
+
+    public void PerformIdleAttack() {
+        mRigidBody2D.velocity = new Vector2(0, mRigidBody2D.velocity.y);
+
+        mRigidBody2D.AddForce(new Vector2(mFacingRight ? MovementSettings.AttackForce : -MovementSettings.AttackForce, 0), ForceMode2D.Impulse);
     }
 
     #endregion

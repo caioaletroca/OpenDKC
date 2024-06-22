@@ -518,6 +518,7 @@ MonoBehaviour:
   MovementSmoothing: 0.05
   ForceMagnitude: 10
   JumpForce: 13.8
+  AttackForce: 1.8
   MaximumVelocityY: 30
   KnockBackForce: {x: 8, y: 8}
   GroundLayer:

@@ -24,6 +24,12 @@ public class MovementSettings : MonoBehaviour
 
     public float JumpForce = 100f;
 
+    /// <summary>
+    /// Force applied to perform a Attack movement
+    /// </summary>
+    [Tooltip("Force applied to perform a Attack movement")]
+    public float AttackForce = 5f;
+
     public float MaximumVelocityY = 100;
 
     /// <summary>
