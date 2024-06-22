@@ -16,5 +16,9 @@ public partial class KongController {
         public static int Air = Animator.StringToHash("diddy_air");
 
         public static int Land = Animator.StringToHash("diddy_land");
+
+        public static int Attack = Animator.StringToHash("diddy_attack");
+
+        public static int AttackToStand = Animator.StringToHash("diddy_attack_to_stand");
     }
 }

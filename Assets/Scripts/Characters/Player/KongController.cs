@@ -53,6 +53,9 @@ public partial class KongController : MonoBehaviour
     /// </summary>
     public BananaController BananaController;
 
+    [HideInInspector]
+    public KongStateMachine stateMachine;
+
     #endregion
 
     #region Private Properties
@@ -111,6 +114,7 @@ public partial class KongController : MonoBehaviour
             Debug.Break();
 
         // Start the state machine
+        stateMachine = new KongStateMachine(this, animator);
         SceneSMB<KongController>.Initialise(animator, this);
     }
 
@@ -119,9 +123,16 @@ public partial class KongController : MonoBehaviour
         RegisterStateVariables();
     }
 
+    public void Update() {
+        stateMachine.OnStateUpdate();
+    }
+
     public void FixedUpdate()
     {
         UpdateStateVariables();
+
+        stateMachine.OnStateFixedUpdate();
+        
         UpdateVelocityHorizontalMovement();
         UpdateForceHorizontalMovement();
         UpdateVerticalMovement();

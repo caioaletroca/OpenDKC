@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class KongWalkState : BaseState<KongController> {
+public class KongRunState : BaseState<KongController>
+{
     #region Constructor
 
-    public KongWalkState(KongController controller, Animator animator) : base(controller, animator) { }
+    public KongRunState(KongController controller, Animator animator) : base(controller, animator) { }
 
     #endregion
 
@@ -12,12 +13,12 @@ public class KongWalkState : BaseState<KongController> {
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
         var idle = stateMachine.GetStateByType(typeof(KongIdleState));
+        var walk = stateMachine.GetStateByType(typeof(KongWalkState));
         var airborn = stateMachine.GetStateByType(typeof(KongAirbornMachine));
-        var attack = stateMachine.GetStateByType(typeof(KongAttackState));
 
+        AddTransition(walk, new FunctionPredicate(() => controller.HorizontalValue > 0.001 && !controller.Run));
         AddTransition(idle, new FunctionPredicate(() => controller.HorizontalValue < 0.001));
         AddTransition(airborn, new FunctionPredicate(() => controller.Jump));
-        AddTransition(attack, new FunctionPredicate(() => controller.Attack));
     }
 
     #endregion
@@ -28,11 +29,12 @@ public class KongWalkState : BaseState<KongController> {
     {
         controller.EnableGravity();
 
-        animator.Play(KongController.Animations.Walk);
+        animator.Play(KongController.Animations.Run);
     }
 
-    public override void OnStateFixedUpdate() {
-        controller.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.WalkSpeed);
+    public override void OnStateUpdate()
+    {
+        controller.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.RunSpeed);
     }
 
     #endregion
