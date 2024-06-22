@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class KongAirbornMachine : BaseStateMachine<KongController>
+public class KongAirbornStateMachine : BaseStateMachine<KongController>
 {
     #region Constructor
 
-    public KongAirbornMachine(KongController controller, Animator animator) : base(controller, animator) {
+    public KongAirbornStateMachine(KongController controller, Animator animator) : base(controller, animator) {
         AddState(new KongAirbornRiseState(controller, animator));
         AddState(new KongAirbornAirState(controller, animator));
         AddState(new KongAirbornLandState(controller, animator));
@@ -18,26 +18,13 @@ public class KongAirbornMachine : BaseStateMachine<KongController>
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        var idle = stateMachine.GetStateByType(typeof(KongIdleState));
+        var idle = stateMachine.GetState(typeof(KongIdleState));
+        var hook = stateMachine.GetState(typeof(KongHookStateMachine));
 
         AddTransition(idle, new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End));
-    }
+        AddTransition(hook, new FunctionPredicate(() => controller.Hook));
 
-    #endregion
-
-    #region State Events
-
-    public override void OnStateStart()
-    {
-        if(controller.Jump) {
-            SetState(typeof(KongAirbornRiseState));
-            return;
-        }
-
-        if(!controller.Grounded) {
-            SetState(typeof(KongAirbornAirState));
-            return;
-        }
+        SetCurrent(typeof(KongAirbornRiseState));
     }
 
     #endregion

@@ -10,7 +10,6 @@ public partial class KongController
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        OnHookTriggerExit2D(collision);
         OnBarrelTriggerExit2D(collision);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BaseStateMachine<TController> : BaseState<TController> {
@@ -37,11 +38,32 @@ public class BaseStateMachine<TController> : BaseState<TController> {
 
     /// <summary>
     /// Gets a state by <paramref name="Type"/>
+    /// Gets recursively over the tree
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    public BaseState<TController> GetStateByType(Type type) {
-        return states[type];
+    public BaseState<TController> GetState(Type type) {
+        var state = states.GetValueOrDefault(type);
+
+        if(state == null) {
+            // Iterate over all states
+            foreach(var item in states) {
+                // Check if the state is a state machine
+                if(item.Value.GetType().IsSubclassOf(typeof(BaseStateMachine<TController>))) {
+                    var subStateMachine = (BaseStateMachine<TController>)item.Value;
+
+                    // Recursively search over children
+                    var subState = subStateMachine.GetState(type);
+
+                    // If we found the state
+                    if(subState != null) {
+                        return subState;
+                    }
+                }
+            }
+        }
+
+        return state;
     }
 
     /// <summary>
@@ -52,21 +74,102 @@ public class BaseStateMachine<TController> : BaseState<TController> {
         states.Add(state.GetType(), state);
     }
 
+    /// <summary>
+    /// Get a sub state machine that in any deeper level, contains the state
+    /// Returns null if the target state is not found on any level.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns>Returns the child sub state machine that contains the state, or null if fails</returns>
+    public BaseStateMachine<TController> GetSubStateMachine(Type type) {
+        // Iterate over all states
+        foreach(var item in states) {
+            // Check if the state is a state machine
+            if(item.Value.GetType().IsSubclassOf(typeof(BaseStateMachine<TController>))) {
+                // If it is, try to get the 
+                var subStateMachine = (BaseStateMachine<TController>)item.Value;
+                var state = subStateMachine.states.GetValueOrDefault(type);
+
+                if(state != null) {
+                    return subStateMachine;
+                }
+
+                return subStateMachine.GetSubStateMachine(type);
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Change current state
+    /// If the state is not found on this level,
+    /// Checks if exists under any deeper level and change state accordantly
+    /// </summary>
+    /// <param name="state">Next state</param>
+    public void ChangeState(IState state) {
+        var previousState = current;
+        var nextState = states.GetValueOrDefault(state.GetType());
+
+        // Check if the state is found on this level
+        if(nextState != null) {
+            // Normal execution
+            previousState?.OnStateExit();
+            nextState?.OnStateStart();
+
+            current = nextState;
+
+            return;
+        }
+        
+        // Searchs over all sub states to find the target state
+        nextState = GetSubStateMachine(state.GetType());
+
+        if(nextState == null) {
+            Debug.LogError("State " + state + " not found on Machine " + this);
+            Debug.Break();
+        }
+
+        // Call this method recursively to proper update states over the levels
+        ((BaseStateMachine<TController>)nextState).ChangeState(state);
+
+        previousState?.OnStateExit();
+        nextState?.OnStateStart();
+
+        current = nextState;
+    }
+
     #endregion
 
     #region State Events
 
+    public override void OnStateStart()
+    {
+        current?.OnStateStart();
+    }
+
     public override void OnStateUpdate() {
-        var transition = current.GetTransition();
-        if(transition != null) {
-            ChangeState(transition.To);
-        }
+        // var transition = current.GetTransition();
+        // if(transition != null) {
+        //     Debug.Log("Transition in " + this + " from " + current + " to " + transition.To);
+        //     ChangeState(transition.To);
+        // }
 
         current?.OnStateUpdate();
     }
 
     public override void OnStateFixedUpdate() {
+        var transition = current.GetTransition();
+        if(transition != null) {
+            Debug.Log("Transition in " + this + " from " + current + " to " + transition.To);
+            ChangeState(transition.To);
+        }
+
         current?.OnStateFixedUpdate();
+    }
+
+    public override void OnStateExit()
+    {
+        current = states.First().Value;
     }
 
     #endregion
@@ -82,22 +185,8 @@ public class BaseStateMachine<TController> : BaseState<TController> {
         }
     }
 
-    #endregion
-
-    #region Private Methods
-
-    /// <summary>
-    /// Change current state
-    /// </summary>
-    /// <param name="state">Next state</param>
-    void ChangeState(IState state) {
-        var previousState = current;
-        var nextState = states[state.GetType()];
-
-        previousState?.OnStateExit();
-        nextState?.OnStateStart();
-
-        current = states[state.GetType()];
+    protected void SetCurrent(Type type) {
+        current = states[type];
     }
 
     #endregion

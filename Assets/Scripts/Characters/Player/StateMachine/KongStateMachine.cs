@@ -7,9 +7,10 @@ public class KongStateMachine : BaseStateMachine<KongController> {
         AddState(new KongIdleState(controller, animator));
         AddState(new KongWalkState(controller, animator));
         AddState(new KongRunState(controller, animator));
-        AddState(new KongAirbornMachine(controller, animator));
+        AddState(new KongAirbornStateMachine(controller, animator));
         AddState(new KongAttackState(controller, animator));
         AddState(new KongAttackToStandState(controller, animator));
+        AddState(new KongHookStateMachine(controller, animator));
 
         RegisterStateTransitions();
 

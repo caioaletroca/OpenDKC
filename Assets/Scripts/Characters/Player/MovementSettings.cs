@@ -27,7 +27,7 @@ public class MovementSettings : MonoBehaviour
     /// <summary>
     /// Force applied to perform a Attack movement
     /// </summary>
-    [Tooltip("Force applied to perform a Attack movement")]
+    [Tooltip("Force applied to perform a Attack movement when realized from idle state")]
     public float AttackForce = 5f;
 
     public float MaximumVelocityY = 100;

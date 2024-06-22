@@ -1,37 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hook : MonoBehaviour
 {
     #region Public Properties
 
-    public BoxCollider2D Collider;
-
-    public LayerMask ActivatorLayer;
+    [HideInInspector]
+    public bool CanHook = true;
 
     #endregion
 
-    #region Unity Methods
+    #region Events
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnEnterHook()
     {
-        if(ActivatorLayer.Contains(collision.gameObject))
-        {
-            Collider.size = new Vector2(Collider.size.x, Collider.size.y * 2);
-        }
+        CanHook = false;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnExitHook()
     {
-        if (ActivatorLayer.Contains(collision.gameObject))
-        {
-            
-            
-        }
+        CanHook = true;
     }
 
     #endregion

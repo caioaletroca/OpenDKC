@@ -10,7 +10,7 @@ public class KongAirbornRiseState : BaseState<KongController>
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        var air = stateMachine.GetStateByType(typeof(KongAirbornAirState));
+        var air = stateMachine.GetState(typeof(KongAirbornAirState));
 
         AddTransition(air, new CompositePredicate(
             new IPredicate[] {

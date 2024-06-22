@@ -20,5 +20,15 @@ public partial class KongController {
         public static int Attack = Animator.StringToHash("diddy_attack");
 
         public static int AttackToStand = Animator.StringToHash("diddy_attack_to_stand");
+
+        public static int Hooking = Animator.StringToHash("diddy_hooking");
+
+        public static int Hook = Animator.StringToHash("diddy_hook");
+        
+        public static int StandToCrouch = Animator.StringToHash("diddy_stand_to_crouch");
+
+        public static int Crouch = Animator.StringToHash("diddy_crouch");
+
+        public static int CrouchToStand = Animator.StringToHash("diddy_crouch_to_stand");
     }
 }

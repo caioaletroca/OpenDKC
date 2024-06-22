@@ -16,6 +16,14 @@ public partial class KongController
         mRigidBody2D.AddForce(new Vector2(0f, MovementSettings.JumpForce), ForceMode2D.Impulse);
     }
 
+    public void PerformHookDismount() {
+        // Resets velocity to make the jump more apealling
+        mRigidBody2D.velocity = new Vector2(mRigidBody2D.velocity.x, 0);
+
+        // Add vertical force to the player
+        mRigidBody2D.AddForce(new Vector2(0f, HookSettings.DismountJumpForce), ForceMode2D.Impulse);
+    }
+
     #endregion
 
     #region Private Properties

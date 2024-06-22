@@ -21,9 +21,9 @@ public class KongAttackState : BaseState<KongController>
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        var run = stateMachine.GetStateByType(typeof(KongRunState));
-        var airborn = stateMachine.GetStateByType(typeof(KongAirbornMachine));
-        var attackToStand = stateMachine.GetStateByType(typeof(KongAttackToStandState));
+        var run = stateMachine.GetState(typeof(KongRunState));
+        var airborn = stateMachine.GetState(typeof(KongAirbornStateMachine));
+        var attackToStand = stateMachine.GetState(typeof(KongAttackToStandState));
 
         AddTransition(run, new CompositePredicate(
             new IPredicate[] {

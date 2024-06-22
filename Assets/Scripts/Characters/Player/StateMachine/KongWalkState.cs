@@ -11,9 +11,9 @@ public class KongWalkState : BaseState<KongController> {
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        var idle = stateMachine.GetStateByType(typeof(KongIdleState));
-        var airborn = stateMachine.GetStateByType(typeof(KongAirbornMachine));
-        var attack = stateMachine.GetStateByType(typeof(KongAttackState));
+        var idle = stateMachine.GetState(typeof(KongIdleState));
+        var airborn = stateMachine.GetState(typeof(KongAirbornStateMachine));
+        var attack = stateMachine.GetState(typeof(KongAttackState));
 
         AddTransition(idle, new FunctionPredicate(() => controller.HorizontalValue < 0.001));
         AddTransition(airborn, new FunctionPredicate(() => controller.Jump));

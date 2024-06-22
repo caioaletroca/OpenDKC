@@ -12,22 +12,15 @@ public partial class KongController
     {
         if (collision.gameObject.tag == "Hook")
         {
-            Hook = true;
-            HookTrigger();
-            SetParent(collision.gameObject);
-        }
-    }
-
-    /// <summary>
-    /// Handles the collision exit on a hook
-    /// </summary>
-    /// <param name="collision"></param>
-    public void OnHookTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Hook")
-        {
-            Hook = false;
-            //SetParent(null);
+            var hookComponent = collision.gameObject.GetComponentInParent<Hook>();
+            if(hookComponent.CanHook) {
+                // Reset the jump action so the player needs to jump again to
+                // get off the hook
+                Jump = false;
+                
+                Hook = true;
+                SetParent(collision.gameObject);
+            }
         }
     }
 

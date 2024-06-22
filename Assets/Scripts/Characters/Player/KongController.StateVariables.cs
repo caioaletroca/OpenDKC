@@ -198,6 +198,7 @@ public partial class KongController
             Blast = true;
             Grounded = false;
             Attack = false;
+            Hook = false;
         };
         inputMap.Jump.canceled += e =>
         {

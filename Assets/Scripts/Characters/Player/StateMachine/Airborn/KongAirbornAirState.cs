@@ -12,7 +12,7 @@ public class KongAirbornAirState : BaseState<KongController>
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        var land = stateMachine.GetStateByType(typeof(KongAirbornLandState));
+        var land = stateMachine.GetState(typeof(KongAirbornLandState));
 
         AddTransition(land, new FunctionPredicate(() => controller.GroundDistance < 1));
     }

@@ -12,7 +12,7 @@ public class KongAttackToStandState : BaseState<KongController>
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        var idle = stateMachine.GetStateByType(typeof(KongIdleState));
+        var idle = stateMachine.GetState(typeof(KongIdleState));
         
         AddTransition(idle, new CompositePredicate(
             new IPredicate[] {
