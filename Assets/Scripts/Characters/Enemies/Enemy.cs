@@ -5,6 +5,7 @@
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(ProximityActivator))]
 public class Enemy : MonoBehaviour
 {
     #region State Variables
@@ -15,7 +16,14 @@ public class Enemy : MonoBehaviour
     public bool Die
     {
         get => animator.GetBool("Die");
-        set => animator.SetBool("Die", value);
+        set {
+            // If the enemy died, we should disable the proximity activator
+            if(value == true) {
+                proximityActivator.SoftActive = false;
+            }
+
+            animator.SetBool("Die", value);
+        }
     }
 
     #endregion
@@ -38,6 +46,12 @@ public class Enemy : MonoBehaviour
     /// </summary>
     [Tooltip("The amount of time to despawn the object after death.")]
     public float TimeToDespawn = 5;
+
+    /// <summary>
+    /// The proximity activator instance
+    /// </summary>
+    [HideInInspector]
+    public ProximityActivator proximityActivator;
 
     /// <summary>
     /// The persistence data configuration
@@ -73,6 +87,7 @@ public class Enemy : MonoBehaviour
         mRigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         colliders = GetComponents<Collider2D>();
+        proximityActivator = GetComponent<ProximityActivator>();
     }
 
     #endregion

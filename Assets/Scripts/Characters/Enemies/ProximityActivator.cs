@@ -60,15 +60,28 @@ public class ProximityActivator : MonoBehaviour
             {
                 mActive = value;
 
+                // Should not trigger events if it's marked as Dead
+                if(SoftActive == false) {
+                    return;
+                }
+
                 if (mActive) FireActivate();
                 else FireDeactivate();
             }
         }
     }
 
+    /// <summary>
+    /// Flag to disable the events for fine control.
+    /// Useful when this functionality is attached to a dead enemy
+    /// or a destroyed item
+    /// </summary>
+    [HideInInspector]
+    public bool SoftActive = true;
+
     #endregion
 
-    #region Private Properties
+    #region Protected Properties
 
     /// <summary>
     /// Internal value for the <see cref="Active"/> variable

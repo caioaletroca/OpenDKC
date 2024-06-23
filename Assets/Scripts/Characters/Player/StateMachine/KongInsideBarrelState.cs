@@ -27,6 +27,8 @@ public class KongInsideBarrelState : BaseState<KongController> {
         controller.SetLocalPosition(Vector2.zero);
 
         animator.Play(KongController.Animations.Invisible);
+
+        VFXController.Instance.Trigger("CrashNoSoundXF", controller.transform.position, 0, false, null);
     }
 
     #endregion
