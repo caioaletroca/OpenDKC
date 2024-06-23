@@ -26,7 +26,17 @@ public class KongBlastState : BaseState<KongController> {
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        
+        var idle = stateMachine.GetState(typeof(KongIdleState));
+        var walk = stateMachine.GetState(typeof(KongWalkState));
+        var run = stateMachine.GetState(typeof(KongRunState));
+        var hook = stateMachine.GetState(typeof(KongHookStateMachine));
+        var insideBarrel = stateMachine.GetState(typeof(KongInsideBarrelState));
+
+        AddTransition(idle, new FunctionPredicate(() => controller.Grounded && controller.HorizontalValue < 0.001));
+        AddTransition(walk, new FunctionPredicate(() => controller.Grounded && controller.HorizontalValue > 0.001 && !controller.Run));
+        AddTransition(run, new FunctionPredicate(() => controller.Grounded && controller.HorizontalValue > 0.001 && controller.Run));
+        AddTransition(hook, new FunctionPredicate(() => controller.Hook));
+        AddTransition(insideBarrel, new FunctionPredicate(() => controller.Barrel && !controller.Blast));
     }
 
     #endregion

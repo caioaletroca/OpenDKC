@@ -65,7 +65,9 @@ public partial class KongController
     public bool Jump
     {
         get => animator.GetBool(AnimationParameters.Jump);
-        set => animator.SetBool(AnimationParameters.Jump, value);
+        set {
+            animator.SetBool(AnimationParameters.Jump, value);
+        }
     }
 
     /// <summary>
@@ -128,7 +130,14 @@ public partial class KongController
     public bool Barrel
     {
         get => animator.GetBool(AnimationParameters.Barrel);
-        set => animator.SetBool(AnimationParameters.Barrel, value);
+        set {
+            // If we enter a barrel, blast should be reset
+            if(value == true) {
+                Blast = false;
+            }
+
+            animator.SetBool(AnimationParameters.Barrel, value);
+        }
     }
 
     /// <summary>
@@ -137,7 +146,14 @@ public partial class KongController
     public bool Blast
     {
         get => animator.GetBool(AnimationParameters.Blast);
-        set => animator.SetBool(AnimationParameters.Blast, value);
+        set {
+            // If we blast, that means we are technically out of a barrel
+            if(value == true) {
+                Barrel = false;
+            }
+
+            animator.SetBool(AnimationParameters.Blast, value);
+        }
     }
 
     /// <summary>

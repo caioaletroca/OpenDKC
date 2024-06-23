@@ -10,10 +10,9 @@ public partial class KongController
     /// <param name="collision"></param>
     public void OnBarrelTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Barrel")
+        if (collision.gameObject.tag == "Barrel" && !Barrel)
         {
             Barrel = true;
-            Blast = false;
             SetParent(collision.gameObject);
         }
     }

@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -143,7 +143,7 @@ public class BlastBarrel : MonoBehaviour
 
     #endregion
 
-    #region Private Methods
+    #region Protected Methods
 
     /// <summary>
     /// Sets the Barrel state
