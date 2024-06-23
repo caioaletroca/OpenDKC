@@ -14,6 +14,7 @@ public class KongStateMachine : BaseStateMachine<KongController> {
         AddState(new KongCrouchStateMachine(controller, animator));
         AddState(new KongInsideBarrelState(controller, animator));
         AddState(new KongBlastState(controller, animator));
+        AddAnyState(new KongHurtStateMachine(controller, animator));
 
         RegisterStateTransitions();
 

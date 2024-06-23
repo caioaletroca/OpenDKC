@@ -36,5 +36,13 @@ public partial class KongController {
         public static int AirToSomersault = Animator.StringToHash("diddy_air_to_somersault");
 
         public static int Somersault = Animator.StringToHash("diddy_somersault");
+
+        public static int AirHurt = Animator.StringToHash("diddy_air_hurt");
+
+        public static int FallHurt = Animator.StringToHash("diddy_fall_hurt");
+
+        public static int LandHurt = Animator.StringToHash("diddy_land_hurt");
+
+        public static int IdleHurt = Animator.StringToHash("diddy_idle_hurt");
     }
 }

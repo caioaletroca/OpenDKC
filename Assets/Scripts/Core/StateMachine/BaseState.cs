@@ -44,14 +44,41 @@ public abstract class BaseState<TController> : IState {
     }
 
     /// <summary>
+    /// Adds a new any transition
+    /// </summary>
+    /// <param name="condition">Condition</param>
+    public void AddAnyTransition(IPredicate condition) {
+        Transitions.Add(new AnyTransition(condition));
+    }
+
+    /// <summary>
     /// Evaluate all transitions, If one returns true, the method returns the transition.
     /// Else, returns null.
     /// </summary>
     /// <returns></returns>
     public ITransition GetTransition() {
         foreach(var transition in Transitions) {
-            if(transition.Condition.Evaluate()) {
-                return transition;
+            if(transition is Transition) {
+                if(transition.Condition.Evaluate()) {
+                    return transition;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Evaluate all any transitions, If one returns true, the method returns the transition.
+    /// Else, returns null.
+    /// </summary>
+    /// <returns></returns>
+    public ITransition GetAnyTransition() {
+        foreach(var transition in Transitions) {
+            if(transition is AnyTransition) {
+                if(transition.Condition.Evaluate()) {
+                    return transition;
+                }
             }
         }
 

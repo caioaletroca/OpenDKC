@@ -17,6 +17,12 @@ public class BaseStateMachine<TController> : BaseState<TController> {
     /// <returns></returns>
     Dictionary<Type, BaseState<TController>> states = new();
 
+    /// <summary>
+    /// Dictionary containing this state machine any states
+    /// </summary>
+    /// <returns></returns>
+    Dictionary<Type, BaseState<TController>> anyStates = new();
+
     #endregion
 
     #region Constructor
@@ -72,6 +78,14 @@ public class BaseStateMachine<TController> : BaseState<TController> {
     /// <param name="state">State to be added</param>
     public void AddState(BaseState<TController> state) {
         states.Add(state.GetType(), state);
+    }
+
+    /// <summary>
+    /// Adds a new any state into the Dictionary
+    /// </summary>
+    /// <param name="state">State to be added</param>
+    public void AddAnyState(BaseState<TController> state) {
+        anyStates.Add(state.GetType(), state);
     }
 
     /// <summary>
@@ -138,6 +152,20 @@ public class BaseStateMachine<TController> : BaseState<TController> {
         current = nextState;
     }
 
+    /// <summary>
+    /// Change to a any state
+    /// </summary>
+    /// <param name="state"></param>
+    public void ChangeAnyState(IState state) {
+        var previousState = current;
+        var nextState = anyStates.GetValueOrDefault(state.GetType());
+
+        previousState?.OnStateExit();
+        nextState?.OnStateStart();
+
+        current = nextState;
+    }
+
     #endregion
 
     #region State Events
@@ -148,16 +176,26 @@ public class BaseStateMachine<TController> : BaseState<TController> {
     }
 
     public override void OnStateUpdate() {
-        // var transition = current.GetTransition();
-        // if(transition != null) {
-        //     Debug.Log("Transition in " + this + " from " + current + " to " + transition.To);
-        //     ChangeState(transition.To);
-        // }
-
         current?.OnStateUpdate();
     }
 
     public override void OnStateFixedUpdate() {
+        foreach(var item in anyStates) {
+            var anyTransition = item.Value.GetAnyTransition();
+            if(anyTransition != null) {
+                // Check if we already transitioned to this state
+                if(current == item.Value) {
+                    break;
+                }
+
+                Debug.Log("Any Transition in " + this + " from " + current + " to " + item.Value);
+
+                // The target state to a any transition is the state itself
+                ChangeAnyState(item.Value);
+                return;
+            }
+        }
+
         var transition = current.GetTransition();
         if(transition != null) {
             Debug.Log("Transition in " + this + " from " + current + " to " + transition.To);
@@ -180,6 +218,10 @@ public class BaseStateMachine<TController> : BaseState<TController> {
     /// Registers in loop all states transitions
     /// </summary>
     protected void RegisterStateTransitions() {
+        foreach(var item in anyStates) {
+            item.Value.RegisterTransitions(this);
+        }
+        
         foreach(var item in states) {
             item.Value.RegisterTransitions(this);
         }
