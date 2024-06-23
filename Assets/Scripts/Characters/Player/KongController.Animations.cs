@@ -5,6 +5,8 @@ public partial class KongController {
     /// Run time definitions for animation names
     /// </summary>
     public static class Animations {
+        public static int Invisible = Animator.StringToHash("diddy_invisible");
+
         public static int Idle = Animator.StringToHash("diddy_idle");
 
         public static int Walk = Animator.StringToHash("diddy_walk");
@@ -30,5 +32,7 @@ public partial class KongController {
         public static int Crouch = Animator.StringToHash("diddy_crouch");
 
         public static int CrouchToStand = Animator.StringToHash("diddy_crouch_to_stand");
+
+        public static int Somersault = Animator.StringToHash("diddy_somersault");
     }
 }

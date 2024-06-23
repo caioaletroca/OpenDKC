@@ -20,9 +20,11 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
     {
         var idle = stateMachine.GetState(typeof(KongIdleState));
         var hook = stateMachine.GetState(typeof(KongHookStateMachine));
+        var insideBarrel = stateMachine.GetState(typeof(KongInsideBarrelState));
 
         AddTransition(idle, new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End));
         AddTransition(hook, new FunctionPredicate(() => controller.Hook));
+        AddTransition(insideBarrel, new FunctionPredicate(() => controller.Barrel));
 
         SetCurrent(typeof(KongAirbornRiseState));
     }

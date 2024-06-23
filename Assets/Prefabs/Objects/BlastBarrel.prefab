@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37f6cd1d3ab9354c91677e662acdf08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 4
-  HangTime: 1
-  StartDirection: 2
+  Velocity: 6
+  HangTime: 0.5
+  StartDirection: 0
   BlastDirection: {x: 0, y: 1}

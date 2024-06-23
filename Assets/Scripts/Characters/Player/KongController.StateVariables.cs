@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public partial class KongController
 {
@@ -239,7 +240,7 @@ public partial class KongController
                 Somersault = false;
 
                 // Avoid multiples jumps if the player keeps jump button pressed
-                if(VerticalSpeed < 0)
+                if(Math.Abs(VerticalSpeed) > 0.001)
                     Jump = false;
             }
 
