@@ -14,7 +14,6 @@ public partial class KongController
         {
             Barrel = true;
             Blast = false;
-            BarrelTrigger();
             SetParent(collision.gameObject);
         }
     }
@@ -42,10 +41,6 @@ public partial class KongController
     /// <param name="barrel">The barrel</param>
     public void PerformBarrelBlast(BlastBarrel barrel)
     {
-        // Reset trigger
-        // TODO: Discover a better way to solve that problem
-        animator.ResetTrigger(AnimationParameters.BarrelTrigger);
-
         // Advice barrel about the blast
         barrel.PerformPlayerBlast();
 

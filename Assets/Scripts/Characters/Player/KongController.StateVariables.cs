@@ -73,14 +73,8 @@ public partial class KongController
     /// </summary>
     public bool Attack
     {
-        get
-        {
-            return animator.GetBool(AnimationParameters.Attack);
-        }
-        set
-        {
-            animator.SetBool(AnimationParameters.Attack, value);
-        }
+        get => animator.GetBool(AnimationParameters.Attack);
+        set => animator.SetBool(AnimationParameters.Attack, value);
     }
 
     /// <summary>
@@ -88,14 +82,8 @@ public partial class KongController
     /// </summary>
     public bool Run
     {
-        get
-        {
-            return animator.GetBool(AnimationParameters.Run);
-        }
-        set
-        {
-            animator.SetBool(AnimationParameters.Run, value);
-        }
+        get => animator.GetBool(AnimationParameters.Run);
+        set => animator.SetBool(AnimationParameters.Run, value);
     }
 
     /// <summary>
@@ -106,11 +94,6 @@ public partial class KongController
         get => animator.GetBool(AnimationParameters.Hook);
         set => animator.SetBool(AnimationParameters.Hook, value);
     }
-
-    /// <summary>
-    /// A triggers to the hook state
-    /// </summary>
-    public void HookTrigger() => animator.SetTrigger(AnimationParameters.HookTrigger);
 
     /// <summary>
     /// A flag that represents if the player is spawning
@@ -140,11 +123,6 @@ public partial class KongController
     }
 
     /// <summary>
-    /// A triggers to the somersault state
-    /// </summary>
-    public void SomersaultTrigger() => animator.SetTrigger(AnimationParameters.SomersaultTrigger);
-
-    /// <summary>
     /// A flag that represents if the player is inside a barrel
     /// </summary>
     public bool Barrel
@@ -152,11 +130,6 @@ public partial class KongController
         get => animator.GetBool(AnimationParameters.Barrel);
         set => animator.SetBool(AnimationParameters.Barrel, value);
     }
-
-    /// <summary>
-    /// A triggers to the barrel state
-    /// </summary>
-    public void BarrelTrigger() => animator.SetTrigger(AnimationParameters.BarrelTrigger);
 
     /// <summary>
     /// A flag that represents if the player is inside a barrel

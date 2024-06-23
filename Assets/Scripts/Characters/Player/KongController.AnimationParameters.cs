@@ -27,19 +27,13 @@
 
         public static string Hook = "Hook";
 
-        public static string HookTrigger = "HookTrigger";
-
         public static string Spawn = "Spawn";
 
         public static string Die = "Die";
 
         public static string Somersault = "Somersault";
 
-        public static string SomersaultTrigger = "SomersaultTrigger";
-
         public static string Barrel = "Barrel";
-
-        public static string BarrelTrigger = "BarrelTrigger";
 
         public static string Blast = "Blast";
 
