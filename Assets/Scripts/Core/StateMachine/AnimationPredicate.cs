@@ -5,6 +5,8 @@ public class AnimationPredicate : IPredicate
     #region Types
 
     public enum Timing {
+        Start,
+        Playing,
         End
     }
 
@@ -45,10 +47,18 @@ public class AnimationPredicate : IPredicate
     public bool Evaluate() {
         var currentState = animator.GetCurrentAnimatorStateInfo(0);
 
-        return (
-            currentState.shortNameHash == animationHash &&
-            currentState.normalizedTime > GetTiming(timing)
-        );
+        // Return false if the desired animation is not playing
+        if(currentState.shortNameHash != animationHash)
+            return false;
+
+        // If the desired timing is Start or End, calculate it and return
+        if(timing != Timing.Playing) {
+            return currentState.normalizedTime > GetTiming(timing);
+        }
+
+        // If not, the evaluation is only about if the desired animation is playing,
+        // and at this point, it is.
+        return true;
     }
 
     #endregion

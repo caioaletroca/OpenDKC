@@ -8,6 +8,7 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
         AddState(new KongAirbornRiseState(controller, animator));
         AddState(new KongAirbornAirState(controller, animator));
         AddState(new KongAirbornLandState(controller, animator));
+        AddState(new KongAirbornAirToSomersaultState(controller, animator));
         AddState(new KongAirbornSomersaultState(controller, animator));
 
         RegisterStateTransitions();
@@ -25,23 +26,55 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
         var hook = stateMachine.GetState(typeof(KongHookStateMachine));
         var insideBarrel = stateMachine.GetState(typeof(KongInsideBarrelState));
 
+        var somersault = GetState(typeof(KongAirbornSomersaultState));
+
         AddTransition(idle, new CompositePredicate(
             new IPredicate[] {
-                new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.HorizontalValue < 0.001)
-            }
+                new CompositePredicate(
+                    new IPredicate[] {
+                        new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
+                        new FunctionPredicate(() => controller.HorizontalValue < 0.001),
+                    }
+                ),
+                new CompositePredicate(
+                    new IPredicate[] {
+                        new AnimationPredicate(animator, KongController.Animations.Somersault, AnimationPredicate.Timing.Playing),
+                        new FunctionPredicate(() => controller.Grounded && controller.HorizontalValue < 0.001),
+                    }
+                )
+            }, CompositePredicate.Operation.OR
         ));
         AddTransition(walk, new CompositePredicate(
             new IPredicate[] {
-                new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.HorizontalValue > 0.001 && !controller.Run)
-            }
+                new CompositePredicate(
+                    new IPredicate[] {
+                        new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
+                        new FunctionPredicate(() => controller.HorizontalValue > 0.001 && !controller.Run)
+                    }
+                ),
+                new CompositePredicate(
+                    new IPredicate[] {
+                        new AnimationPredicate(animator, KongController.Animations.Somersault, AnimationPredicate.Timing.End),
+                        new FunctionPredicate(() => controller.Grounded && controller.HorizontalValue > 0.001 && !controller.Run)
+                    }
+                )
+            }, CompositePredicate.Operation.OR
         ));
         AddTransition(run, new CompositePredicate(
             new IPredicate[] {
-                new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.HorizontalValue > 0.001 && controller.Run)
-            }
+                new CompositePredicate(
+                    new IPredicate[] {
+                        new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
+                        new FunctionPredicate(() => controller.HorizontalValue > 0.001 && controller.Run)
+                    }
+                ),
+                new CompositePredicate(
+                    new IPredicate[] {
+                        new AnimationPredicate(animator, KongController.Animations.Somersault, AnimationPredicate.Timing.End),
+                        new FunctionPredicate(() => controller.Grounded && controller.HorizontalValue > 0.001 && controller.Run)
+                    }
+                ),
+            }, CompositePredicate.Operation.OR
         ));
         AddTransition(hook, new FunctionPredicate(() => controller.Hook));
         AddTransition(insideBarrel, new FunctionPredicate(() => controller.Barrel));

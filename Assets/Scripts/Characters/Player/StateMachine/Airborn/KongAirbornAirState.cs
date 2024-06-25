@@ -13,8 +13,10 @@ public class KongAirbornAirState : BaseState<KongController>
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
         var land = stateMachine.GetState(typeof(KongAirbornLandState));
+        var airToSomersault = stateMachine.GetState(typeof(KongAirbornAirToSomersaultState));
 
         AddTransition(land, new FunctionPredicate(() => controller.GroundDistance < 1));
+        AddTransition(airToSomersault, new FunctionPredicate(() => controller.Somersault));
     }
 
     #endregion
