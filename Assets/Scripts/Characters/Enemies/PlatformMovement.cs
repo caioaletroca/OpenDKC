@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using UnityEditor.EditorTools;
+using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Constrols the platforming movement for enemies
@@ -36,6 +38,12 @@ public class PlatformMovement : MonoBehaviour
     /// </summary>
     [Tooltip("The layer to check for the wall to turn back.")]
     public LayerMask WallLayer;
+
+    /// <summary>
+    /// Event functions for when the sprite is flipped
+    /// </summary>
+    [Tooltip("Event fired when the game object is flipped.")]
+    public UnityEvent OnFlip;
 
     #endregion
 
@@ -103,6 +111,8 @@ public class PlatformMovement : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+
+        OnFlip?.Invoke();
     }
 
     #endregion

@@ -49,5 +49,9 @@ public class DelayedAudioLoop : MonoBehaviour
         }
     }
 
+    private void OnEnable() => audioSource.enabled = true;
+
+    private void OnDisable() => audioSource.enabled = false;
+
     #endregion
 }

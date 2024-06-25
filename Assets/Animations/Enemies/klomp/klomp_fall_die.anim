@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: neek_turn
+  m_Name: klomp_fall_die
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,16 +21,10 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1415777159117520335, guid: 19a052cf412b7be4b87e89067a4efdfa,
+      value: {fileID: 462641650104772634, guid: fc18063e52c00ec41ac172d0e1c0c26d,
         type: 3}
     - time: 0.06666667
-      value: {fileID: 4689550266559662256, guid: 19a052cf412b7be4b87e89067a4efdfa,
-        type: 3}
-    - time: 0.13333334
-      value: {fileID: 491930151883647189, guid: 19a052cf412b7be4b87e89067a4efdfa,
-        type: 3}
-    - time: 0.2
-      value: {fileID: 7432414259956090625, guid: 19a052cf412b7be4b87e89067a4efdfa,
+      value: {fileID: -3706345804990782565, guid: fc18063e52c00ec41ac172d0e1c0c26d,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -54,16 +48,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1415777159117520335, guid: 19a052cf412b7be4b87e89067a4efdfa, type: 3}
-    - {fileID: 4689550266559662256, guid: 19a052cf412b7be4b87e89067a4efdfa, type: 3}
-    - {fileID: 491930151883647189, guid: 19a052cf412b7be4b87e89067a4efdfa, type: 3}
-    - {fileID: 7432414259956090625, guid: 19a052cf412b7be4b87e89067a4efdfa, type: 3}
+    - {fileID: 462641650104772634, guid: fc18063e52c00ec41ac172d0e1c0c26d, type: 3}
+    - {fileID: -3706345804990782565, guid: fc18063e52c00ec41ac172d0e1c0c26d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.26666668
+    m_StopTime: 0.13333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

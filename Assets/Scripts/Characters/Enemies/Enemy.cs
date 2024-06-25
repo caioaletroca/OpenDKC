@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Defines a base class for all enemies
@@ -9,6 +10,15 @@
 public class Enemy : MonoBehaviour
 {
     #region State Variables
+
+    /// <summary>
+    /// Represents the object vertical speed
+    /// </summary>
+    public float VerticalSpeed
+    {
+        get => animator.GetFloat("VerticalSpeed");
+        set => animator.SetFloat("VerticalSpeed", value);
+    }
 
     /// <summary>
     /// Represents if the object has died
@@ -25,6 +35,11 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Die", value);
         }
     }
+
+    /// <summary>
+    /// Animation trigger for flip sprite
+    /// </summary>
+    public void FlipTrigger() => animator.SetTrigger("FlipTrigger");
 
     #endregion
 
@@ -88,6 +103,10 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         colliders = GetComponents<Collider2D>();
         proximityActivator = GetComponent<ProximityActivator>();
+    }
+
+    public void FixedUpdate() {
+        UpdateStateVariables();
     }
 
     #endregion
@@ -164,6 +183,14 @@ public class Enemy : MonoBehaviour
 
     #region Private Methods
 
+    protected void UpdateStateVariables() {
+        UpdateVerticalSpeed();
+    }
+
+    protected void UpdateVerticalSpeed() {
+        VerticalSpeed = mRigidBody2D.velocity.y;
+    }
+
     /// <summary>
     /// Flips the sprite for the object
     /// </summary>
@@ -173,6 +200,8 @@ public class Enemy : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+
+        FlipTrigger();
     }
 
     #endregion

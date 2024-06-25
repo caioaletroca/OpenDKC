@@ -6,8 +6,8 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: klomp_die
-  serializedVersion: 6
+  m_Name: klomp_rise_die
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -18,20 +18,16 @@ AnimationClip:
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
     - time: 0
       value: {fileID: -8472200517483702639, guid: fc18063e52c00ec41ac172d0e1c0c26d,
-        type: 3}
-    - time: 0.06666667
-      value: {fileID: 462641650104772634, guid: fc18063e52c00ec41ac172d0e1c0c26d,
-        type: 3}
-    - time: 0.13333334
-      value: {fileID: -3706345804990782565, guid: fc18063e52c00ec41ac172d0e1c0c26d,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
+    flags: 2
   m_SampleRate: 15
   m_WrapMode: 0
   m_Bounds:
@@ -46,16 +42,16 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -8472200517483702639, guid: fc18063e52c00ec41ac172d0e1c0c26d, type: 3}
-    - {fileID: 462641650104772634, guid: fc18063e52c00ec41ac172d0e1c0c26d, type: 3}
-    - {fileID: -3706345804990782565, guid: fc18063e52c00ec41ac172d0e1c0c26d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.20000002
+    m_StopTime: 0.06666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

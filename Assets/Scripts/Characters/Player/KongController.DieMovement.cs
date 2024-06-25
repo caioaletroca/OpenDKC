@@ -23,6 +23,9 @@ public partial class KongController
         mRigidBody2D.AddForce(new Vector2(DamagerSettings.DeathJumpForce.x * DeathDirection.x, DamagerSettings.DeathJumpForce.y), ForceMode2D.Impulse);
     }
 
+    /// <summary>
+    /// Performs the death bounce effect, when the player hits the ground, it bounces a couple of times before stopping
+    /// </summary>
     public void PerformDeathBounce()
     {
         var factor = 0.5f;

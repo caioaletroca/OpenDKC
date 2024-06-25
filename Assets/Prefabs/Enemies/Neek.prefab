@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damager: {fileID: 6882647852230774618}
-  DeathJumpForce: {x: 5, y: 5}
+  DeathJumpForce: {x: 4, y: 6.5}
   TimeToDespawn: 3
   proximityActivator: {fileID: 0}
   dataSettings:
@@ -314,6 +314,21 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 4096
+  OnFlip:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5818538808288611294}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: FlipTrigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8129699798552197409
 MonoBehaviour:
   m_ObjectHideFlags: 0

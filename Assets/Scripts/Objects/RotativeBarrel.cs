@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /// <summary>
 /// Controls the rotative barrel
@@ -108,7 +108,7 @@ public class RotativeBarrel : BlastBarrel
     /// Check if the blaster timer has finished
     /// </summary>
     /// <returns></returns>
-    public bool CheckForBlastTimer() => BlastTimer < 0;
+    public bool CheckForBlastTimer() => BlastTimer < 1;
 
     /// <summary>
     /// Check if the recoil movement has finished

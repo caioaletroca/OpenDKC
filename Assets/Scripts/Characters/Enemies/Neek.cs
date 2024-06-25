@@ -4,6 +4,7 @@ using UnityEngine;
 /// Controls the neek enemy
 /// </summary>
 [RequireComponent(typeof(PlatformMovement))]
+[RequireComponent(typeof(DelayedAudioLoop))]
 public class Neek : Enemy
 {
     #region Private Properties
@@ -12,6 +13,11 @@ public class Neek : Enemy
     /// Instance for the platform movement
     /// </summary>
     protected PlatformMovement platformMovement;
+
+    /// <summary>
+    /// Instance of audio loop controller
+    /// </summary>
+    protected DelayedAudioLoop delayedAudioLoop;
 
     #endregion
 
@@ -22,6 +28,7 @@ public class Neek : Enemy
         base.Awake();
 
         platformMovement = GetComponent<PlatformMovement>();
+        delayedAudioLoop = GetComponent<DelayedAudioLoop>();
     }
 
     #endregion
@@ -40,6 +47,7 @@ public class Neek : Enemy
 
         DisableEnemy();
         PerformDeathJump(damageable.DamageDirection);
+        delayedAudioLoop.enabled = false;
 
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);

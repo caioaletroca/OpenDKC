@@ -17,15 +17,6 @@ public class KaboingGrey : Enemy
     }
 
     /// <summary>
-    /// The vertical speed value
-    /// </summary>
-    public float VerticalSpeed
-    {
-        get => animator.GetFloat("VerticalSpeed");
-        set => animator.SetFloat("VerticalSpeed", value);
-    }
-
-    /// <summary>
     /// The speed for the current animation
     /// </summary>
     public float AnimationSpeed
@@ -74,8 +65,10 @@ public class KaboingGrey : Enemy
         UpdateVerticalSpeed();
     }
 
-    protected void FixedUpdate()
+    protected new void FixedUpdate()
     {
+        base.FixedUpdate();
+        
         // Do not update when grounded
         if (GroundDistance < 1)
             return;
@@ -135,14 +128,6 @@ public class KaboingGrey : Enemy
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 100, GroundLayer);
         if (hit.collider != null)
             GroundDistance = hit.distance;
-    }
-
-    /// <summary>
-    /// Updates the vertical speed state variable
-    /// </summary>
-    public void UpdateVerticalSpeed()
-    {
-        VerticalSpeed = mRigidBody2D.velocity.y;
     }
 
     #endregion
