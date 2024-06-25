@@ -17,3 +17,5 @@
 - [ ] Neek (Accurated movement);
 - [ ] Klomp (Turn animation and accurated movement);
 - [ ] Kaboing (Grey) (Accurated movement);
+- [x] Flitter;
+- [ ] Kruncha (Turn animation, die by throw, accurated movement);

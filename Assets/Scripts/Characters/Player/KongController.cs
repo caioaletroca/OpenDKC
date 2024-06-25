@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -229,8 +229,6 @@ public partial class KongController : MonoBehaviour
     {
         // Preserve Z position
         var newPosition = new Vector3(position.x, position.y, transform.position.z);
-
-        //transform.localPosition = newPosition;
 
         // Set local position
         if (transform.parent != null)

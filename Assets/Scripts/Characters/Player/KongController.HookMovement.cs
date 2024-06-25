@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public partial class KongController
 {
@@ -19,7 +19,7 @@ public partial class KongController
                 Jump = false;
                 
                 Hook = true;
-                SetParent(collision.gameObject);
+                SetParent(hookComponent.gameObject);
             }
         }
     }
