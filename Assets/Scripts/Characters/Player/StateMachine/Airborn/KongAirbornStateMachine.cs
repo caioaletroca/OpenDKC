@@ -23,6 +23,7 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
         var idle = stateMachine.GetState(typeof(KongIdleState));
         var walk = stateMachine.GetState(typeof(KongWalkState));
         var run = stateMachine.GetState(typeof(KongRunState));
+        var attack = stateMachine.GetState(typeof(KongAttackState));
         var hook = stateMachine.GetState(typeof(KongHookStateMachine));
         var insideBarrel = stateMachine.GetState(typeof(KongInsideBarrelState));
 
@@ -75,6 +76,12 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
                     }
                 ),
             }, CompositePredicate.Operation.OR
+        ));
+        AddTransition(attack, new CompositePredicate(
+            new IPredicate[] {
+                new AnimationPredicate(animator, KongController.Animations.Air, AnimationPredicate.Timing.End),
+                new FunctionPredicate(() => controller.Grounded && controller.Attack)
+            }
         ));
         AddTransition(hook, new FunctionPredicate(() => controller.Hook));
         AddTransition(insideBarrel, new FunctionPredicate(() => controller.Barrel));

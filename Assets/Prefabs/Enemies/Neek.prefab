@@ -417,6 +417,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  SoftActive: 1
 --- !u!1 &6664203091118275316
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +494,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.6891913}
+  m_Size: {x: 1, y: 0.56}
   m_EdgeRadius: 0
 --- !u!114 &6882647852230774618
 MonoBehaviour:

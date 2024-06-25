@@ -22,7 +22,7 @@ public class KongHurtStateMachine : BaseStateMachine<KongController>
     {
         AddAnyTransition(new FunctionPredicate(() => controller.Die));
 
-        SetState(typeof(KongHurtRiseState));
+        SetCurrent(typeof(KongHurtRiseState));
     }
 
     #endregion

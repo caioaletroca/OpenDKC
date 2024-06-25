@@ -24,5 +24,15 @@ public class KongAirbornSomersaultState : BaseState<KongController>
         animator.Play(KongController.Animations.Somersault);
     }
 
+    public override void OnStateFixedUpdate()
+    {
+        controller.PerformForceHorizontalMovement(controller.MovementSettings.ForceMagnitude);
+    }
+
+    public override void OnStateExit()
+    {
+        controller.BounceDamager.enabled = false;
+    }
+
     #endregion
 }

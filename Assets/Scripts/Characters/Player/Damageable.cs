@@ -164,7 +164,7 @@ public class Damageable : MonoBehaviour, IDataPersister
     {
         Invulnerable = true;
 
-        // Technically don't ignore timer, just set it to an insanly big number. Allow to avoid to add more test & special case.
+        // Technically don't ignore timer, just set it to an insanily big number. Allow to avoid to add more test & special case.
         InvulnerabilityTimer = ignoreTimer ? float.MaxValue : InvulnerabilityDuration;
     }
 
