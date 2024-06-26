@@ -21,6 +21,7 @@ public class KongCrouchStateMachine : BaseStateMachine<KongController>
     {
         var idle = stateMachine.GetState(typeof(KongIdleState));
         var walk = stateMachine.GetState(typeof(KongWalkState));
+        var run = stateMachine.GetState(typeof(KongRunState));
 
         AddTransition(idle, new CompositePredicate(
             new IPredicate[] {
@@ -31,7 +32,13 @@ public class KongCrouchStateMachine : BaseStateMachine<KongController>
         AddTransition(walk, new CompositePredicate(
             new IPredicate[] {
                 new AnimationPredicate(animator, KongController.Animations.CrouchToStand, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.VerticalValue > -0.5 && controller.HorizontalValue > 0.001),
+                new FunctionPredicate(() => controller.VerticalValue > -0.5 && !controller.Run && controller.HorizontalValue > 0.001),
+            }
+        ));
+        AddTransition(run, new CompositePredicate(
+            new IPredicate[] {
+                new AnimationPredicate(animator, KongController.Animations.CrouchToStand, AnimationPredicate.Timing.End),
+                new FunctionPredicate(() => controller.VerticalValue > -0.5 && controller.Run && controller.HorizontalValue > 0.001),
             }
         ));
 

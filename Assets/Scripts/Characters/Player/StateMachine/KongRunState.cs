@@ -17,10 +17,12 @@ public class KongRunState : BaseState<KongController>
         var airborn = stateMachine.GetState(typeof(KongAirbornStateMachine));
         var crouch = stateMachine.GetState(typeof(KongCrouchStateMachine));
 
+        var air = ((KongAirbornStateMachine)airborn).GetState(typeof(KongAirbornAirState));
+
         AddTransition(walk, new FunctionPredicate(() => controller.HorizontalValue > 0.001 && !controller.Run));
         AddTransition(idle, new FunctionPredicate(() => controller.HorizontalValue < 0.001));
         AddTransition(airborn, new FunctionPredicate(() => controller.Jump));
-        AddTransition(airborn, new FunctionPredicate(() => !controller.Grounded));
+        AddTransition(air, new FunctionPredicate(() => !controller.Grounded));
         AddTransition(crouch, new FunctionPredicate(() => controller.VerticalValue < -0.5));
     }
 

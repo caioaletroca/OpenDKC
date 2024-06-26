@@ -77,12 +77,7 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
                 ),
             }, CompositePredicate.Operation.OR
         ));
-        AddTransition(attack, new CompositePredicate(
-            new IPredicate[] {
-                new AnimationPredicate(animator, KongController.Animations.Air, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.Grounded && controller.Attack)
-            }
-        ));
+        AddTransition(attack, new FunctionPredicate(() => controller.Grounded && controller.Attack));
         AddTransition(hook, new FunctionPredicate(() => controller.Hook));
         AddTransition(insideBarrel, new FunctionPredicate(() => controller.Barrel));
 
