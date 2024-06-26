@@ -96,6 +96,11 @@ public partial class KongController : MonoBehaviour
     /// </summary>
     public HookSettings HookSettings;
 
+    /// <summary>
+    /// Instance for the Throw Settings
+    /// </summary>
+    public ThrowSettings ThrowSettings;
+
     #endregion
 
     #region Unity Methods

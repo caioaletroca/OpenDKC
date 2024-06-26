@@ -85,7 +85,14 @@ public partial class KongController
     public bool Run
     {
         get => animator.GetBool(AnimationParameters.Run);
-        set => animator.SetBool(AnimationParameters.Run, value);
+        set {
+            // If the player releases the run button, it should also release hold
+            if(value == false) {
+                Hold = false;
+            }
+
+            animator.SetBool(AnimationParameters.Run, value);
+        }
     }
 
     /// <summary>
@@ -154,6 +161,15 @@ public partial class KongController
 
             animator.SetBool(AnimationParameters.Blast, value);
         }
+    }
+
+    /// <summary>
+    /// A flag that represents if the player is holding an object
+    /// </summary>
+    public bool Hold
+    {
+        get => animator.GetBool(AnimationParameters.Hold);
+        set => animator.SetBool(AnimationParameters.Hold, value);
     }
 
     /// <summary>

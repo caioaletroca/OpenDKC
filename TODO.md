@@ -2,7 +2,12 @@
 
 ## Player
 
-- [ ] Hook mechanics
+- [x] Hook mechanics
+- [ ] Throw mechanics
+
+## Systems
+- [ ] Banana system (Overflow one up);
+- [ ] Life system
 
 ## Barrels
 

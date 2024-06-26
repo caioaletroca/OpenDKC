@@ -23,6 +23,7 @@ public class KongAttackState : BaseState<KongController>
     {
         var run = stateMachine.GetState(typeof(KongRunState));
         var airborn = stateMachine.GetState(typeof(KongAirbornStateMachine));
+        var picking = stateMachine.GetState(typeof(KongPickingState));
         var attackToStand = stateMachine.GetState(typeof(KongAttackToStandState));
 
         AddTransition(run, new CompositePredicate(
@@ -32,6 +33,7 @@ public class KongAttackState : BaseState<KongController>
             }
         ));
         AddTransition(airborn, new FunctionPredicate(() => controller.Jump));
+        AddTransition(picking, new FunctionPredicate(() => controller.Hold));
         AddTransition(attackToStand, new AnimationPredicate(animator, KongController.Animations.Attack, AnimationPredicate.Timing.End));
     }
 

@@ -37,6 +37,8 @@
 
         public static string Blast = "Blast";
 
+        public static string Hold = "Hold";
+
         public static string FlipTrigger = "FlipTrigger";
 
         #endregion

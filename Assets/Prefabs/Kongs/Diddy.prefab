@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: -4134707158039321085}
   - component: {fileID: 8226759611177957186}
   - component: {fileID: 3604560453348423945}
+  - component: {fileID: 3520733439271104534}
   - component: {fileID: 9005975490835626365}
   - component: {fileID: 8192996590388843089}
   - component: {fileID: 219451430775534193}
@@ -498,8 +499,10 @@ MonoBehaviour:
   MovementSettings: {fileID: -4134707158039321085}
   DamagerSettings: {fileID: 8226759611177957186}
   HookSettings: {fileID: 3604560453348423945}
+  ThrowSettings: {fileID: 3520733439271104534}
   DeathDirection: {x: 0, y: 0}
   SpawnGameObject: {fileID: 0}
+  ItemHolded: {fileID: 0}
 --- !u!114 &-4134707158039321085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +558,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapOffset: {x: 0, y: -1.28125, z: -1}
   DismountJumpForce: 5
+--- !u!114 &3520733439271104534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507c28ba2d88fa441b42c67560d29077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SnapOffset: {x: 0.36, y: 0.21, z: 0}
 --- !u!114 &9005975490835626365
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public partial class KongController
     {
         OnHookTriggerEnter2D(collision);
         OnBarrelTriggerEnter2D(collision);
+        OnThrowableTriggerEnter2D(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
