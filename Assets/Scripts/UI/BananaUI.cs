@@ -39,8 +39,6 @@ public class BananaUI : MonoBehaviour
 
     #region Private Properties
 
-    private Stack<bool> BananaIncome = new Stack<bool>();
-
     /// <summary>
     /// Internal stored value for the timer
     /// </summary>
@@ -65,19 +63,16 @@ public class BananaUI : MonoBehaviour
 
     private void Update()
     {
-        if (Canvas.alpha == 0 || BananaIncome.Count != 0)
+        if (Canvas.alpha == 0)
             return;
 
-        if (BananaIncome.Count == 0)
-        {
-            // Decrement timer
-            VisibilityTimer -= Time.deltaTime;
+        // Decrement timer
+        VisibilityTimer -= Time.deltaTime;
 
-            if (VisibilityTimer <= 0)
-            {
-                // Tries to disable the UI
-                DisableUI();
-            }
+        if (VisibilityTimer <= 0)
+        {
+            // Tries to disable the UI
+            DisableUI();
         }
     }
 
@@ -85,31 +80,30 @@ public class BananaUI : MonoBehaviour
 
     #region Events Methods
 
+    /// <summary>
+    /// Fired when a banana is collected
+    /// </summary>
+    /// <param name="bananaController"></param>
     public void OnBananaCollected(BananaController bananaController)
     {
-        // Add to the stack
-        BananaIncome.Push(true);
-
         // Sets the timer
-        VisibilityTimer = InactivityTime;
+        VisibilityTimer = InactivityTime * 10f;
 
         // Shows the UI
         ShowUI();
-
-        // If enabled, never register disable action
-        if (AlwaysShow)
-            return;
     }
 
     /// <summary>
     /// Fired when a banana arrives the destination in the Banana UI
     /// </summary>
+    /// <param name="bananaController"></param>
     public void OnBananaArrived(BananaController bananaController)
     {
-        Counter.Value = bananaController.BananaCount;
+        // Slowly updates the count, one by one
+        Counter.Value++;
 
-        // Remove from the stack
-        BananaIncome.Pop();
+        // Sets the timer
+        VisibilityTimer = InactivityTime;
     }
 
     #endregion

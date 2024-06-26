@@ -63,7 +63,7 @@ public class BananaCollectXF : MonoBehaviour
         transform.position = (Vector2)transform.position + velocity * Time.fixedDeltaTime * direction.normalized;
         
         // Check if arrived
-        if (Vector2.Distance(transform.position, TargetPoint) < 50)
+        if (Vector2.Distance(transform.position, TargetPoint) < TargetProximity)
             OnBananaArrived();
     }
 
