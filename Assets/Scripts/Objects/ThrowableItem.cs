@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Damageable))]
+[RequireComponent(typeof(ProximityActivator))]
 public class ThrowableItem : MonoBehaviour {
     #region State Variables
 
@@ -36,6 +37,13 @@ public class ThrowableItem : MonoBehaviour {
     /// </summary>
     public GameObject BreakVFX;
 
+    /// <summary>
+    /// The ground layer
+    /// </summary>
+    public LayerMask GroundLayer;
+
+    public Vector2 Offset;
+
     #endregion
 
     #region Protected Properties
@@ -55,6 +63,11 @@ public class ThrowableItem : MonoBehaviour {
     /// </summary>
     protected Damageable damageable;
 
+    /// <summary>
+    /// Proximity Activator instance
+    /// </summary>
+    protected ProximityActivator proximityActivator;
+
     #endregion
 
     #region Unity Events
@@ -63,6 +76,7 @@ public class ThrowableItem : MonoBehaviour {
         mRigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
+        proximityActivator = GetComponent<ProximityActivator>();
 
         mRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
     }
@@ -93,6 +107,9 @@ public class ThrowableItem : MonoBehaviour {
 
     public void PerformPick() {
         Picked = true;
+
+        // Disable proximity
+        proximityActivator.SoftActive = false;
     }
 
     public void PerformDrop() {
@@ -100,6 +117,9 @@ public class ThrowableItem : MonoBehaviour {
 
         // Clean up parent
         transform.parent = null;
+        proximityActivator.SoftActive = true;
+
+        SnapToGround();
     }
 
     public void PerformThrow(Vector2 force) {
@@ -127,8 +147,24 @@ public class ThrowableItem : MonoBehaviour {
     #region Events Methods
 
     public void OnHitGround() {
+        // TODO: Logic for barrel rolling
         if(Throwed) {
             PerformBreak();
+        }
+    }
+
+    #endregion
+
+    #region Protected Methods
+
+    /// <summary>
+    /// Snaps the object right above the ground
+    /// </summary>
+    protected void SnapToGround() {
+        // Calculate point on the ground
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10, GroundLayer);
+        if(hit.collider != null) {
+            transform.position = new Vector2(transform.position.x, hit.point.y + Offset.y);
         }
     }
 
