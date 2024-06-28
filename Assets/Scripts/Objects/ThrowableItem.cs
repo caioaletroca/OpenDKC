@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Damageable))]
 public class ThrowableItem : MonoBehaviour {
     #region State Variables
 
@@ -16,6 +17,24 @@ public class ThrowableItem : MonoBehaviour {
         get => animator.GetBool("Picked");
         set => animator.SetBool("Picked", value);
     }
+
+    /// <summary>
+    /// Flag that represents if this object has been picked
+    /// </summary>
+    [HideInInspector]
+    public bool Throwed {
+        get => animator.GetBool("Throwed");
+        set => animator.SetBool("Throwed", value);
+    }
+
+    #endregion
+
+    #region Public Properties
+
+    /// <summary>
+    /// VFX spawned when this item breaks
+    /// </summary>
+    public GameObject BreakVFX;
 
     #endregion
 
@@ -31,6 +50,11 @@ public class ThrowableItem : MonoBehaviour {
     /// </summary>
     protected Animator animator;
 
+    /// <summary>
+    /// Damageable instance
+    /// </summary>
+    protected Damageable damageable;
+
     #endregion
 
     #region Unity Events
@@ -38,11 +62,18 @@ public class ThrowableItem : MonoBehaviour {
     protected void Awake() {
         mRigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        damageable = GetComponent<Damageable>();
+
+        mRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
     }
 
     #endregion
 
     #region Public Methods
+
+    public void SetParent(GameObject gameObject) {
+        transform.parent = gameObject.transform;
+    }
 
     /// <summary>
     /// Set a new local position using <see cref="Rigidbody2D"/>
@@ -69,6 +100,34 @@ public class ThrowableItem : MonoBehaviour {
 
         // Clean up parent
         transform.parent = null;
+    }
+
+    public void PerformThrow(Vector2 force) {
+        Picked = false;
+        Throwed = true;
+
+        mRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
+        
+        mRigidBody2D.AddForce(force, ForceMode2D.Impulse);
+
+        // Clean up parent
+        transform.parent = null;
+
+        mRigidBody2D.gravityScale = 1;
+    }
+
+    public void PerformBreak() {
+        VFXController.Instance.Trigger("BarrelBreakXF", transform.position);
+
+        Destroy(gameObject);
+    }
+
+    #endregion
+
+    #region Events Methods
+
+    public void OnHitGround() {
+        PerformBreak();
     }
 
     #endregion

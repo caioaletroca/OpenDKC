@@ -20,6 +20,7 @@ public partial class KongController {
 
     public void PerformItemPickup(ThrowableItem item) {
         ItemHolded = item;
+        ItemHolded.SetParent(gameObject);
 
         ItemHolded.PerformPick();
         PerformItemSnap();
@@ -31,6 +32,17 @@ public partial class KongController {
         ItemHolded = null;
     }
 
+    public void PerformItemThrow() {
+        // Check throw direction
+        var force = new Vector2(mFacingRight ? 1 : -1, 0);
+
+        // Check for type of throw
+        force *= VerticalValue > 0.5 ? ThrowSettings.UpThrowForce : ThrowSettings.NormalThrowForce;
+
+        ItemHolded.PerformThrow(force);
+        ItemHolded = null;
+    }
+
     #endregion
 
     #region Event Methods
@@ -39,12 +51,9 @@ public partial class KongController {
         if (collision.gameObject.tag == "Throwable") {
             // Only allow hold if Attack or Running is activated
             if(Attack || Run) {
-                Debug.Log("Done");
                 Hold = true;
-                collision.gameObject.transform.parent = gameObject.transform;
 
-                var throwableItem = collision.gameObject.GetComponent<ThrowableItem>();
-                PerformItemPickup(throwableItem);
+                PerformItemPickup(collision.gameObject.GetComponent<ThrowableItem>());
             }
         }
     }
