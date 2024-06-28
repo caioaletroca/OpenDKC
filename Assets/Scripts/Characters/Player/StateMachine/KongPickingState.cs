@@ -25,19 +25,8 @@ public class KongPickingState : BaseState<KongController>
     {
         // Breafly slows downs player
         controller.PerformVelocityHorizontalMovement(0);
-        controller.PerformItemSnap();
 
         animator.Play(KongController.Animations.Picking);
-    }
-
-    public override void OnStateUpdate()
-    {
-        controller.PerformItemSnap();
-    }
-
-    public override void OnStateExit()
-    {
-        controller.PerformItemSnap();
     }
 
     #endregion

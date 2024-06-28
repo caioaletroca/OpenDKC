@@ -34,8 +34,6 @@ public class KongIdleHoldState : BaseState<KongController>
     {
         controller.EnableGravity();
         controller.PerformVelocityHorizontalMovement(0);
-
-        controller.PerformItemSnap();
     }
 
     #endregion

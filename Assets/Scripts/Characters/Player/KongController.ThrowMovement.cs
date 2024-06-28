@@ -11,19 +11,12 @@ public partial class KongController {
     
     #region Public Methods
 
-    /// <summary>
-    /// Snaps the holded item position into the offset
-    /// </summary>
-    public void PerformItemSnap() {
-        ItemHolded.SetLocalPosition(ThrowSettings.SnapOffset);
-    }
-
     public void PerformItemPickup(ThrowableItem item) {
         ItemHolded = item;
-        ItemHolded.SetParent(gameObject);
+        ItemHolded.SetParent(ThrowSettings.ThrowAnchor);
+        ItemHolded.transform.localPosition = Vector2.zero;
 
         ItemHolded.PerformPick();
-        PerformItemSnap();
     }
 
     public void PerformItemDrop() {

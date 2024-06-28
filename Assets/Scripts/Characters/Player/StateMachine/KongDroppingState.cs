@@ -44,7 +44,6 @@ public class KongDroppingState : BaseState<KongController>
     {
         // Breafly slows downs player
         controller.PerformVelocityHorizontalMovement(0);
-        controller.PerformItemSnap();
 
         animator.Play(KongController.Animations.Dropping);
     }
@@ -52,12 +51,10 @@ public class KongDroppingState : BaseState<KongController>
     public override void OnStateFixedUpdate()
     {
         controller.PerformVelocityHorizontalMovement(0);
-        controller.PerformItemSnap();
     }
 
     public override void OnStateExit()
     {
-        controller.PerformItemSnap();
         controller.PerformItemDrop();
     }
 

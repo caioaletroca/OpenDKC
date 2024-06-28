@@ -14,8 +14,11 @@ GameObject:
   - component: {fileID: 2213319727728645235}
   - component: {fileID: 803607214210426151}
   - component: {fileID: 5310607917272716874}
+  - component: {fileID: 2461228925150830775}
   - component: {fileID: 3356583032277774227}
-  m_Layer: 0
+  - component: {fileID: 7135315349135947590}
+  - component: {fileID: 225453290300424509}
+  m_Layer: 11
   m_Name: Box
   m_TagString: Throwable
   m_Icon: {fileID: 0}
@@ -97,14 +100,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797499878864420}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -194,6 +197,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0de760a8acc6e4088c5eac14ff6300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BreakVFX: {fileID: 0}
+--- !u!114 &2461228925150830775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797499878864420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4b95386c4443b4f94f0ccae99ca796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealth: 1
+  InvulnerableAfterDamage: 1
+  InvulnerabilityDuration: 3
+  DisableOnDeath: 0
+  CentreOffset: {x: 0, y: 0}
+  dataSettings:
+    dataTag: a99a7867-9ca1-49b0-b78a-702ef66b0f59
+    persistenceType: 3
+  DamageDirection: {x: 0, y: 0}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5310607917272716874}
+        m_TargetAssemblyTypeName: ThrowableItem, Assembly-CSharp
+        m_MethodName: PerformBreak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3356583032277774227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +265,84 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   SoftActive: 1
+--- !u!114 &7135315349135947590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797499878864420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4b95386c4443b4f94f0ccae99ca796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartingHealth: 1
+  InvulnerableAfterDamage: 1
+  InvulnerabilityDuration: 3
+  DisableOnDeath: 0
+  CentreOffset: {x: 0, y: 0}
+  dataSettings:
+    dataTag: 15f8f778-fa0e-4f71-be1c-9bddbf8986f9
+    persistenceType: 3
+  DamageDirection: {x: 0, y: 0}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5310607917272716874}
+        m_TargetAssemblyTypeName: ThrowableItem, Assembly-CSharp
+        m_MethodName: PerformBreak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &225453290300424509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797499878864420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e225ab4f144b3a447a601843380e90a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Layers:
+    serializedVersion: 2
+    m_Bits: 256
+  OnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5310607917272716874}
+        m_TargetAssemblyTypeName: ThrowableItem, Assembly-CSharp
+        m_MethodName: OnHitGround
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerParameter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerExitParameter:
+    m_PersistentCalls:
+      m_Calls: []

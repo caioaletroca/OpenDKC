@@ -127,7 +127,9 @@ public class ThrowableItem : MonoBehaviour {
     #region Events Methods
 
     public void OnHitGround() {
-        PerformBreak();
+        if(Throwed) {
+            PerformBreak();
+        }
     }
 
     #endregion

@@ -8,11 +8,33 @@ public class KongThrowState : BaseState<KongController>
 
     #endregion
 
+    #region Public Methods
+
+    public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
+    {
+        var idle = stateMachine.GetState(typeof(KongIdleState));
+        var walk = stateMachine.GetState(typeof(KongWalkState));
+
+        AddTransition(walk, new CompositePredicate(
+            new IPredicate[] {
+                new AnimationPredicate(animator, KongController.Animations.Throw, AnimationPredicate.Timing.End),
+                new FunctionPredicate(() => controller.HorizontalValue > 0.001)
+            }
+        ));
+        AddTransition(idle, new CompositePredicate(
+            new IPredicate[] {
+                new AnimationPredicate(animator, KongController.Animations.Throw, AnimationPredicate.Timing.End),
+                new FunctionPredicate(() => controller.HorizontalValue < 0.001)
+            }
+        ));
+    }
+
+    #endregion
+
     #region State Events
 
     public override void OnStateStart()
     {
-        controller.PerformItemThrow();
         controller.PerformVelocityHorizontalMovement(0);
 
         animator.Play(KongController.Animations.Throw);

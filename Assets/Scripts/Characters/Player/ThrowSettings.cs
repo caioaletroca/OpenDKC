@@ -4,7 +4,7 @@ public class ThrowSettings : MonoBehaviour {
     /// <summary>
     /// The offset where the sprite should snap as a <see cref="Vector3"/>
     /// </summary>
-    public Vector3 SnapOffset = Vector3.zero;
+    public GameObject ThrowAnchor;
 
     /// <summary>
     /// The force applied on the item when performing a normal throw
