@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class KongThrowState : BaseState<KongController>
-{
+{   
     #region Constructor
 
     public KongThrowState(KongController controller, Animator animator) : base(controller, animator) { }
@@ -35,7 +35,7 @@ public class KongThrowState : BaseState<KongController>
 
     public override void OnStateStart()
     {
-        controller.PerformVelocityHorizontalMovement(0);
+        controller.PerformFreezeThrow();
 
         animator.Play(KongController.Animations.Throw);
     }
@@ -43,6 +43,11 @@ public class KongThrowState : BaseState<KongController>
     public override void OnStateFixedUpdate()
     {
         controller.PerformVelocityHorizontalMovement(0);
+    }
+
+    public override void OnStateExit()
+    {
+        controller.PerformUnfreezeThrow();
     }
 
     #endregion

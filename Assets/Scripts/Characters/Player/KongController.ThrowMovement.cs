@@ -8,6 +8,15 @@ public partial class KongController {
     public ThrowableItem ItemHolded;
 
     #endregion
+
+    #region Private Properties
+
+    /// <summary>
+    /// Stored velocity to perform a throw freeze in mid air
+    /// </summary>
+    private Vector2 StoredVelocity = Vector2.zero;
+
+    #endregion
     
     #region Public Methods
 
@@ -34,6 +43,25 @@ public partial class KongController {
 
         ItemHolded.PerformThrow(force);
         ItemHolded = null;
+    }
+
+    /// <summary>
+    /// Starts the freeze movement throw
+    /// </summary>
+    public void PerformFreezeThrow() {
+        // TODO: Solve for mid rise jump to continue after throw
+        StoredVelocity = mVelocity;
+
+        DisableGravity();
+        mRigidBody2D.velocity = Vector2.zero;
+    }
+
+    /// <summary>
+    /// Restored back from freeze throw
+    /// </summary>
+    public void PerformUnfreezeThrow() {
+        EnableGravity();
+        mRigidBody2D.velocity = StoredVelocity;
     }
 
     #endregion
