@@ -2,7 +2,11 @@
 
 public partial class KongController
 {
-    #region Public Methods
+    #region Events
+
+    public void OnAttackDamageableHit(Damager damager, Damageable damageable) {
+        VFXController.Instance.Trigger("CrashVFX", transform.position);
+    }
 
     /// <summary>
     /// Fires when the attack animation finishes

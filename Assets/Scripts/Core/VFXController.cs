@@ -277,6 +277,20 @@ public class VFXController : MonoBehaviour
     /// <summary>
     /// Triggers an instantiation of VFX
     /// </summary>
+    /// <param name="name"></param>
+    /// <param name="position"></param>
+    /// <param name="startDelay"></param>
+    /// <param name="flip"></param>
+    /// <param name="parent"></param>
+    /// <param name="tileOverride"></param>
+    public void Trigger(GameObject prefab, Vector3 position, float startDelay = 0, bool flip = false, Transform parent = null, TileBase tileOverride = null)
+    {
+        Trigger(StringToHash(prefab.name), position, startDelay, flip, parent, tileOverride);
+    }
+
+    /// <summary>
+    /// Triggers an instantiation of VFX
+    /// </summary>
     /// <param name="hash"></param>
     /// <param name="position"></param>
     /// <param name="startDelay"></param>

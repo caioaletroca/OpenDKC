@@ -49,6 +49,8 @@ public class Neek : Enemy
         PerformDeathJump(damageable.DamageDirection);
         delayedAudioLoop.enabled = false;
 
+        VFXController.Instance.Trigger("NeekDeathSFX", transform.position);
+
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
     }

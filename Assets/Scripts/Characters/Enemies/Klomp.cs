@@ -45,6 +45,8 @@ public class Klomp : Enemy
 
         DisableEnemy();
         PerformDeathJump(damageable.DamageDirection);
+
+        VFXController.Instance.Trigger("KlompDeathSFX", transform.position);
         
         // Despawn in time
         Destroy(gameObject, TimeToDespawn);
