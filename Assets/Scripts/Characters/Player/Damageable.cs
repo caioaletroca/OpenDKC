@@ -204,6 +204,32 @@ public class Damageable : MonoBehaviour, IDataPersister
     }
 
     /// <summary>
+    /// Alternative manual take damage without a Damager instance
+    /// </summary>
+    /// <param name="Damage">Damage taken</param>
+    /// <param name="ignoreInvincible">If should ignore the <see cref="Damageable"/> invencibility status</param>
+    public void TakeDamage(float Damage, bool ignoreInvincible = false)
+    {
+        if ((Invulnerable && !ignoreInvincible) || Health <= 0)
+            return;
+
+        // Reduce health and apply damage
+        if(!Invulnerable)
+            Health -= Damage;
+
+        // Fire event
+        OnTakeDamage?.Invoke(null, this);
+
+        // Check if the game object has died
+        if(Health <= 0)
+        {
+            OnDie?.Invoke(null, this);
+            EnableInvulnerability();
+            if (DisableOnDeath) gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>
     /// Gains a determined amount of health
     /// </summary>
     /// <param name="amount">The amount to add</param>

@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Damager))]
 [RequireComponent(typeof(Damageable))]
 [RequireComponent(typeof(ProximityActivator))]
 public class ThrowableItem : MonoBehaviour {
@@ -35,12 +36,20 @@ public class ThrowableItem : MonoBehaviour {
     /// <summary>
     /// VFX spawned when this item breaks
     /// </summary>
+    [Tooltip("VFX spawned when this item breaks.")]
     public GameObject BreakVFX;
 
     /// <summary>
     /// The ground layer
     /// </summary>
+    [Tooltip("Ground layer for collision detection.")]
     public LayerMask GroundLayer;
+
+    /// <summary>
+    /// Flag that represents if the item should take a hit when hit the ground on throw
+    /// </summary>
+    [Tooltip("Flag that represents if the item should take a hit when hit the ground on throw.")]
+    public bool Fragile;
 
     public Vector2 Offset;
 
@@ -79,6 +88,15 @@ public class ThrowableItem : MonoBehaviour {
         proximityActivator = GetComponent<ProximityActivator>();
 
         mRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
+    }
+
+    protected void OnDestroy() {
+        if(Picked) {
+            var kongController = transform.parent.GetComponent<KongController>();
+            if(kongController) {
+                kongController.OnThrowableDestroy();
+            }
+        }
     }
 
     #endregion
@@ -146,10 +164,19 @@ public class ThrowableItem : MonoBehaviour {
 
     #region Events Methods
 
+    public void OnTakeDamage(Damager damager, Damageable damageable) {
+        var itemDamager = GetComponent<Damager>();
+
+        // Get enemy damageable instance
+        var enemyDamageable = damager.GetComponentInParent<Damageable>();
+
+        // Force damage into enemy
+        enemyDamageable.TakeDamage(itemDamager);
+    }
+
     public void OnHitGround() {
-        // TODO: Logic for barrel rolling
-        if(Throwed) {
-            PerformBreak();
+        if(Throwed && Fragile) {
+            damageable.TakeDamage(1);
         }
     }
 

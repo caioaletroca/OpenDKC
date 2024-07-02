@@ -72,11 +72,21 @@ public partial class KongController {
         if (collision.gameObject.tag == "Throwable") {
             // Only allow hold if Attack or Running is activated
             if(Attack || Run) {
-                Hold = true;
+                // Check if throwable can be picked
+                var throwableItem = collision.gameObject.GetComponent<ThrowableItem>();
+                if(!throwableItem.Picked) {
+                    Hold = true;
 
-                PerformItemPickup(collision.gameObject.GetComponent<ThrowableItem>());
+                    PerformItemPickup(collision.gameObject.GetComponent<ThrowableItem>());
+                }
             }
         }
+    }
+
+    public void OnThrowableDestroy() {
+        ItemHolded = null;
+
+        Hold = false;
     }
 
     #endregion
