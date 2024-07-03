@@ -2,20 +2,25 @@
 
 ## Player
 
-- [x] Hook mechanics
-- [ ] Throw mechanics
+- [x] Hook mechanics;
+- [ ] Throw mechanics;
 
 ## Systems
 - [ ] Banana system (Overflow one up);
-- [ ] Life system
+- [ ] Life system;
 
 ## Barrels
 
-- [x] Blast Barrel
-- [x] Auto Barrel
-- [x] Rotative Barrel
-- [ ] Bonus Barrel
-- [ ] Checkpoint Barrel
+- [x] Blast Barrel;
+- [x] Auto Barrel;
+- [x] Rotative Barrel;
+- [ ] Bonus Barrel;
+- [ ] Checkpoint Barrel;
+
+## Throwables
+
+- [X] Box;
+- [X] Barrel;
 
 ## Enemies
 

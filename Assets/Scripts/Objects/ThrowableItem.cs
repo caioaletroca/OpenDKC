@@ -89,8 +89,6 @@ public class ThrowableItem : MonoBehaviour {
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
         proximityActivator = GetComponent<ProximityActivator>();
-
-        mRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
     }
 
     protected void OnDestroy() {
@@ -128,6 +126,9 @@ public class ThrowableItem : MonoBehaviour {
 
     public void PerformPick() {
         Picked = true;
+
+        // Turn into kinematic to enable player to handle it
+        mRigidBody2D.bodyType = RigidbodyType2D.Kinematic;
 
         // Disable proximity
         proximityActivator.SoftActive = false;
@@ -197,9 +198,6 @@ public class ThrowableItem : MonoBehaviour {
 
             return;
         }
-
-        var collider = GetComponent<CircleCollider2D>();
-        collider.enabled = true;
     }
 
     public void OnHitWall() {
