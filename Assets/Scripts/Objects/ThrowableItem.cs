@@ -155,7 +155,7 @@ public class ThrowableItem : MonoBehaviour {
     }
 
     public void PerformBreak() {
-        VFXController.Instance.Trigger("BarrelBreakXF", transform.position);
+        VFXController.Instance.Trigger("BarrelBreakVFX", transform.position);
 
         Destroy(gameObject);
     }
@@ -165,18 +165,26 @@ public class ThrowableItem : MonoBehaviour {
     #region Events Methods
 
     public void OnTakeDamage(Damager damager, Damageable damageable) {
-        var itemDamager = GetComponent<Damager>();
+        // Check if the damage taken came from an enemy
+        if(damager) {
+            var itemDamager = GetComponent<Damager>();
 
-        // Get enemy damageable instance
-        var enemyDamageable = damager.GetComponentInParent<Damageable>();
+            // Get enemy damageable instance
+            var enemyDamageable = damager.GetComponentInParent<Damageable>();
 
-        // Force damage into enemy
-        enemyDamageable.TakeDamage(itemDamager);
+            // Force damage into enemy
+            enemyDamageable.TakeDamage(itemDamager);
+        }
     }
 
     public void OnHitGround() {
         if(Throwed && Fragile) {
             damageable.TakeDamage(1);
+
+            // If the item is broken, play the break SFX
+            if(damageable.Health == 0) {
+                VFXController.Instance.Trigger("BarrelBreakSFX", transform.position);
+            }
         }
     }
 

@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 5666633937753404392}
   - component: {fileID: 3767884259303785381}
   m_Layer: 0
-  m_Name: BarrelBreakXF
+  m_Name: BarrelBreakVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
