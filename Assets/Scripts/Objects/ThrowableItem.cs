@@ -34,12 +34,6 @@ public class ThrowableItem : MonoBehaviour {
     #region Public Properties
 
     /// <summary>
-    /// VFX spawned when this item breaks
-    /// </summary>
-    [Tooltip("VFX spawned when this item breaks.")]
-    public GameObject BreakVFX;
-
-    /// <summary>
     /// The ground layer
     /// </summary>
     [Tooltip("Ground layer for collision detection.")]
@@ -178,13 +172,37 @@ public class ThrowableItem : MonoBehaviour {
     }
 
     public void OnHitGround() {
-        if(Throwed && Fragile) {
+        // Do nothing if the collider is triggered, but the item has not been thrown
+        if(!Throwed) {
+            return;
+        }
+
+        if(Fragile) {
             damageable.TakeDamage(1);
 
             // If the item is broken, play the break SFX
             if(damageable.Health == 0) {
                 VFXController.Instance.Trigger("BarrelBreakSFX", transform.position);
             }
+
+            return;
+        }
+
+        var collider = GetComponent<CircleCollider2D>();
+        collider.enabled = true;
+    }
+
+    public void OnHitWall() {
+        // Do nothing if the collider is triggered, but the item has not been thrown
+        if(!Throwed) {
+            return;
+        }
+
+        damageable.TakeDamage(1);
+
+        // If the item is broken, play the break SFX
+        if(damageable.Health == 0) {
+            VFXController.Instance.Trigger("BarrelBreakSFX", transform.position);
         }
     }
 

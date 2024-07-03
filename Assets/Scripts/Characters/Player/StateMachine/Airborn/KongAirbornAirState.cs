@@ -32,7 +32,7 @@ public class KongAirbornAirState : BaseState<KongController>
 
     public override void OnStateFixedUpdate()
     {
-        controller.PerformVelocityHorizontalMovement(KongController.Instance.MovementSettings.WalkSpeed);
+        controller.PerformVelocityHorizontalMovement(controller.Run ? KongController.Instance.MovementSettings.RunSpeed : KongController.Instance.MovementSettings.WalkSpeed);
     }
 
     #endregion
