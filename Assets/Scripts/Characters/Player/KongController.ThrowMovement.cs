@@ -36,10 +36,12 @@ public partial class KongController {
 
     public void PerformItemThrow() {
         // Check throw direction
-        var force = new Vector2(mFacingRight ? 1 : -1, 0);
+        var force = new Vector2(mFacingRight ? 1 : -1, 1);
 
         // Check for type of throw
         force *= VerticalValue > 0.5 ? ThrowSettings.UpThrowForce : ThrowSettings.NormalThrowForce;
+
+        Debug.Log(VerticalValue > 0.5 ? "ThrowSettings.UpThrowForce" : "ThrowSettings.NormalThrowForce");
 
         ItemHolded.PerformThrow(force);
         ItemHolded = null;
@@ -61,7 +63,9 @@ public partial class KongController {
     /// </summary>
     public void PerformUnfreezeThrow() {
         EnableGravity();
-        mRigidBody2D.velocity = StoredVelocity;
+
+        // TODO: Find a way to preserve speed properly
+        // mRigidBody2D.velocity = StoredVelocity;
     }
 
     #endregion
@@ -74,7 +78,7 @@ public partial class KongController {
             if(Attack || Run) {
                 // Check if throwable can be picked
                 var throwableItem = collision.gameObject.GetComponent<ThrowableItem>();
-                if(!throwableItem.Picked) {
+                if(!throwableItem.Picked && !throwableItem.Throwed) {
                     Hold = true;
 
                     PerformItemPickup(collision.gameObject.GetComponent<ThrowableItem>());

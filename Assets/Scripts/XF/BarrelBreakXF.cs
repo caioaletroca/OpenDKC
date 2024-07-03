@@ -19,12 +19,6 @@ public class BarrelBreakXF : MonoBehaviour
     [Tooltip("Amount of random spread in X force direction.")]
     public float SpreadRangeForce = 2;
 
-    /// <summary>
-    /// Timeout in seconds for when the XF will be destroyed
-    /// </summary>
-    [Tooltip("Timeout in seconds for when the XF will be destroyed.")]
-    public float Timeout = 5;
-
     #endregion
 
     #region Unity Events
@@ -32,8 +26,6 @@ public class BarrelBreakXF : MonoBehaviour
     private void Start()
     {
         SpawnPlanks();
-
-        StartCoroutine(DelayedDestroy());
     }
 
     #endregion
@@ -48,16 +40,6 @@ public class BarrelBreakXF : MonoBehaviour
             var rb = plank.GetComponent<Rigidbody2D>();
             rb.AddForce(new Vector2(Random.Range(-SpreadRangeForce, SpreadRangeForce), Force), ForceMode2D.Impulse);
         }
-    }
-
-    /// <summary>
-    /// Delayed auto destroy
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator DelayedDestroy() {
-        yield return new WaitForSeconds(Timeout);
-
-        Destroy(gameObject);
     }
 
     #endregion

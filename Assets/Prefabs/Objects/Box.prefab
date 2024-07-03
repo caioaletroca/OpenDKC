@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7135315349135947590}
   - component: {fileID: 3356583032277774227}
   - component: {fileID: 225453290300424509}
+  - component: {fileID: 5176015308401195651}
   m_Layer: 11
   m_Name: Box
   m_TagString: Throwable
@@ -197,7 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0de760a8acc6e4088c5eac14ff6300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BreakVFX: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -332,6 +332,45 @@ MonoBehaviour:
       - m_Target: {fileID: 5310607917272716874}
         m_TargetAssemblyTypeName: ThrowableItem, Assembly-CSharp
         m_MethodName: OnHitGround
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerParameter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerExitParameter:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5176015308401195651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797499878864420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e225ab4f144b3a447a601843380e90a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Layers:
+    serializedVersion: 2
+    m_Bits: 4096
+  OnTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5310607917272716874}
+        m_TargetAssemblyTypeName: ThrowableItem, Assembly-CSharp
+        m_MethodName: OnHitWall
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

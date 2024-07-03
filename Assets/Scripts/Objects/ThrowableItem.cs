@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Component for any pickable and throwable item
@@ -40,12 +41,20 @@ public class ThrowableItem : MonoBehaviour {
     public LayerMask GroundLayer;
 
     /// <summary>
-    /// Flag that represents if the item should take a hit when hit the ground on throw
+    /// Flag that represents if the item should take damage when hit the ground on throw
     /// </summary>
-    [Tooltip("Flag that represents if the item should take a hit when hit the ground on throw.")]
+    [Tooltip("Flag that represents if the item should take damage when hit the ground on throw.")]
     public bool Fragile;
 
     public Vector2 Offset;
+
+    [Space(10)]
+
+    /// <summary>
+    /// Event called when the item is thrown.
+    /// </summary>
+    [Tooltip("Event called when the item is thrown.")]
+    public UnityEvent OnThrow;
 
     #endregion
 
@@ -139,13 +148,14 @@ public class ThrowableItem : MonoBehaviour {
         Throwed = true;
 
         mRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
-        
         mRigidBody2D.AddForce(force, ForceMode2D.Impulse);
+        mRigidBody2D.gravityScale = 1;
 
         // Clean up parent
         transform.parent = null;
 
-        mRigidBody2D.gravityScale = 1;
+        // Call event
+        OnThrow.Invoke();
     }
 
     public void PerformBreak() {
