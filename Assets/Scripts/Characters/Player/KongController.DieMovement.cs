@@ -35,4 +35,18 @@ public partial class KongController
     }
 
     #endregion
+
+    #region Protected Methods
+
+    /// <summary>
+    /// Disable enemy interactions.
+    /// Useful after the player dies, to avoid enemies pushing the player around.
+    /// </summary>
+    protected void DisableEnemyInteraction() {
+        var collider = GetComponent<CapsuleCollider2D>();
+
+        collider.excludeLayers = LayerMask.GetMask("Enemy");
+    }
+
+    #endregion
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 /// The player controller, handling all physics movements and animations for the Kong
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Animator))]
 [DisallowMultipleComponent]
 public partial class KongController : MonoBehaviour
@@ -169,6 +170,12 @@ public partial class KongController : MonoBehaviour
 
         // Calls delayed restart
         SceneController.RestartDelay(DamagerSettings.RestartDelay);
+
+        // Disable other interactions
+        DisableEnemyInteraction();
+
+        // TODO: Make it change between diddy and dixie
+        VFXController.Instance.Trigger("DiddyHitSFX", transform.position);
     }
 
     /// <summary>

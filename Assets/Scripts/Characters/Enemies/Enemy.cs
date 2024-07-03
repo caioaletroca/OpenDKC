@@ -125,7 +125,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     /// <param name="damager"></param>
     /// <param name="damageable"></param>
-    public virtual void OnDamageEvent(Damager damager, Damageable damageable) { }
+    public virtual void OnDamageEvent(Damager damager, Damageable damageable) {
+        VFXController.Instance.Trigger("CrashVFX", damageable.transform.position);
+    }
 
     /// <summary>
     /// Fired when the enemy is activated
