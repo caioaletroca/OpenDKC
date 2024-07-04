@@ -13,12 +13,24 @@ public class ThrowableItem : MonoBehaviour {
     #region State Variables
 
     /// <summary>
+    /// Flag that represents if this object is idle
+    /// </summary>
+    // [HideInInspector]
+    public bool Idle = true;
+
+    /// <summary>
     /// Flag that represents if this object has been picked
     /// </summary>
     [HideInInspector]
     public bool Picked {
         get => animator.GetBool("Picked");
-        set => animator.SetBool("Picked", value);
+        set {
+            if(value == true) {
+                Idle = false;
+            }
+
+            animator.SetBool("Picked", value);
+        }
     }
 
     /// <summary>
@@ -27,18 +39,18 @@ public class ThrowableItem : MonoBehaviour {
     [HideInInspector]
     public bool Throwed {
         get => animator.GetBool("Throwed");
-        set => animator.SetBool("Throwed", value);
+        set {
+            if(value == true) {
+                Idle = false;
+            }
+
+            animator.SetBool("Throwed", value);
+        }
     }
 
     #endregion
 
     #region Public Properties
-
-    /// <summary>
-    /// The ground layer
-    /// </summary>
-    [Tooltip("Ground layer for collision detection.")]
-    public LayerMask GroundLayer;
 
     /// <summary>
     /// Flag that represents if the item should take damage when hit the ground on throw
@@ -89,14 +101,20 @@ public class ThrowableItem : MonoBehaviour {
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
         proximityActivator = GetComponent<ProximityActivator>();
+
+        // Disable damageable. The item should only take damage when picked or throwed.
+        damageable.enabled = false;
     }
 
     protected void OnDestroy() {
-        if(Picked) {
-            var kongController = transform.parent.GetComponent<KongController>();
-            if(kongController) {
-                kongController.OnThrowableDestroy();
-            }
+        if(!transform.parent) {
+            return;
+        }
+        
+        var kongController = transform.parent.GetComponentInParent<KongController>();
+        
+        if(kongController) {
+            kongController.OnThrowableDestroy();
         }
     }
 
@@ -132,20 +150,26 @@ public class ThrowableItem : MonoBehaviour {
 
         // Disable proximity
         proximityActivator.SoftActive = false;
+
+        // Enable damage
+        damageable.enabled = true;
     }
 
     public void PerformDrop() {
+        Idle = true;
         Picked = false;
 
         // Clean up parent
         transform.parent = null;
         proximityActivator.SoftActive = true;
 
+        // Disable damage
+        damageable.enabled = false;
+
         SnapToGround();
     }
 
     public void PerformThrow(Vector2 force) {
-        Picked = false;
         Throwed = true;
 
         mRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
@@ -154,6 +178,9 @@ public class ThrowableItem : MonoBehaviour {
 
         // Clean up parent
         transform.parent = null;
+
+        // Enable damage
+        damageable.enabled = true;
 
         // Call event
         OnThrow.Invoke();
@@ -172,13 +199,13 @@ public class ThrowableItem : MonoBehaviour {
     public void OnTakeDamage(Damager damager, Damageable damageable) {
         // Check if the damage taken came from an enemy
         if(damager) {
-            var itemDamager = GetComponent<Damager>();
+            var throwableItemDamager = GetComponent<Damager>();
 
             // Get enemy damageable instance
             var enemyDamageable = damager.GetComponentInParent<Damageable>();
 
             // Force damage into enemy
-            enemyDamageable.TakeDamage(itemDamager);
+            enemyDamageable.TakeDamage(throwableItemDamager);
         }
     }
 
@@ -198,6 +225,8 @@ public class ThrowableItem : MonoBehaviour {
 
             return;
         }
+
+        Picked = false;
     }
 
     public void OnHitWall() {
@@ -223,7 +252,7 @@ public class ThrowableItem : MonoBehaviour {
     /// </summary>
     protected void SnapToGround() {
         // Calculate point on the ground
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10, GroundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10, LayerMask.GetMask("Ground"));
         if(hit.collider != null) {
             transform.position = new Vector2(transform.position.x, hit.point.y + Offset.y);
         }

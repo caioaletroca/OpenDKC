@@ -99,7 +99,7 @@ public class Damager : MonoBehaviour
 
         // Get the damageable component instance
         var damageable = collision.gameObject.GetComponent<Damageable>();
-        if (damageable)
+        if (damageable && damageable.enabled)
             TakeDamage(damageable);
         else
             OnNonDamageableHit?.Invoke(this);
@@ -117,7 +117,7 @@ public class Damager : MonoBehaviour
 
         // Get the damageable component instance
         var damageable = collision.gameObject.GetComponent<Damageable>();
-        if (damageable)
+        if (damageable && damageable.enabled)
             TakeDamage(damageable);
         else
             OnNonDamageableHit?.Invoke(this);

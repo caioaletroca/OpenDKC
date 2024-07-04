@@ -180,6 +180,11 @@ public class Damageable : MonoBehaviour, IDataPersister
     /// <param name="ignoreInvincible">If should ignore the <see cref="Damageable"/> invencibility status</param>
     public void TakeDamage(Damager damager, bool ignoreInvincible = false)
     {
+        // Skip if this script is not enabled
+        if(!enabled) {
+            return;
+        }
+        
         if ((Invulnerable && !ignoreInvincible) || Health <= 0)
             return;
 

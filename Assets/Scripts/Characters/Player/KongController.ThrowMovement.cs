@@ -73,17 +73,24 @@ public partial class KongController {
     #region Event Methods
 
     public void OnThrowableTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Throwable") {
-            // Only allow hold if Attack or Running is activated
-            if(Attack || Run) {
-                // Check if throwable can be picked
-                var throwableItem = collision.gameObject.GetComponent<ThrowableItem>();
-                if(!throwableItem.Picked && !throwableItem.Throwed) {
-                    Hold = true;
+        // Check if the item has throwable tag
+        if (collision.gameObject.tag != "Throwable")
+            return;
 
-                    PerformItemPickup(collision.gameObject.GetComponent<ThrowableItem>());
-                }
-            }
+        // Check if we are already holding an item
+        if (ItemHolded)
+            return;
+
+        // Only allow hold if Attack or Running is activated
+        if(!(Attack || Run))
+            return;
+
+        // Check if throwable can be picked
+        var throwableItem = collision.gameObject.GetComponent<ThrowableItem>();
+        if(throwableItem.Idle) {
+            Hold = true;
+
+            PerformItemPickup(collision.gameObject.GetComponent<ThrowableItem>());
         }
     }
 
