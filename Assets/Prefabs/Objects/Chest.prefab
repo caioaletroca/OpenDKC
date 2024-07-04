@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1571005276877556890}
   - component: {fileID: 6095663466750704861}
   - component: {fileID: 690603769571352588}
+  - component: {fileID: 7944304444574014182}
   - component: {fileID: 4069060753501143156}
   - component: {fileID: 7527973440243412534}
   - component: {fileID: 8746213301112786192}
@@ -133,7 +134,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -204,6 +205,20 @@ MonoBehaviour:
   OnThrow:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7944304444574014182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657096152479135051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff6d78fbd0b0b8488eed0c71f974a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawn: {fileID: 235323947519826073, guid: 469fbcc151a77e74f90140a262871a53, type: 3}
+  Force: 10
 --- !u!114 &4069060753501143156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +290,18 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 7944304444574014182}
+        m_TargetAssemblyTypeName: ThrowableItemSpawn, Assembly-CSharp
+        m_MethodName: OnBreak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 690603769571352588}
         m_TargetAssemblyTypeName: ThrowableItem, Assembly-CSharp
         m_MethodName: PerformBreak
