@@ -254,7 +254,7 @@ public class ThrowableItem : MonoBehaviour {
         // Calculate point on the ground
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10, LayerMask.GetMask("Ground"));
         if(hit.collider != null) {
-            transform.position = new Vector2(transform.position.x, hit.point.y + Offset.y);
+            transform.position = new Vector3(transform.position.x, hit.point.y + Offset.y, 1);
         }
     }
 
