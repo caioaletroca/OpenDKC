@@ -20,6 +20,7 @@ public class KongStateMachine : BaseStateMachine<KongController> {
         AddState(new KongJumpHoldState(controller, animator));
         AddState(new KongDroppingState(controller, animator));
         AddState(new KongThrowState(controller, animator));
+        AddState(new KongRopeState(controller, animator));
 
         AddAnyState(new KongHurtStateMachine(controller, animator));
 

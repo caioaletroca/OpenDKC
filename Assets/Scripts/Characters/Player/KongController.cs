@@ -98,6 +98,11 @@ public partial class KongController : MonoBehaviour
     public HookSettings HookSettings;
 
     /// <summary>
+    /// Instance for the Rope Settings
+    /// </summary>
+    public RopeSettings RopeSettings;
+
+    /// <summary>
     /// Instance for the Throw Settings
     /// </summary>
     public ThrowSettings ThrowSettings;
@@ -139,9 +144,8 @@ public partial class KongController : MonoBehaviour
 
         stateMachine.OnStateFixedUpdate();
         
-        UpdateVelocityHorizontalMovement();
-        UpdateForceHorizontalMovement();
-        UpdateVerticalMovement();
+        UpdateMovement();
+        UpdateRopeVelocityVerticalMovement();
     }
 
     #endregion

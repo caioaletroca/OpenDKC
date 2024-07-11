@@ -41,8 +41,6 @@ public partial class KongController {
         // Check for type of throw
         force *= VerticalValue > 0.5 ? ThrowSettings.UpThrowForce : ThrowSettings.NormalThrowForce;
 
-        Debug.Log(VerticalValue > 0.5 ? "ThrowSettings.UpThrowForce" : "ThrowSettings.NormalThrowForce");
-
         ItemHolded.PerformThrow(force);
         ItemHolded = null;
     }
@@ -72,7 +70,7 @@ public partial class KongController {
 
     #region Event Methods
 
-    public void OnThrowableTriggerEnter2D(Collider2D collision) {
+    private void OnThrowableTriggerEnter2D(Collider2D collision) {
         // Check if the item has throwable tag
         if (collision.gameObject.tag != "Throwable")
             return;

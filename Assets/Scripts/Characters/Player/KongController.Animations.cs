@@ -54,5 +54,7 @@ public partial class KongController {
         public static int Dropping = Animator.StringToHash("diddy_dropping");
 
         public static int Throw = Animator.StringToHash("diddy_throw");
+
+        public static int RopeIdle = Animator.StringToHash("diddy_rope_idle");
     }
 }

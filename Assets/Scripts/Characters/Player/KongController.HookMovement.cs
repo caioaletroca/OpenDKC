@@ -5,10 +5,19 @@ public partial class KongController
     #region Public Methods
 
     /// <summary>
+    /// Perform a hook dismount small jump
+    /// </summary>
+    public void PerformHookDismount() => PerformVerticalImpulse(HookSettings.DismountJumpForce);
+
+    #endregion
+    
+    #region Event Methods
+
+    /// <summary>
     /// Handles the collision on a hook
     /// </summary>
     /// <param name="collision"></param>
-    public void OnHookTriggerEnter2D(Collider2D collision)
+    private void OnHookTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Hook")
         {

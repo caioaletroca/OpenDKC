@@ -2,7 +2,16 @@
 
 public partial class KongController
 {
-    #region Events
+    #region Public Methods
+
+    /// <summary>
+    /// Perform a idle attack impulse
+    /// </summary>
+    public void PerformIdleAttack() => PerformHorizontalImpulse(mFacingRight ? MovementSettings.AttackForce : -MovementSettings.AttackForce);
+
+    #endregion
+    
+    #region Event Methods
 
     public void OnAttackDamageableHit(Damager damager, Damageable damageable) {
         VFXController.Instance.Trigger("CrashVFX", transform.position);

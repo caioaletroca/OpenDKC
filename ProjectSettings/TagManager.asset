@@ -8,6 +8,7 @@ TagManager:
   - Banana
   - Barrel
   - Throwable
+  - Rope
   layers:
   - Default
   - TransparentFX

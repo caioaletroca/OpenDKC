@@ -39,6 +39,8 @@
 
         public static string Hold = "Hold";
 
+        public static string Rope = "Rope";
+
         public static string FlipTrigger = "FlipTrigger";
 
         #endregion

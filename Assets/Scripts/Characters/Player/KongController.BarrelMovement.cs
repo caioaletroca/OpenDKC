@@ -2,13 +2,13 @@
 
 public partial class KongController
 {
-    #region Unity Methods
+    #region Event Methods
 
     /// <summary>
     /// Handles the collision on a hook
     /// </summary>
     /// <param name="collision"></param>
-    public void OnBarrelTriggerEnter2D(Collider2D collision)
+    private void OnBarrelTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Barrel" && !Barrel)
         {
@@ -21,7 +21,7 @@ public partial class KongController
     /// Handles the collision exit on a hook
     /// </summary>
     /// <param name="collision"></param>
-    public void OnBarrelTriggerExit2D(Collider2D collision)
+    private void OnBarrelTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Barrel")
         {
