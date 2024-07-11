@@ -4548,25 +4548,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1215427202 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6944360725309435770, guid: 5f07af95569c326498a1f64b4cea1fa4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1376527643}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1215427215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215427202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45d028396072c544b8a942b4edb53db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VerticalSpeed: 0
 --- !u!850595691 &1242365649
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -4809,36 +4790,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3520733439271104534, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: UpThrowForce.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3520733439271104534, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: UpThrowForce.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3520733439271104534, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: NormalThrowForce.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3520733439271104534, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: NormalThrowForce.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993394080426852892, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: RopeSettings
-      value: 
-      objectReference: {fileID: 1215427215}
-    - target: {fileID: 6944360725309435750, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6944360725309435768, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4897,11 +4848,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6944360725309435770, guid: 5f07af95569c326498a1f64b4cea1fa4,
-        type: 3}
-      insertIndex: 9
-      addedObject: {fileID: 1215427215}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f07af95569c326498a1f64b4cea1fa4, type: 3}
 --- !u!1 &1388358848
 GameObject:

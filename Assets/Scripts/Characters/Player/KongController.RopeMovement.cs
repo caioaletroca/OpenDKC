@@ -1,6 +1,10 @@
 using UnityEngine;
 
 public partial class KongController {
+    #region Private Properties
+
+    #endregion
+
     #region Public Methods
 
     public void PerformRopeGrap() {
@@ -15,8 +19,16 @@ public partial class KongController {
     private void OnRopeTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Rope") {
             Rope = true;
+
+            SetParent(collision.gameObject);
         }
     }
+
+    #endregion
+
+    #region Private Methods
+
+    
 
     #endregion
 }

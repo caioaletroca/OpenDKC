@@ -25,6 +25,7 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
         var run = stateMachine.GetState(typeof(KongRunState));
         var attack = stateMachine.GetState(typeof(KongAttackState));
         var hook = stateMachine.GetState(typeof(KongHookStateMachine));
+        var rope = stateMachine.GetState(typeof(KongRopeStateMachine));
         var insideBarrel = stateMachine.GetState(typeof(KongInsideBarrelState));
 
         var somersault = GetState(typeof(KongAirbornSomersaultState));
@@ -79,6 +80,7 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
         ));
         AddTransition(attack, new FunctionPredicate(() => controller.Grounded && controller.Attack));
         AddTransition(hook, new FunctionPredicate(() => controller.Hook));
+        AddTransition(rope, new FunctionPredicate(() => controller.Rope));
         AddTransition(insideBarrel, new FunctionPredicate(() => controller.Barrel));
 
         SetCurrent(typeof(KongAirbornRiseState));

@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: -4134707158039321085}
   - component: {fileID: 8226759611177957186}
   - component: {fileID: 3604560453348423945}
+  - component: {fileID: 5445494654168199196}
   - component: {fileID: 3520733439271104534}
   - component: {fileID: 9005975490835626365}
   - component: {fileID: 8192996590388843089}
@@ -531,6 +532,7 @@ MonoBehaviour:
   MovementSettings: {fileID: -4134707158039321085}
   DamagerSettings: {fileID: 8226759611177957186}
   HookSettings: {fileID: 3604560453348423945}
+  RopeSettings: {fileID: 5445494654168199196}
   ThrowSettings: {fileID: 3520733439271104534}
   DeathDirection: {x: 0, y: 0}
   SpawnGameObject: {fileID: 0}
@@ -593,6 +595,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapOffset: {x: 0, y: -1.28125, z: -1}
   DismountJumpForce: 5
+--- !u!114 &5445494654168199196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944360725309435770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45d028396072c544b8a942b4edb53db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VerticalSpeed: 10
 --- !u!114 &3520733439271104534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,8 +621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThrowAnchor: {fileID: 1803992903918052215}
-  NormalThrowForce: {x: 20, y: 2}
-  UpThrowForce: {x: 15, y: 8}
+  NormalThrowForce: {x: 10, y: 1}
+  UpThrowForce: {x: 2, y: 6}
 --- !u!114 &9005975490835626365
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -145,7 +145,6 @@ public partial class KongController : MonoBehaviour
         stateMachine.OnStateFixedUpdate();
         
         UpdateMovement();
-        UpdateRopeVelocityVerticalMovement();
     }
 
     #endregion

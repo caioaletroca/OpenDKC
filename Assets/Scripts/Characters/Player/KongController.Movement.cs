@@ -7,26 +7,31 @@ public partial class KongController
     /// <summary>
     /// Defines a set of variables to handle an axis movement
     /// </summary>
-    struct MovementAxis {
+    private class MovementAxis {
+        /// <summary>
+        /// Defines which axis this structured corresponds
+        /// </summary>
+        public Vector2 Axis;
+
         /// <summary>
         /// Stores the movement velocity
         /// </summary>
-        public float Movement;
+        public float Movement = 0;
 
         /// <summary>
         /// A flag that represents if there's a velocity driven request
         /// </summary>
-        public bool VelocityDriven;
+        public bool VelocityDriven = false;
 
         /// <summary>
         /// Stores the movement force
         /// </summary>
-        public float Force;
+        public float Force = 0;
 
         /// <summary>
         /// A flag that represents if there's a force driven request
         /// </summary>
-        public bool ForceDriven;
+        public bool ForceDriven = false;
 
         /// <summary>
         /// Constructor
@@ -35,11 +40,8 @@ public partial class KongController
         /// <param name="Force"></param>
         /// <param name="VelocityDriven"></param>
         /// <param name="ForceDriven"></param>
-        public MovementAxis(float Movement, float Force, bool VelocityDriven, bool ForceDriven) {
-            this.Movement = Movement;
-            this.VelocityDriven = VelocityDriven;
-            this.Force = Force;
-            this.ForceDriven = ForceDriven;
+        public MovementAxis(Vector2 Axis) {
+            this.Axis = Axis;
         }
     }
 
@@ -52,9 +54,9 @@ public partial class KongController
     /// </summary>
     const float mGroundedRadius = 0.2f;
 
-    private MovementAxis X = new(0, 0, false, false);
+    private MovementAxis X = new(Vector2.right);
 
-    private MovementAxis Y = new(0, 0, false, false);
+    private MovementAxis Y = new(Vector2.up);
 
     /// <summary>
     /// A stored value for the current velocity
@@ -82,10 +84,10 @@ public partial class KongController
         PerformForceMovement(X, Magnitude * InputController.Instance.HorizontalValue);
 
     public void PerformVelocityVerticalMovement(float Speed) =>
-        PerformVelocityMovement(X, Speed * InputController.Instance.VerticalValue);
+        PerformVelocityMovement(Y, Speed * InputController.Instance.VerticalValue);
 
     public void PerformForceVerticalMovement(float Magnitude) =>
-        PerformForceMovement(X, Magnitude * InputController.Instance.VerticalValue);
+        PerformForceMovement(Y, Magnitude * InputController.Instance.VerticalValue);
 
     public void PerformHorizontalImpulse(float Magnitude) {
         // Resets velocity to make the movement more apealling
@@ -169,7 +171,11 @@ public partial class KongController
             return;
 
         // Normal movement
-        TargetVelocity = new Vector2(axis.Movement * 10f * Time.deltaTime, mRigidBody2D.velocity.y);
+        TargetVelocity =
+            // Assign a new velocity filtered out the current working axis
+            (axis.Axis * axis.Movement * 10f * Time.deltaTime) +
+            // Get the other axis (perpendicular) and filter the current true velocity from RigidBody2D
+            (Vector2.Perpendicular(axis.Axis) * mRigidBody2D.velocity);
 
         // Apply smoothing to the movement
         mRigidBody2D.velocity = Vector2.SmoothDamp(mRigidBody2D.velocity, TargetVelocity, ref mVelocity, MovementSettings.MovementSmoothing);        
@@ -188,7 +194,7 @@ public partial class KongController
             return;
 
         // Apply smoothing to the movement
-        mRigidBody2D.AddForce(new Vector2(0, axis.Force), ForceMode2D.Force);
+        mRigidBody2D.AddForce(axis.Axis * axis.Force, ForceMode2D.Force);
 
         // Turn off the request flag
         axis.ForceDriven = false;
