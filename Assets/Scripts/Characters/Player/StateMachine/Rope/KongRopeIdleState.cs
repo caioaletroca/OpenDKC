@@ -12,7 +12,11 @@ public class KongRopeIdleState : BaseState<KongController>
 
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
-        
+        var turn = stateMachine.GetState(typeof(KongRopeTurnState));
+        var vertical = stateMachine.GetState(typeof(KongRopeVerticalState));
+
+        AddTransition(turn, new FunctionPredicate(() => controller.HorizontalValue > 0.001));
+        AddTransition(vertical, new FunctionPredicate(() => controller.VerticalValue != 0));
     }
 
     #endregion
@@ -31,7 +35,7 @@ public class KongRopeIdleState : BaseState<KongController>
     public override void OnStateFixedUpdate()
     {
         controller.PerformVelocityHorizontalMovement(0);
-        controller.PerformVelocityVerticalMovement(controller.RopeSettings.VerticalSpeed);
+        controller.PerformVelocityVerticalMovement(0);
     }
 
     #endregion

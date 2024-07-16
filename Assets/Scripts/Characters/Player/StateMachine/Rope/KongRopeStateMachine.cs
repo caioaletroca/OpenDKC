@@ -6,6 +6,7 @@ public class KongRopeStateMachine : BaseStateMachine<KongController>
 
     public KongRopeStateMachine(KongController controller, Animator animator) : base(controller, animator) {
         AddState(new KongRopeIdleState(controller, animator));
+        AddState(new KongRopeTurnState(controller, animator));
         AddState(new KongRopeVerticalState(controller, animator));
         AddState(new KongRopeHorizontalState(controller, animator));
 
