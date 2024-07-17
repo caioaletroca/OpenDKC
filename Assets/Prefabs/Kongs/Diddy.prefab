@@ -535,6 +535,7 @@ MonoBehaviour:
   RopeSettings: {fileID: 5445494654168199196}
   ThrowSettings: {fileID: 3520733439271104534}
   DeathDirection: {x: 0, y: 0}
+  RopeController: {fileID: 0}
   SpawnGameObject: {fileID: 0}
   FlipTest:
     m_PersistentCalls:
@@ -607,7 +608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45d028396072c544b8a942b4edb53db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VerticalSpeed: 10
+  HorizontalSpeed: 5
+  VerticalSpeed: 20
 --- !u!114 &3520733439271104534
 MonoBehaviour:
   m_ObjectHideFlags: 0

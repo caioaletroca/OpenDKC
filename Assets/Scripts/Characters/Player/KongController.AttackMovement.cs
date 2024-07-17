@@ -7,7 +7,7 @@ public partial class KongController
     /// <summary>
     /// Perform a idle attack impulse
     /// </summary>
-    public void PerformIdleAttack() => PerformHorizontalImpulse(mFacingRight ? MovementSettings.AttackForce : -MovementSettings.AttackForce);
+    public void PerformIdleAttack() => PerformHorizontalImpulse(FacingRight ? MovementSettings.AttackForce : -MovementSettings.AttackForce);
 
     #endregion
     

@@ -205,9 +205,9 @@ public partial class KongController
     /// </summary>
     private void CheckForFlip() {
         // Face the player to the right side depending on his movement
-        if (X.Movement > 0 && !mFacingRight)
+        if (X.Movement > 0 && !FacingRight)
             Flip();
-        else if (X.Movement < 0 && mFacingRight)
+        else if (X.Movement < 0 && FacingRight)
             Flip();
     }
 

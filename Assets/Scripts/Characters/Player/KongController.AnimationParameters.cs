@@ -7,6 +7,8 @@
     {
         #region Public Properties
 
+        public static string FacingRight = "FacingRight";
+
         public static string HorizontalValue = "HorizontalValue";
 
         public static string VerticalValue = "VerticalValue";

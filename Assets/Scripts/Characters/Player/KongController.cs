@@ -71,11 +71,6 @@ public partial class KongController : MonoBehaviour
     /// </summary>
     private Animator animator;
 
-    /// <summary>
-    /// A flag that represents if the player is facing the right side
-    /// </summary>
-    private bool mFacingRight = true;
-
     #endregion
 
     #region Settings
@@ -278,7 +273,7 @@ public partial class KongController : MonoBehaviour
     private void Flip()
     {
         // Switch the current player facing side
-        mFacingRight = !mFacingRight;
+        FacingRight = !FacingRight;
 
         // Multiply the player's x local scale by -1
         Vector3 scale = transform.localScale;

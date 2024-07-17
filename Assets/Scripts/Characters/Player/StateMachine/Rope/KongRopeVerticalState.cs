@@ -23,13 +23,17 @@ public class KongRopeVerticalState : BaseState<KongController>
 
     public override void OnStateStart()
     {
-        // animator.Play(KongController.Animations.Rope);
+        if(controller.VerticalValue > 0)
+            animator.Play(KongController.Animations.RopeVerticalUp);
+        else
+            animator.Play(KongController.Animations.RopeVerticalDown);
     }
 
     public override void OnStateFixedUpdate()
     {
         controller.PerformVelocityHorizontalMovement(0);
-        controller.PerformVelocityVerticalMovement(controller.RopeSettings.VerticalSpeed);
+        controller.PerformRopeVerticalMovement();
+        // controller.PerformVelocityVerticalMovement(controller.RopeSettings.VerticalSpeed);
     }
 
     #endregion

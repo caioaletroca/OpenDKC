@@ -23,7 +23,6 @@ public class KongHookHookingState : BaseState<KongController>
 
     public override void OnStateStart()
     {
-        controller.PerformVelocityHorizontalMovement(0);
         controller.DisableGravity();
         controller.SetVelocity(Vector2.zero);
         controller.SetLocalPosition(controller.HookSettings.SnapOffset);

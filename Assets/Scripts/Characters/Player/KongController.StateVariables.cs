@@ -1,9 +1,18 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public partial class KongController
 {
     #region State Variables
+
+    /// <summary>
+    /// A flag that represents if the player is facing the right side
+    /// </summary>
+    public bool FacingRight
+    {
+        get => animator.GetBool(AnimationParameters.FacingRight);
+        set => animator.SetBool(AnimationParameters.FacingRight, value);
+    }
 
     /// <summary>
     /// The horizontal input axis in absolute value

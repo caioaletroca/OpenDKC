@@ -36,7 +36,7 @@ public partial class KongController {
 
     public void PerformItemThrow() {
         // Check throw direction
-        var force = new Vector2(mFacingRight ? 1 : -1, 1);
+        var force = new Vector2(FacingRight ? 1 : -1, 1);
 
         // Check for type of throw
         force *= VerticalValue > 0.5 ? ThrowSettings.UpThrowForce : ThrowSettings.NormalThrowForce;
