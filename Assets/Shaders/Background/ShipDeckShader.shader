@@ -3,12 +3,15 @@ Shader "Background/ShipDeckShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _TexWidth ("Texture Width", int) = 256
+        _TexHeight ("Texture Height", int) = 224
         _SkyTop ("Sky Top Section Row", int) = 20
         _SkyMiddle ("Sky Middle Section Row", int) = 48
         _SkyBottom ("Sky Bottom Section Row", int) = 112
-        _Speed ("Scroll Speed", float) = 1.0
-        _SpeedFactor ("Speed Factor", float) = 1.0
-        _TexHeight ("Texture Height", int) = 224
+        _SkySpeed ("Sky Scroll Speed", float) = 800.0
+        _WaterAmplitude ("Water Wave Amplitude", float) = 1
+        _WaterFrequency ("Water Wave Frequency", float) = 1
+        _WaterSpeed ("Water Wave Drift Speed", float) = 1
     }
     SubShader
     {
@@ -38,13 +41,17 @@ Shader "Background/ShipDeckShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            int _TexWidth;
             int _TexHeight;
+
             int _SkyTop;
             int _SkyMiddle;
             int _SkyBottom;
+            float _SkySpeed;
 
-            float _Speed;
-            float _SpeedFactor;
+            float _WaterAmplitude;
+            float _WaterFrequency;
+            float _WaterSpeed;
 
             v2f vert (appdata_t v)
             {
@@ -56,30 +63,38 @@ Shader "Background/ShipDeckShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // Convert the UV y-coordinate to a pixel coordinate
-                float yPixel = i.uv.y * _TexHeight;
-
-                float shiftAmount = floor(_Time * 2);
-
-                float scrollOffset = 0.0;
+                // Convert the UV coordinate to a pixel coordinate
+                // Floor both coordinates, and offset Y coordinate, so the number starts from top to bottom
+                // like old CRT screens
+                float2 pixel = float2(floor(i.uv.x * _TexWidth), floor(_TexHeight - i.uv.y * _TexHeight));
+                float2 offset = float2(0, 0);
 
                 // Compute Sky offsets
-                if (yPixel > _TexHeight - _SkyTop)
+                if (pixel.y < _SkyTop)
                 {
-                    scrollOffset = _SpeedFactor * _Time * _Speed;
+                    offset.x = _Time * _SkySpeed;
                 }
-                if (yPixel <= _TexHeight - _SkyTop && yPixel > _TexHeight - _SkyMiddle)
+                if (pixel.y >= _SkyTop && pixel.y < _SkyMiddle)
                 {
-                    scrollOffset = _SpeedFactor * _Time * _Speed / 2;
+                    offset.x = _Time * _SkySpeed / 2;
                 }
-                if (yPixel <= _TexHeight - _SkyMiddle && yPixel > _TexHeight - _SkyBottom)
+                if (pixel.y >= _SkyMiddle && pixel.y < _SkyBottom)
                 {
-                    scrollOffset = _SpeedFactor * _Time * _Speed / 4;
+                    offset.x = _Time * _SkySpeed / 8;
                 }
 
-                // TODO: Make water effect
+                // Compute Water offsets
+                if (pixel.y >= _SkyBottom)
+                {
+                    float _Amplitude = _WaterAmplitude;
+                    float _Speed = _WaterSpeed * 0.001;
+                    offset.x = _Amplitude * sin(pixel.y * _Time * _WaterFrequency) + pow(pixel.y, 2) * _Time * _Speed;
+                }
+
+                offset.x = floor(offset.x) / _TexWidth;
                 
-                float2 uv = i.uv + float2(scrollOffset, 0);
+                // Apply offsets
+                float2 uv = i.uv + offset;
 
                 // Sample the texture with the modified UV coordinates
                 fixed4 col = tex2D(_MainTex, uv);
