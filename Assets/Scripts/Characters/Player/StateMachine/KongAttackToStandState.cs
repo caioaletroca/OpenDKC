@@ -13,11 +13,18 @@ public class KongAttackToStandState : BaseState<KongController>
     public override void RegisterTransitions(BaseStateMachine<KongController> stateMachine)
     {
         var idle = stateMachine.GetState(typeof(KongIdleState));
+        var walk = stateMachine.GetState(typeof(KongWalkState));
         
         AddTransition(idle, new CompositePredicate(
             new IPredicate[] {
                 new AnimationPredicate(animator, KongController.Animations.AttackToStand, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.HorizontalValue < 0.001 && !controller.Run)
+                KongStateMachineHelper.ShouldIdle(controller)
+            }
+        ));
+        AddTransition(walk, new CompositePredicate(
+            new IPredicate[] {
+                new AnimationPredicate(animator, KongController.Animations.AttackToStand, AnimationPredicate.Timing.End),
+                KongStateMachineHelper.ShouldWalk(controller)
             }
         ));
     }
@@ -27,8 +34,13 @@ public class KongAttackToStandState : BaseState<KongController>
     #region State Events
 
     public override void OnStateStart()
-    {
+    {   
         animator.Play(KongController.Animations.AttackToStand);
+    }
+
+    public override void OnStateFixedUpdate()
+    {
+        controller.PerformVelocityHorizontalMovement(0);
     }
 
     #endregion

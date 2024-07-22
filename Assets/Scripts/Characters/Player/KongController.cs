@@ -280,8 +280,8 @@ public partial class KongController : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
 
-        // Call Animation trigger to handle the walking/running flipping animation
-        FlipTrigger();
+        // Call trigger to handle the walking/running flipping animation
+        FlipTrigger.Invoke(FacingRight);
     }
 
     #endregion

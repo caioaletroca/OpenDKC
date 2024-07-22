@@ -7,7 +7,7 @@ public class KongAttackState : BaseState<KongController>
     /// <summary>
     /// Flag to control if we should perform a attack from idle state
     /// </summary>
-    bool idleAttack = false;
+    bool IdleAttack = false;
 
     #endregion
 
@@ -29,10 +29,10 @@ public class KongAttackState : BaseState<KongController>
         AddTransition(run, new CompositePredicate(
             new IPredicate[] {
                 new AnimationPredicate(animator, KongController.Animations.Attack, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.Run)
+                KongStateMachineHelper.ShouldRun(controller)
             }
         ));
-        AddTransition(airborn, new FunctionPredicate(() => controller.Jump));
+        AddTransition(airborn, KongStateMachineHelper.ShouldJump(controller));
         AddTransition(picking, new FunctionPredicate(() => controller.Hold));
         AddTransition(attackToStand, new AnimationPredicate(animator, KongController.Animations.Attack, AnimationPredicate.Timing.End));
     }
@@ -48,17 +48,20 @@ public class KongAttackState : BaseState<KongController>
         controller.AttackDamager.enabled = true;
 
         if(controller.HorizontalValue < 0.001) {
-            idleAttack = true;
+            IdleAttack = true;
 
             controller.PerformIdleAttack();
         }
 
         animator.Play(KongController.Animations.Attack);
+
+        // Register event
+        controller.FlipTrigger.AddListener(OnFlip);
     }
 
-    public override void OnStateUpdate()
-    {
-        if(idleAttack) {
+    public override void OnStateFixedUpdate()
+    {       
+        if(IdleAttack) {
             return;
         }
 
@@ -69,7 +72,22 @@ public class KongAttackState : BaseState<KongController>
     {
         controller.Damageable.DisableInvulnerability();
         controller.AttackDamager.enabled = false;
-        idleAttack = false;
+        IdleAttack = false;
+
+        // Unregister event
+        controller.FlipTrigger.RemoveListener(OnFlip);
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void OnFlip(bool direction) {
+        // If the kong has flipped direction before 0.42f frame
+        // Skip animation to that position, making it end earlier
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.42f) {
+            animator.Play(KongController.Animations.Attack, 0, 0.42f);
+        }
     }
 
     #endregion

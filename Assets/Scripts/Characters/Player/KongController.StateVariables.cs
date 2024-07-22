@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public partial class KongController
 {
@@ -184,7 +185,7 @@ public partial class KongController
     /// <summary>
     /// A trigger to the flip state, used in walking and running states
     /// </summary>
-    public void FlipTrigger() => animator.SetTrigger(AnimationParameters.FlipTrigger);
+    public UnityEvent<bool> FlipTrigger;
 
     #endregion
 
