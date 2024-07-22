@@ -5,7 +5,7 @@ This repository is for learning purposes only.
 
 ## Current Progress
 
-It's still in development, I'm currently adding more functional enemies and developing the level beginning.
+It's still in development, you can check my (bad) TODO list [here](./TODO.md).
 
 ![alt text](https://i.imgur.com/IPCLDxu.jpg)
 
@@ -15,7 +15,9 @@ I am a web application developer and always wanted to learn making games using U
 
 ## Goal
 
-The idea is to learn as much as possible about the game development workflow using Unity, producing only one level containing interesting and challenging gameplay elements.
+The idea is to learn as much as possible about the game development workflow using Unity.
+For now I want to keep it secret, but this is not a 1:1 recreation of a existing level, and no "new content" will be added.
+I want to make a short but interesting experience, pushing boundaries that wouldn't be possible on SNES.
 
 ## Thanks
 

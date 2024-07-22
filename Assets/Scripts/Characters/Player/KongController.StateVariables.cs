@@ -15,7 +15,7 @@ public partial class KongController
     }
 
     /// <summary>
-    /// The horizontal input axis in absolute value
+    /// The horizontal input axis value
     /// </summary>
     public float HorizontalValue
     {
@@ -199,7 +199,7 @@ public partial class KongController
         var inputMap = FindObjectOfType<InputController>().KongMap;
 
         // HorizontalValue
-        inputMap.HorizontalAxis.performed += e => HorizontalValue = Mathf.Abs(e.ReadValue<float>());
+        inputMap.HorizontalAxis.performed += e => HorizontalValue = e.ReadValue<float>();
         inputMap.HorizontalAxis.canceled += e => HorizontalValue = 0;
 
         // VerticalValue

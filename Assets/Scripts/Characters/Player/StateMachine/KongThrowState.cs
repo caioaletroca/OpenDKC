@@ -24,7 +24,7 @@ public class KongThrowState : BaseState<KongController>
         AddTransition(idle, new CompositePredicate(
             new IPredicate[] {
                 new AnimationPredicate(animator, KongController.Animations.Throw, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.HorizontalValue < 0.001)
+                KongStateMachineHelper.ShouldIdle(controller)
             }
         ));
     }

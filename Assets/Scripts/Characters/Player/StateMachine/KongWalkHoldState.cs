@@ -17,10 +17,10 @@ public class KongWalkHoldState : BaseState<KongController>
         var throwing = stateMachine.GetState(typeof(KongThrowState));
         var jumpHold = stateMachine.GetState(typeof(KongJumpHoldState));
 
-        AddTransition(idleHold, new FunctionPredicate(() => controller.HorizontalValue < 0.001));
+        AddTransition(idleHold, KongStateMachineHelper.ShouldIdle(controller));
         AddTransition(dropping, new FunctionPredicate(() => !controller.Hold && controller.VerticalValue < -0.5));
         AddTransition(throwing, new FunctionPredicate(() => !controller.Hold && controller.VerticalValue > -0.5));
-        AddTransition(jumpHold, new FunctionPredicate(() => controller.Jump));
+        AddTransition(jumpHold, KongStateMachineHelper.ShouldJump(controller));
     }
 
     #endregion

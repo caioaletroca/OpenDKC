@@ -15,7 +15,10 @@ public class KongRopeIdleState : BaseState<KongController>
         var turn = stateMachine.GetState(typeof(KongRopeTurnState));
         var vertical = stateMachine.GetState(typeof(KongRopeVerticalState));
 
-        AddTransition(turn, new FunctionPredicate(() => controller.HorizontalValue > 0.001));
+        AddTransition(turn, new FunctionPredicate(() => 
+            controller.FacingRight && controller.HorizontalValue > 0 ||
+            !controller.FacingRight && controller.HorizontalValue < 0
+        ));
         AddTransition(vertical, new FunctionPredicate(() => controller.VerticalValue != 0));
     }
 
@@ -25,15 +28,15 @@ public class KongRopeIdleState : BaseState<KongController>
 
     public override void OnStateStart()
     {
-        controller.PerformVelocityHorizontalMovement(0);
-        controller.DisableGravity();
-        controller.SetVelocity(Vector2.zero);
+        controller.PerformRopeGrap();
         
         animator.Play(KongController.Animations.RopeIdle);
     }
 
     public override void OnStateFixedUpdate()
     {
+        // Debug.Log(controller.RopeController.CheckHorizontalRightMovement());
+
         controller.PerformVelocityHorizontalMovement(0);
         controller.PerformVelocityVerticalMovement(0);
     }

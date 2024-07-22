@@ -18,7 +18,7 @@ public class KongStandToCrouchState : BaseState<KongController>
         AddTransition(crouch, new CompositePredicate(
             new IPredicate[] {
                 new AnimationPredicate(animator, KongController.Animations.StandToCrouch, AnimationPredicate.Timing.End),
-                new FunctionPredicate(() => controller.VerticalValue < -0.5)
+                KongStateMachineHelper.ShouldCrouch(controller)
             }
         ));
         AddTransition(crouchToStand, new CompositePredicate(

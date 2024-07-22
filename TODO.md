@@ -3,7 +3,8 @@
 ## Player
 
 - [x] Hook mechanics;
-- [ ] Throw mechanics;
+- [X] Throw mechanics;
+- [ ] Rope/Climbing mechanics;
 
 ## Systems
 - [ ] Banana system (Overflow one up);
@@ -21,6 +22,7 @@
 
 - [X] Box;
 - [X] Barrel;
+- [X] Chest;
 
 ## Enemies
 

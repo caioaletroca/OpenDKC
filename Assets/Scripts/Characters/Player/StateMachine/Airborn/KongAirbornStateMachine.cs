@@ -35,7 +35,7 @@ public class KongAirbornStateMachine : BaseStateMachine<KongController>
                 new CompositePredicate(
                     new IPredicate[] {
                         new AnimationPredicate(animator, KongController.Animations.Land, AnimationPredicate.Timing.End),
-                        new FunctionPredicate(() => controller.HorizontalValue < 0.001),
+                        KongStateMachineHelper.ShouldIdle(controller),
                     }
                 ),
                 new CompositePredicate(

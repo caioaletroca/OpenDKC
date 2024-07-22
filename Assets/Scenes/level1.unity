@@ -3145,6 +3145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &450814753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6944360725566058431, guid: 5f07af95569c326498a1f64b4cea1fa4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1376527643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &479857577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3289,7 +3295,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -3.3188248e-18, y: -0.00000001550948, z: 2.1398687e-10, w: 1}
-  m_LocalPosition: {x: -8.264052, y: 5.263257, z: -11}
+  m_LocalPosition: {x: -8.66, y: -0.06999976, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4821,15 +4827,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5445494654168199196, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: GroundPoint
+      value: 
+      objectReference: {fileID: 1648388294}
+    - target: {fileID: 5445494654168199196, guid: 5f07af95569c326498a1f64b4cea1fa4,
+        type: 3}
+      propertyPath: CeilingPoint
+      value: 
+      objectReference: {fileID: 450814753}
     - target: {fileID: 6944360725309435768, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.24
+      value: -8.66
       objectReference: {fileID: 0}
     - target: {fileID: 6944360725309435768, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.26
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6944360725309435768, guid: 5f07af95569c326498a1f64b4cea1fa4,
         type: 3}
@@ -5631,7 +5647,7 @@ Transform:
   m_GameObject: {fileID: 1553168449}
   serializedVersion: 2
   m_LocalRotation: {x: -3.3188248e-18, y: -0.00000001550948, z: 2.1398687e-10, w: 1}
-  m_LocalPosition: {x: -14.24, y: 5.26, z: -11}
+  m_LocalPosition: {x: -8.66, y: -0.06999976, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8462,6 +8478,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1648388294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6944360724159364922, guid: 5f07af95569c326498a1f64b4cea1fa4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1376527643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1756029739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2463425598423289529, guid: c5a7b9c967c1f094b90a970e0dd7b93a,
@@ -8578,25 +8600,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   PlayerTest: {fileID: 313432779}
-  points: []
-  links: []
-  Current:
-    Orientation: 0
-    P0: {x: 0, y: 0}
-    P1: {x: 0, y: 0}
-  currentLink:
-    Current:
-      Orientation: 0
-      P0: {x: 0, y: 0}
-      P1: {x: 0, y: 0}
-    Up:
-      Orientation: 0
-      P0: {x: 0, y: 0}
-      P1: {x: 0, y: 0}
-    Down:
-      Orientation: 0
-      P0: {x: 0, y: 0}
-      P1: {x: 0, y: 0}
+  Points: []
+  Links: []
+  RopeState:
     Left:
       Orientation: 0
       P0: {x: 0, y: 0}
@@ -9711,7 +9717,7 @@ PrefabInstance:
     - target: {fileID: 5897308327878594529, guid: 323b14ae851bd3a4080916436a646f0c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 5897308327878594529, guid: 323b14ae851bd3a4080916436a646f0c,
         type: 3}
